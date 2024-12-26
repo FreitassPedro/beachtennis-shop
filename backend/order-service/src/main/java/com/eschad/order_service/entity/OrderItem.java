@@ -1,11 +1,10 @@
-package com.pedro.beachtennis_shop.entity;
+package com.eschad.order_service.entity;
 
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table
+
 public class OrderItem {
 
     @Id
@@ -23,5 +22,4 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
-
 }

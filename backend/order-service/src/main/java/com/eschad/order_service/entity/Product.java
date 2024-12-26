@@ -1,17 +1,19 @@
-package com.pedro.beachtennis_shop.entity;
+package com.eschad.order_service.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table
+import java.util.UUID;
+
+
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String name;
     private String description;
-    private double unitValue;
+    private double price;
     private int stock;
 
     private String imageUrl;
