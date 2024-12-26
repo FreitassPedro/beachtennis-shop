@@ -1,24 +1,16 @@
-package com.eschad.order_service.entity;
+package com.aechad.orchestrator.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.math.BigDecimal;
 
 
 public class OrderItem {
 
-
     private Long id;
-
     private int quantity;
-
     private BigDecimal unitPrice;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
     private Product product;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
     private Order order;
 }

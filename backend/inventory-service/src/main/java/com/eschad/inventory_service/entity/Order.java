@@ -1,6 +1,5 @@
-package com.eschad.order_service.entity;
+package com.eschad.inventory_service.entity;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,6 @@ public class Order {
 
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> products;
     private String orderTrackingNumber;
     private double totalPrice;
@@ -21,7 +19,6 @@ public class Order {
 
     private LocalDateTime createdAt;
 
-    @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
         products = new ArrayList<>();

@@ -1,6 +1,4 @@
-package com.eschad.order_service.entity;
-
-import jakarta.persistence.*;
+package com.eschad.inventory_service.entity;
 
 import java.math.BigDecimal;
 
@@ -14,11 +12,7 @@ public class OrderItem {
 
     private BigDecimal unitPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
     private Order order;
 }

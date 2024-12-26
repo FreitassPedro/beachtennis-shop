@@ -1,4 +1,4 @@
-package com.eschad.order_service.entity;
+package com.aechad.orchestrator.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -10,6 +10,8 @@ import java.util.List;
 @Builder
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")

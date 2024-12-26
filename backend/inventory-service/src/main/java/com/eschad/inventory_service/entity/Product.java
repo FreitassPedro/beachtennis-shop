@@ -1,13 +1,11 @@
-package com.eschad.order_service.entity;
-
-import jakarta.persistence.*;
+package com.eschad.inventory_service.entity;
 
 import java.util.UUID;
 
+
 public class Product {
 
-    private Long id;
-    private UUID code = UUID.randomUUID();
+    private UUID id;
 
     private String name;
     private String description;

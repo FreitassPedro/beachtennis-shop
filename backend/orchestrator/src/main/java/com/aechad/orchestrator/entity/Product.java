@@ -1,12 +1,9 @@
-package com.eschad.order_service.entity;
-
-import jakarta.persistence.*;
+package com.aechad.orchestrator.entity;
 
 import java.util.UUID;
 
 public class Product {
 
-    private Long id;
     private UUID code = UUID.randomUUID();
 
     private String name;
