@@ -1,8 +1,5 @@
 package com.aechad.orchestrator.entity;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
 import java.math.BigDecimal;
 
 

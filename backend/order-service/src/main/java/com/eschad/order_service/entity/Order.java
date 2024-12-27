@@ -11,8 +11,6 @@ import java.util.List;
 public class Order {
 
     private Long id;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> products;
     private String orderTrackingNumber;
     private double totalPrice;

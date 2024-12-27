@@ -1,6 +1,6 @@
 package com.aechad.orchestrator.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.PrePersist;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -10,17 +10,11 @@ import java.util.List;
 @Builder
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> products;
     private String orderTrackingNumber;
     private double totalPrice;
-    private String status;
     private int totalItems;
-
     private LocalDateTime createdAt;
 
     @PrePersist
