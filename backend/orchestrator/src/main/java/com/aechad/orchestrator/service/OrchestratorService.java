@@ -16,7 +16,7 @@ public class OrchestratorService {
 
     public void starWorkflow(Workflow workflow) {
         log.info("Starting workflow!");
-        Step   step = Step.builder()
+        Step step = Step.builder()
                 .source(SSource.ORCHESTRATOR)
                 .status(SStatus.SUCCESS)
                 .message("Starting workflow")
@@ -26,7 +26,7 @@ public class OrchestratorService {
 
     public void endWorkflow(Workflow workflow) {
         log.info("Ending {} workflow! Sucessfully!", workflow.getId());
-        Step   step = Step.builder()
+        Step  step = Step.builder()
                 .source(SSource.ORCHESTRATOR)
                 .status(SStatus.SUCCESS)
                 .message("Ending workflow")
