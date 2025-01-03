@@ -1,10 +1,10 @@
-package com.eschad.inventory_service.controller;
+package com.eschad.inventoryservice.controller;
 
 
-import com.eschad.inventory_service.entity.OrderRequest;
-import com.eschad.inventory_service.entity.ProductRequest;
-import com.eschad.inventory_service.entity.Validation;
-import com.eschad.inventory_service.service.ValidationService;
+import com.eschad.inventoryservice.entity.OrderRequest;
+import com.eschad.inventoryservice.entity.ProductRequest;
+import com.eschad.inventoryservice.entity.Validation;
+import com.eschad.inventoryservice.service.InventoryService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,19 +16,19 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/order")
-public class OrderController {
+@RequestMapping("/api/inventory")
+public class InventoryController {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+    private static final Logger log = LoggerFactory.getLogger(InventoryController.class);
     @Autowired
-    private ValidationService validationService;
+    private InventoryService inventoryService;
 
     @PostMapping()
     public Optional<Validation> createOrder(@RequestBody OrderRequest orderRequest) {
         Validation validation = new Validation(false, "Verifying products");
         for (ProductRequest  productRequest : orderRequest.getProductRequests()) {
 
-            Validation productValidation = validationService.validateProduct(productRequest);
+            Validation productValidation = inventoryService.validateProduct(productRequest);
             if (!productValidation.isValid()) {
                 return Optional.of(productValidation);
             }
@@ -40,6 +40,7 @@ public class OrderController {
         validation.setUpdatedAt(LocalDateTime.now());
 
         log.info("Order: " + validation.toString());
+
         return Optional.of(validation);
     }
 

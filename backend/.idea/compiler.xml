@@ -13,8 +13,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="orchestrator" />
-        <module name="inventory-service" />
         <module name="order-service" />
+        <module name="inventory-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

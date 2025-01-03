@@ -1,10 +1,6 @@
-package com.eschad.inventory_service.entity;
+package com.eschad.inventoryservice.entity;
 
-import jakarta.persistence.PrePersist;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

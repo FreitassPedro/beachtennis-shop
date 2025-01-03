@@ -1,4 +1,4 @@
-package com.eschad.inventory_service;
+package com.eschad.inventoryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
