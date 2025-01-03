@@ -1,10 +1,10 @@
 services:
-  ae-chade:  # Nome do serviço principal (stack)
-    image: ae-chade:latest  # Nome da imagem do contêiner
+  as-chade:  # Nome do serviço principal (stack)
+    image: as-chade:latest  # Nome da imagem do contêiner
     build:
       context: .  # Contexto para o build (pasta raiz do projeto)
       dockerfile: backend/orchestrator/Dockerfile  # Nome do Dockerfile (opcional)
-    container_name: ae-chade
+    container_name: as-chade
     depends_on:
       - rabbitmq
     ports:
@@ -23,7 +23,7 @@ services:
         RABBITMQ_DEFAULT_USER: rabbitmq
         RABBITMQ_DEFAULT_PASS: rabbitmq
     networks:
-        - aechade-network
+        - aschade-network
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq  # Persistência de dados
       - rabbitmq_logs:/var/log/rabbitmq  # Logs do RabbitMQ
@@ -33,5 +33,5 @@ volumes:
     rabbitmq_logs:
 
 networks:
-  aechade-network:
+  aschade-network:
     driver: bridge
