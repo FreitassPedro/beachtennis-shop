@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "inventory")
 @Data
@@ -14,5 +16,5 @@ public class Inventory {
     private Long id;
     private String productCode;
     private int stock;
-    private double unitValue;
+    private BigDecimal unitValue;
 }

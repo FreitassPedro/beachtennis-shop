@@ -16,5 +16,5 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             "WHERE i.productCode = :productCode AND i.stock >= :quantity")
     boolean hasEnoughStock(@Param("productCode") String productCode, @Param("quantity") int quantity);
 
-    Optional<Inventory> findByCode(String code);
+    Optional<Inventory> findByProductCode(String code);
 }
