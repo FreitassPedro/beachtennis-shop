@@ -1,18 +1,4 @@
 services:
-  as-chade:  # Nome do serviço principal (stack)
-    image: as-chade:latest  # Nome da imagem do contêiner
-    build:
-      context: .  # Contexto para o build (pasta raiz do projeto)
-      dockerfile: backend/orchestrator/Dockerfile  # Nome do Dockerfile (opcional)
-    container_name: as-chade
-    depends_on:
-      - rabbitmq
-    ports:
-      - "8080:8080"
-    volumes:
-      - .:/app  # Mapeia o diretório atual para o diretório /app dentro do contêiner
-
-
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:4-management
