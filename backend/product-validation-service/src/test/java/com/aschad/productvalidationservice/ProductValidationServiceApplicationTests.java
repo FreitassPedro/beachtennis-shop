@@ -1,4 +1,4 @@
-package com.aschad.product_validation_service;
+package com.aschad.productvalidationservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
