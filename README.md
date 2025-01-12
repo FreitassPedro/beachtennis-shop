@@ -15,5 +15,5 @@
 </div>
 
 <div align="center">
-  <img src="tps://drive.google.com/file/d/1DqnjploL-Vj-eLWtdbT30v8Ivzpk1UTS/view?usp=sharing" width="100%" height="100%">
+  <img src="https://drive.google.com/file/d/1DqnjploL-Vj-eLWtdbT30v8Ivzpk1UTS/view?usp=sharing" width="100%" height="100%">
 </div>
