@@ -10,10 +10,13 @@
 
 ## Project Diagram 
 - Link: https://drive.google.com/file/d/1DqnjploL-Vj-eLWtdbT30v8Ivzpk1UTS/view?usp=sharing
+
+## Workflow Diagram
 <div align="center">
-  <img src="backend/assets/RabbitMQ Diagram.svg" width="100%" height="100%">
+  <img src="backend/assets/Aschad%20Backend%20Diagram.drawio.svg" width="100%" height="100%">
 </div>
 
+## RabbitMQ Diagram
+  <img src="backend/assets/RabbitMQ Diagram.svg" width="100%" height="100%">
 <div align="center">
-  <img src="https://drive.google.com/file/d/1DqnjploL-Vj-eLWtdbT30v8Ivzpk1UTS/view?usp=sharing" width="100%" height="100%">
 </div>
