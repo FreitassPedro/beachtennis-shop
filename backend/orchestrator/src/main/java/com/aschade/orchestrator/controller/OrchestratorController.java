@@ -12,7 +12,6 @@ public class OrchestratorController {
     private final OrchestratorService orchestratorService;
 
 
-
     public void startWorkflow() {
         log.info("Starting workflow!");
     }
@@ -30,7 +29,4 @@ public class OrchestratorController {
     public void finishSuccessWorkflow() {
     }
 
-    public void processOrder(OrderRequest orderRequest) {
-
-    }
 }

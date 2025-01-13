@@ -14,7 +14,7 @@ public class Step {
     private SSource source;
     private SStatus status;
     private String message;
-    private String timestamp = String.valueOf(System.currentTimeMillis());
+    private String timestamp;
 
 
 }

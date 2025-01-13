@@ -1,6 +1,8 @@
 package com.aschade.orchestrator.entity;
 
+import com.aschade.orchestrator.entity.dto.OrderDTO;
 import com.aschade.orchestrator.enums.WStatus;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,18 +12,19 @@ import java.util.List;
 
 
 @Builder
+@AllArgsConstructor
 @Data
 public class Workflow {
 
     private String id;
-    private List<Step> stepsHistory;
 
+    private OrderDTO payload;
     private String transactionId;
-
     private WStatus status;
+    private List<Step> stepsHistory;
     private LocalDateTime createdAt;
 
-    private List<Order> orders;
+    public Workflow() {}
 
     public void addToStepsHistory(Step step) {
         if (stepsHistory.isEmpty())  stepsHistory = new ArrayList<>();

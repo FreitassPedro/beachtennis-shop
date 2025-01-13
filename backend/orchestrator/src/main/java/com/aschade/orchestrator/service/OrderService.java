@@ -14,7 +14,7 @@ public class OrderService {
         return OrderDTO.builder()
                 .customerId(orderRequest.getCustomer().getId().toString())
                 .products(orderRequest.getProducts())
-                .totalAmount(orderRequest.getTotal())
+                .totalAmount(orderRequest.getTotalValue())
                 .totalItems(orderRequest.getProducts().stream().map(p -> p.getQuantity()).reduce(0, Integer::sum))
                 .couponCode(orderRequest.getCouponCode())
                 .build();
