@@ -12,10 +12,10 @@
 
 ## Workflow Diagram
 <div align="center">
-  <img src="backend/assets/Backend%20Diagram.svg" width="100%" height="100%">
+  <img src="backend/assets/Backend Diagram.svg" width="100%" height="100%">
 </div>
 
 ## RabbitMQ Diagram
-<div align="center">
   <img src="backend/assets/RabbitMQ Diagram.svg" width="100%" height="100%">
+<div align="center">
 </div>
