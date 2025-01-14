@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/orchestrator-service/pom.xml" />
         <option value="$PROJECT_DIR$/orchestrator/pom.xml" />
         <option value="$PROJECT_DIR$/discount-service/pom.xml" />
+        <option value="$PROJECT_DIR$/validation-service/pom.xml" />
+        <option value="$PROJECT_DIR$/entidades-compartilhadas/pom.xml" />
       </list>
     </option>
   </component>
