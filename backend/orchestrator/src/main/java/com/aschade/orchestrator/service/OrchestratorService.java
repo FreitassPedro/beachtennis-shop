@@ -69,7 +69,7 @@ public class OrchestratorService {
     }
 
     // Orchestrator-service
-    public ValidationResult validateOrderDto(OrderRequest orderRequest) {
+    public ValidationResult sendToValidation(OrderRequest orderRequest) {
         return (ValidationResult) rabbitTemplate.convertSendAndReceive(validationExchange, "validation.request", orderRequest);
     }
 

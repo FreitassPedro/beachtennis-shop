@@ -1,8 +1,6 @@
-package com.aschade.orchestrator.entity;
+package com.aschade.orchestrator.exceptionHandler;
 
-import java.util.List;
-
-public class ApiErrorResponse {
+public class ErrorMessage {
 
     private int status;
     private long timestamp;
@@ -10,10 +8,10 @@ public class ApiErrorResponse {
     private String error;
     private String path;
 
-    public ApiErrorResponse() {
+    public ErrorMessage() {
     }
 
-    public ApiErrorResponse(int status, long timestamp, String message, String error, String path) {
+    public ErrorMessage(int status, long timestamp, String message, String error, String path) {
         this.status = status;
         this.timestamp = timestamp;
         this.message = message;
