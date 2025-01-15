@@ -1,6 +1,6 @@
 package com.aschade.orchestrator.entity;
 
-import com.aschade.orchestrator.entity.dto.OrderDTO;
+import com.aschad.ecommerce.OrderDTO;
 import com.aschade.orchestrator.enums.WStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

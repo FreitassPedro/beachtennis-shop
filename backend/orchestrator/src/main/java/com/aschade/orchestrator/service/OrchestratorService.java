@@ -1,8 +1,10 @@
 package com.aschade.orchestrator.service;
 
+import com.aschad.ecommerce.OrderDTO;
+import com.aschad.ecommerce.OrderRequest;
+import com.aschad.ecommerce.ValidationResult;
 import com.aschade.orchestrator.entity.Step;
 import com.aschade.orchestrator.entity.Workflow;
-import com.aschade.orchestrator.entity.dto.OrderDTO;
 import com.aschade.orchestrator.enums.SSource;
 import com.aschade.orchestrator.enums.SStatus;
 import com.aschade.orchestrator.enums.WStatus;
@@ -43,7 +45,7 @@ public class OrchestratorService {
 
     public void endWorkflow(Workflow workflow) {
         log.info("Ending {} workflow! Sucessfully!", workflow.getId());
-        Step  step = Step.builder()
+        Step step = Step.builder()
                 .source(SSource.ORCHESTRATOR)
                 .status(SStatus.SUCCESS)
                 .message("Ending workflow")
@@ -65,5 +67,11 @@ public class OrchestratorService {
         startWorkflow(workflow);
         return workflow;
     }
+
+    // Orchestrator-service
+    public ValidationResult validateOrderDto(OrderRequest orderRequest) {
+        return (ValidationResult) rabbitTemplate.convertSendAndReceive(validationExchange, "validation.request", orderRequest);
+    }
+
 
 }

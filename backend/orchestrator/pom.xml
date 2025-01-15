@@ -30,6 +30,13 @@
 		<java.version>23</java.version>
 	</properties>
 	<dependencies>
+		<!-- Repositorio Proprio -->
+		<dependency>
+			<groupId>com.aschad.ecommerce</groupId>
+			<artifactId>entidades-compartilhadas</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

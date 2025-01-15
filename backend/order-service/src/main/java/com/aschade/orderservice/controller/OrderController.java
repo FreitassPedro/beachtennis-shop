@@ -26,8 +26,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping()
-    public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest) {
+        public ResponseEntity<?> createOrder(Order order) {
         log.info("Order request received: {}", orderRequest);
         Order order = orderService.createOrder(orderRequest);
         orderService.enqueueOrder(order);

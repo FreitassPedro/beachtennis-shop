@@ -1,12 +1,12 @@
 package com.aschade.orchestrator.controller;
 
 
-import com.aschade.orchestrator.entity.OrderRequest;
+import com.aschad.ecommerce.OrderDTO;
+import com.aschad.ecommerce.OrderRequest;
+
+import com.aschad.ecommerce.ValidationResult;
+import com.aschade.orchestrator.entity.ApiErrorResponse;
 import com.aschade.orchestrator.entity.Workflow;
-import com.aschade.orchestrator.entity.dto.BoletoPayment;
-import com.aschade.orchestrator.entity.dto.CardPayment;
-import com.aschade.orchestrator.entity.dto.OrderDTO;
-import com.aschade.orchestrator.entity.dto.PaymentMethod;
 import com.aschade.orchestrator.service.OrchestratorService;
 import com.aschade.orchestrator.service.OrderService;
 import org.slf4j.Logger;
@@ -31,27 +31,40 @@ public class OrderController {
     private OrchestratorService orchestratorService;
 
     @PostMapping()
-    public ResponseEntity<Workflow> createOrder(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest) {
         log.info("Order request received: {}", orderRequest);
 
-        resolvePaymentMethod(orderRequest.getPaymentMethod());
+        orderService.resolvePaymentMethod(orderRequest.getPaymentMethod());
 
-        if (!orderRequest.isValid()) return ResponseEntity.badRequest().build();
+        if (!orderRequest.isValid()) {
+            ApiErrorResponse apiErrorResponse= new ApiErrorResponse();
+            apiErrorResponse.setStatus(400);
+            apiErrorResponse.setMessage("Error in request body");
+            apiErrorResponse.setError("There is some invalid field, please check the request body");
+            apiErrorResponse.setTimestamp(System.currentTimeMillis());
+            apiErrorResponse.setPath("/api/order");
+
+            return ResponseEntity.badRequest().body(apiErrorResponse);
+        }
+
+        ValidationResult validationResult = orchestratorService.validateOrderDto(orderRequest);
+
+        if(!validationResult.isValid()) {
+            ApiErrorResponse apiErrorResponse= new ApiErrorResponse();
+            apiErrorResponse.setStatus(400);
+            apiErrorResponse.setMessage("Error validating order");
+            apiErrorResponse.setError("There is mismatch field in the order request");
+            apiErrorResponse.setTimestamp(System.currentTimeMillis());
+            apiErrorResponse.setPath("/api/order");
+            return ResponseEntity.badRequest().body(apiErrorResponse);
+        }
 
         OrderDTO orderDTO = orderService.createOrderDTO(orderRequest);
         Workflow workflow = orchestratorService.createWorkflow(orderDTO);
-
-        return ResponseEntity.ok(workflow);
+      log.info("Workflow started: {}", workflow);
+        return ResponseEntity.ok().body(orderDTO);
     }
 
-    private void resolvePaymentMethod(PaymentMethod paymentMethod) {
-        if (paymentMethod instanceof CardPayment) {
-            CardPayment cardPayment = (CardPayment) paymentMethod;
-            log.info("Card payment received: {}", cardPayment);
 
-        } else if (paymentMethod instanceof BoletoPayment) {
-            BoletoPayment boletoPayment = (BoletoPayment) paymentMethod;
-            log.info("Boleto payment received: {}", boletoPayment);
-        }
-    }
+
 }

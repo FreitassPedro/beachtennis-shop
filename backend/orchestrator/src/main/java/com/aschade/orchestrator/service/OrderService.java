@@ -1,9 +1,6 @@
 package com.aschade.orchestrator.service;
 
-import com.aschade.orchestrator.entity.OrderRequest;
-import com.aschade.orchestrator.entity.dto.OrderDTO;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
+import com.aschad.ecommerce.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,4 +16,14 @@ public class OrderService {
                 .couponCode(orderRequest.getCouponCode())
                 .build();
     }
+
+
+    public void resolvePaymentMethod(PaymentMethod paymentMethod) {
+        if (paymentMethod instanceof CardPayment) {
+            CardPayment cardPayment = (CardPayment) paymentMethod;
+        } else if (paymentMethod instanceof BoletoPayment) {
+            BoletoPayment boletoPayment = (BoletoPayment) paymentMethod;
+        }
+    }
 }
+

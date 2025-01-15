@@ -91,10 +91,19 @@ public class RabbitMQConfig {
         return new Queue("inventory.fail.qe", true);
     }
 
+    @Bean
+    public Queue validationReplyQueue() {
+        QueueBuilder queueBuilder = QueueBuilder.durable("");
+        return new Queue("validation.reply.qe", true);
+    }
 
+
+    /*
+     Binding para de Exchanges e Filas
+     */
     @Bean
     public Binding validationBiding() {
-       return BindingBuilder.bind(validationWaitQueue()).to(validationExchange()).with("validation.create").noargs();
+       return BindingBuilder.bind(validationWaitQueue()).to(validationExchange()).with("validation.request").noargs();
     }
 
     @Bean
@@ -127,9 +136,6 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.create").noargs();
     }
 
-
-
-    // Binding para a fila de sucesso de validação
     @Bean
     public Binding validationSuccessBinding() {
         return BindingBuilder.bind(stepSuccessQueue()).to(validationExchange()).with("validation.success").noargs();
@@ -150,8 +156,15 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(stepSuccessQueue()).to(inventoryExchange()).with("inventory.success").noargs();
     }
 
+    @Bean
+    public Binding validationReplyBinding() {
+        return BindingBuilder.bind(validationReplyQueue()).to(orchestratorExchange()).with("validation.response").noargs();
+    }
 
 
+    /*
+     Binding para a Exchange de Orquestração
+     */
     @Bean
     public Binding orchestratorExchangeToValidation() {
         return BindingBuilder.bind(orchestratorExchange()).to(validationExchange()).with("validation.new").noargs();
@@ -168,9 +181,6 @@ public class RabbitMQConfig {
     public Binding orchestratorExchangeToInventory() {
         return BindingBuilder.bind(orchestratorExchange()).to(inventoryExchange()).with("inventory.new").noargs();
     }
-
-
-
 
     
     // Configuração do MessageConverter para serializar e deserializar as mensagens
