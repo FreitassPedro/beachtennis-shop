@@ -97,10 +97,20 @@ public class RabbitMQConfig {
         return new Queue("validation.reply.qe", true);
     }
 
+    @Bean
+    public Queue orchestratorQueue() {
+        QueueBuilder queueBuilder = QueueBuilder.durable("");
+        return new Queue("orchestrator.new.qe", true);
+    }
 
     /*
      Binding para de Exchanges e Filas
      */
+    @Bean
+    public Binding orchestratorBinding() {
+        return BindingBuilder.bind(orchestratorQueue()).to(orchestratorExchange()).with("orchestrator.new").noargs();
+    }
+
     @Bean
     public Binding validationBiding() {
        return BindingBuilder.bind(validationWaitQueue()).to(validationExchange()).with("validation.request").noargs();
@@ -108,7 +118,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding orderWaitBinding() {
-        return BindingBuilder.bind(orderWaitQueue()).to(orderExchange()).with("order.create").noargs();
+        return BindingBuilder.bind(orderWaitQueue()).to(orderExchange()).with("order.new").noargs();
     }
 
     @Bean
@@ -118,22 +128,22 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding paymentWaitBinding() {
-        return BindingBuilder.bind(paymentWaitQueue()).to(paymentExchange()).with("payment.create").noargs();
+        return BindingBuilder.bind(paymentWaitQueue()).to(paymentExchange()).with("payment.new").noargs();
     }
 
     @Bean
     public Binding inventoryFailBinding() {
-        return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.create").noargs();
+        return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.fail").noargs();
     }
 
     @Bean
     public Binding inventoryWaitBinding() {
-        return BindingBuilder.bind(inventoryWaitQueue()).to(inventoryExchange()).with("payment.create").noargs();
+        return BindingBuilder.bind(inventoryWaitQueue()).to(inventoryExchange()).with("payment.new").noargs();
     }
 
     @Bean
     public Binding paymentFailBinding() {
-        return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.create").noargs();
+        return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.fail").noargs();
     }
 
     @Bean
@@ -160,6 +170,7 @@ public class RabbitMQConfig {
     public Binding validationReplyBinding() {
         return BindingBuilder.bind(validationReplyQueue()).to(orchestratorExchange()).with("validation.response").noargs();
     }
+
 
 
     /*

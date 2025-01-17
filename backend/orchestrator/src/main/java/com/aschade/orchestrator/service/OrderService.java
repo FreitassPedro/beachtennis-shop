@@ -13,7 +13,6 @@ public class OrderService {
 
     public ValidationResult validateOrderRequest(OrderRequest orderRequest) {
         validateInternalFields(orderRequest);
-
         return validateExternalFields(orderRequest);
     }
 

@@ -1,9 +1,6 @@
 package com.aschade.orchestrator.controller;
 
-import com.aschade.orchestrator.entity.dto.BoletoPayment;
-import com.aschade.orchestrator.entity.dto.CustomerDTO;
-import com.aschade.orchestrator.entity.OrderRequest;
-import com.aschade.orchestrator.entity.dto.ProductDTO;
+import com.aschad.ecommerce.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -22,7 +19,8 @@ public class TestController {
 
 
     private static final Logger log = LoggerFactory.getLogger(TestController.class);
-    private AmqpTemplate amqpTemplate;
+
+    private final AmqpTemplate amqpTemplate;
 
     @Value("${rabbitmq.exchange.name}")
     private String exchangeName;
