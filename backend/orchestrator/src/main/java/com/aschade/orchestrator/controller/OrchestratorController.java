@@ -1,6 +1,6 @@
 package com.aschade.orchestrator.controller;
 
-import com.aschad.ecommerce.Workflow;
+import com.aschad.ecommerce.entity.Workflow;
 import com.aschad.ecommerce.enums.StepSource;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,5 +46,6 @@ public class OrchestratorController {
 
     public void finishSuccessWorkflow() {
     }
+
 
 }

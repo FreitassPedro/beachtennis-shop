@@ -1,6 +1,6 @@
 package com.aschade.orchestrator.service;
 
-import com.aschad.ecommerce.*;
+import com.aschad.ecommerce.entity.*;
 import com.aschade.orchestrator.exception.InvalidOrderRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +26,9 @@ public class OrderService {
 
     private ValidationResult validateExternalFields(OrderRequest orderRequest) {
         ValidationResult validationResult = orchestratorService.sendToValidation(orderRequest);
+        if (validationResult == null) {
+            throw new InvalidOrderRequestException("There is no response from the validation service, please try again later");
+        }
         if (!validationResult.isValid()) {
             throw new InvalidOrderRequestException("There is mismatch field in the order request");
         }

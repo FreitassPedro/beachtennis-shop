@@ -1,10 +1,11 @@
 package com.aschade.orchestrator.listener;
 
-import com.aschad.ecommerce.Step;
-import com.aschad.ecommerce.Workflow;
+import com.aschad.ecommerce.entity.Workflow;
 import com.aschad.ecommerce.enums.StepSource;
 import com.aschade.orchestrator.controller.OrchestratorController;
 import com.aschade.orchestrator.service.OrchestratorService;
+import com.aschade.orchestrator.service.WorkflowService;
+import com.aschade.orchestrator.util.mapper.WorkflowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -17,16 +18,23 @@ public class OrchestratorConsumer {
     private static final Logger log = LoggerFactory.getLogger(OrchestratorConsumer.class);
 
     @Autowired
+    private WorkflowService workflowService;
+
+    @Autowired
     private OrchestratorService orchestratorService;
 
     @Autowired
     private OrchestratorController orchestratorController;
+
+    @Autowired
+    private WorkflowMapper workflowMapper;
 
     @RabbitListener(queues = "orchestrator.new.qe")
     public void consumeStartWorkflow(Workflow workflow) {
         log.info("Consuming new workflow: {}", workflow);
 
         orchestratorService.addInitialStep(workflow);
+        workflowService.save(workflow);
         orchestratorController.consumeSuccessStep(workflow, orchestratorService.findNextStep(workflow));
     }
 

@@ -1,9 +1,15 @@
 package com.aschade.orchestrator.controller;
 
-import com.aschad.ecommerce.*;
+import com.aschad.ecommerce.dto.CustomerDTO;
+import com.aschad.ecommerce.dto.ProductDTO;
+import com.aschad.ecommerce.entity.BoletoPayment;
+import com.aschad.ecommerce.entity.OrderRequest;
+import com.aschad.ecommerce.entity.Workflow;
+import com.aschade.orchestrator.service.WorkflowService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +30,9 @@ public class TestController {
 
     @Value("${rabbitmq.exchange.name}")
     private String exchangeName;
+
+    @Autowired
+    private WorkflowService workflowservice;
 
     public TestController(AmqpTemplate amqpTemplate) {
         this.amqpTemplate = amqpTemplate;
@@ -49,9 +58,16 @@ public class TestController {
         orderRequest.setPaymentMethod(new BoletoPayment("12334"));
 
         List<ProductDTO> productDTOS = new ArrayList<>();
-        productDTOS.add(new ProductDTO());
+
         orderRequest.setProducts(productDTOS);
 
         return ResponseEntity.ok(orderRequest);
+    }
+
+    @GetMapping("/workflow/{id}")
+    public ResponseEntity<Workflow> findWorkflowById(String id) {
+        Workflow workflow = workflowservice.findWorkflowById(id);
+
+        return ResponseEntity.ok(workflow);
     }
 }

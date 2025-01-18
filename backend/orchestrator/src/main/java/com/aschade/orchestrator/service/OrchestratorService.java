@@ -1,6 +1,6 @@
 package com.aschade.orchestrator.service;
 
-import com.aschad.ecommerce.*;
+import com.aschad.ecommerce.entity.*;
 import com.aschad.ecommerce.enums.*;
 
 import org.slf4j.Logger;
@@ -25,17 +25,25 @@ public class OrchestratorService {
     @Value("${rabbitmq.validation.exchange.name}")
     private String validationExchange;
 
+    @Autowired
+    private WorkflowService workflowService;
+
     private static final Logger log = LoggerFactory.getLogger(OrchestratorService.class);
 
-    public Workflow createWorkflow(OrderDTO orderDTO) {
-        return Workflow.builder()
+    public Workflow createWorkflow() {
+        Order order = Order.builder().build();
+        Workflow workflow = Workflow.builder()
                 .id(UUID.randomUUID().toString())
                 .transactionId(UUID.randomUUID().toString())
-                .payload(orderDTO)
+                .payload(order)
                 .status(WStatus.PENDING)
                 .createdAt(LocalDateTime.now())
                 .stepsHistory(new ArrayList<>())
                 .build();
+        order.setWorkflow(workflow);
+        workflowService.save(workflow);
+
+        return workflow;
     }
 
     public void addFinalWorkflow(Workflow workflow) {
@@ -61,6 +69,7 @@ public class OrchestratorService {
                 .message("Starting workflow")
                 .timestamp(LocalDateTime.now().toString())
                 .build();
+        step.setWorkflow(workflow);
         workflow.getStepsHistory().add(step);
     }
 
