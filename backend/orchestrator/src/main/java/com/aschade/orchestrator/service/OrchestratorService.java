@@ -30,8 +30,13 @@ public class OrchestratorService {
 
     private static final Logger log = LoggerFactory.getLogger(OrchestratorService.class);
 
-    public Workflow createWorkflow() {
-        Order order = Order.builder().build();
+    public Workflow createWorkflow(LocalDateTime orderDate) {
+        Order order = Order.builder()
+                .id(UUID.randomUUID().toString().replace("-", "").toUpperCase())
+                .status(OrderStatus.PENDING)
+                .orderDate(orderDate)
+                .build();
+
         Workflow workflow = Workflow.builder()
                 .id(UUID.randomUUID().toString())
                 .transactionId(UUID.randomUUID().toString())
@@ -41,8 +46,6 @@ public class OrchestratorService {
                 .stepsHistory(new ArrayList<>())
                 .build();
         order.setWorkflow(workflow);
-        workflowService.save(workflow);
-
         return workflow;
     }
 
@@ -67,10 +70,11 @@ public class OrchestratorService {
                 .source(ORCHESTRATOR)
                 .status(StepStatus.SUCCESS)
                 .message("Starting workflow")
+                .workflow(workflow)
                 .timestamp(LocalDateTime.now().toString())
                 .build();
-        step.setWorkflow(workflow);
-        workflow.getStepsHistory().add(step);
+
+        workflow.addToStepsHistory(step);
     }
 
     private void enqueueWorkflow(Workflow workflow) {
@@ -80,7 +84,7 @@ public class OrchestratorService {
 
     // TODO: melhorar forma de encontrar o proximo passo
     public StepSource findNextStep(Workflow workflow) {
-        log.info("Finding next step for workflow: {}", workflow.getId());
+        log.info("Finding next step for workflow: {} - {}", workflow.getId(), workflow.getStepsHistory());
         int ordinal = workflow.getStepsHistory().getLast().getSource().ordinal();
         if (ordinal == StepSource.values().length - 1) {
             addFinalWorkflow(workflow);
@@ -89,5 +93,9 @@ public class OrchestratorService {
         return StepSource.values()[ordinal + 1];
 
 
+    }
+
+    public void createOrderByOrderRequest(MainCreation mainCreation) {
+        rabbitTemplate.convertAndSend("order.exchange", "order.new", mainCreation);
     }
 }

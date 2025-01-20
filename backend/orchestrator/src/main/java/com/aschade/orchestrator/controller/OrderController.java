@@ -1,10 +1,10 @@
 package com.aschade.orchestrator.controller;
 
 
-import com.aschad.ecommerce.OrderDTO;
-import com.aschad.ecommerce.OrderRequest;
+import com.aschad.ecommerce.entity.MainCreation;
+import com.aschad.ecommerce.entity.OrderRequest;
 
-import com.aschad.ecommerce.Workflow;
+import com.aschad.ecommerce.entity.Workflow;
 import com.aschade.orchestrator.service.OrchestratorService;
 import com.aschade.orchestrator.service.OrderService;
 import com.aschade.orchestrator.util.mapper.OrderMapper;
@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/order")
@@ -39,12 +41,18 @@ public class OrderController {
 
         orderService.validateOrderRequest(orderRequest);
 
-        OrderDTO orderDTO = orderMapper.toOrderDTO(orderRequest);
-        Workflow workflow = orchestratorService.createWorkflow(orderDTO);
-        orchestratorController.startWorkflow(workflow);
+        LocalDateTime orderDate = LocalDateTime.now();
+        Workflow workflow = orchestratorService.createWorkflow(orderDate);
+
+        MainCreation mainCreation = MainCreation.builder()
+                .workflow(workflow)
+                .orderRequest(orderRequest)
+                .build();
+        orchestratorController.startWorkflow(mainCreation);
 
         return ResponseEntity.ok().body(workflow);
     }
+
 
 
 

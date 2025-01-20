@@ -1,5 +1,6 @@
 package com.aschade.orchestrator.controller;
 
+import com.aschad.ecommerce.entity.MainCreation;
 import com.aschad.ecommerce.entity.Workflow;
 import com.aschad.ecommerce.enums.StepSource;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,8 @@ public class OrchestratorController {
     private RabbitTemplate rabbitTemplate;
 
 
-    public void startWorkflow(Workflow workflow) {
-        rabbitTemplate.convertAndSend("orchestrator.exchange", "orchestrator.new", workflow);
+    public void startWorkflow(MainCreation mainCreation) {
+        rabbitTemplate.convertAndSend("orchestrator.exchange", "orchestrator.new", mainCreation );
     }
 
     public void consumeSuccessStep(Workflow workflow, StepSource nextStep) {

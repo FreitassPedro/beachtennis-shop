@@ -13,7 +13,7 @@
         <module name="discount-service" />
         <module name="catalog-service" />
       </profile>
-      <profile name="Annotation profile for product-validation-service" enabled="true">
+      <profile name="Annotation profile for inventory-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -22,8 +22,8 @@
         </processorPath>
         <module name="validation-service" />
         <module name="orchestrator" />
-        <module name="order-service" />
         <module name="inventory-service" />
+        <module name="order-service" />
         <module name="entidades-compartilhadas" />
       </profile>
     </annotationProcessing>

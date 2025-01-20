@@ -1,5 +1,6 @@
 package com.aschade.orchestrator.listener;
 
+import com.aschad.ecommerce.entity.MainCreation;
 import com.aschad.ecommerce.entity.Workflow;
 import com.aschad.ecommerce.enums.StepSource;
 import com.aschade.orchestrator.controller.OrchestratorController;
@@ -30,18 +31,20 @@ public class OrchestratorConsumer {
     private WorkflowMapper workflowMapper;
 
     @RabbitListener(queues = "orchestrator.new.qe")
-    public void consumeStartWorkflow(Workflow workflow) {
+    public void consumeStartWorkflow(MainCreation mainCreation) {
+        Workflow workflow = mainCreation.getWorkflow();
         log.info("Consuming new workflow: {}", workflow);
 
         orchestratorService.addInitialStep(workflow);
         workflowService.save(workflow);
-        orchestratorController.consumeSuccessStep(workflow, orchestratorService.findNextStep(workflow));
+        orchestratorService.createOrderByOrderRequest(mainCreation);
     }
 
     @RabbitListener(queues = "step.success.qe")
     public void consumeSuccessStep(Workflow workflow) {
         log.info("Consuming success step: {}", workflow.getId());
 
+        workflowService.save(workflow);
         /* Por enquanto, o código sera hardcode para o teste, o passo a passo é definido a mao,
         porem, no futuro o ideal é implementar o handler para orquestrar os proximos eventos a serem seguidos
          */

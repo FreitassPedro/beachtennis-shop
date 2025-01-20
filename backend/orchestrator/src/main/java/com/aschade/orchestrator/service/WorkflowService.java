@@ -13,10 +13,13 @@ public class WorkflowService {
 
     public Workflow findWorkflowById(String id) {
         return workflowRepository.findById(id).orElse(null);
-
     }
 
     public void save(Workflow workflow) {
+        workflowRepository.save(workflow);
+    }
+
+    public void update(Workflow workflow) {
         workflowRepository.saveAndFlush(workflow);
     }
 }
