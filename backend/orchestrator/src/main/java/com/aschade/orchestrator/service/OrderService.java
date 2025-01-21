@@ -1,15 +1,23 @@
 package com.aschade.orchestrator.service;
 
 import com.aschad.ecommerce.entity.*;
+import com.aschad.ecommerce.enums.OrderStatus;
 import com.aschade.orchestrator.exception.InvalidOrderRequestException;
+import com.aschade.orchestrator.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Random;
 
 @Service
 public class OrderService {
 
     @Autowired
     private OrchestratorService orchestratorService;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     public ValidationResult validateOrderRequest(OrderRequest orderRequest) {
         validateInternalFields(orderRequest);
@@ -44,5 +52,19 @@ public class OrderService {
     }
 
 
+    public void save(Order order) {
+        orderRepository.save(order);
+    }
+
+    public Order createPreOrder(OrderRequest orderRequest) {
+        Random random = new Random();
+        String orderId = String.valueOf(random.nextInt(1000000));
+        return Order.builder()
+                .id(orderId)
+                .customerId(orderRequest.getCustomer().getId())
+                .status(OrderStatus.PENDING)
+                .orderDate(LocalDateTime.now())
+                .build();
+    }
 }
 

@@ -1,13 +1,13 @@
 package com.aschad.inventoryservice.repository;
 
-import com.aschad.inventoryservice.entity.Inventory;
+import com.aschad.inventoryservice.entity.ProductInventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+public interface ProductInventoryRepository extends JpaRepository<ProductInventory, Long> {
 
     Boolean existsByProductCode(String productCode);
 
@@ -16,5 +16,5 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             "WHERE i.productCode = :productCode AND i.stock >= :quantity")
     boolean hasEnoughStock(@Param("productCode") String productCode, @Param("quantity") int quantity);
 
-    Optional<Inventory> findByProductCode(String code);
+    Optional<ProductInventory> findByProductCode(String code);
 }

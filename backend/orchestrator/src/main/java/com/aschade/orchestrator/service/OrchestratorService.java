@@ -28,24 +28,22 @@ public class OrchestratorService {
     @Autowired
     private WorkflowService workflowService;
 
+
+
     private static final Logger log = LoggerFactory.getLogger(OrchestratorService.class);
 
-    public Workflow createWorkflow(LocalDateTime orderDate) {
-        Order order = Order.builder()
-                .id(UUID.randomUUID().toString().replace("-", "").toUpperCase())
-                .status(OrderStatus.PENDING)
-                .orderDate(orderDate)
-                .build();
-
+    public Workflow createWorkflow(Order preOrder) {
         Workflow workflow = Workflow.builder()
-                .id(UUID.randomUUID().toString())
+                .id(preOrder.getId())
                 .transactionId(UUID.randomUUID().toString())
-                .payload(order)
-                .status(WStatus.PENDING)
+                .payload(preOrder)
+                .status(WorkflowStatus.PENDING)
                 .createdAt(LocalDateTime.now())
                 .stepsHistory(new ArrayList<>())
                 .build();
-        order.setWorkflow(workflow);
+
+        preOrder.setWorkflow(workflow);
+
         return workflow;
     }
 
@@ -54,11 +52,11 @@ public class OrchestratorService {
                 .source(ORCHESTRATOR)
                 .status(StepStatus.SUCCESS)
                 .message("Ending workflow")
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now())
                 .build();
 
         workflow.getStepsHistory().add(step);
-        workflow.setStatus(WStatus.SUCCESS);
+        workflow.setStatus(WorkflowStatus.SUCCESS);
     }
 
     public ValidationResult sendToValidation(OrderRequest orderRequest) {
@@ -71,7 +69,7 @@ public class OrchestratorService {
                 .status(StepStatus.SUCCESS)
                 .message("Starting workflow")
                 .workflow(workflow)
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now())
                 .build();
 
         workflow.addToStepsHistory(step);

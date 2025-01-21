@@ -13,6 +13,6 @@ public class ProductMapper {
     private ProductService productService;
 
     public Product toProductByCode(ProductDTO productDTO) {
-        return productService.getByCode(productDTO.getProductCode());
+        return productService.getByCode(productDTO.getCode());
     }
 }

@@ -1,37 +1,51 @@
 package com.aschade.orderservice.service;
 
-import com.aschade.orderservice.entity.Order;
-import com.aschade.orderservice.entity.OrderRequest;
+import com.aschad.ecommerce.dto.ProductDTO;
+import com.aschad.ecommerce.entity.Order;
+import com.aschad.ecommerce.entity.OrderRequest;
+import com.aschad.ecommerce.enums.OrderStatus;
+import com.aschade.orderservice.exception.SagaFlowException;
 import com.aschade.orderservice.repository.OrderRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.aschade.orderservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.Optional;
 
 @Service
 public class OrderService {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     @Autowired
     private OrderRepository orderRepository;
 
-    public void enqueueOrder(Order order) {
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private InventoryService inventoryService;
+
+
+    public String generateOrderTrackingNumber() {
+        return null;
 
     }
 
-    public Order createOrder(OrderRequest orderRequest) {
-        Order order = Order.builder()
-                .products(orderRequest.getProducts())
-                .createdAt(LocalDateTime.now())
-                .orderTrackingNumber(UUID.randomUUID().toString())
-                .customerId(orderRequest.getCustomerId())
-                .build();
+    public Order findOrderById(String orderId) {
+        return orderRepository.findById(orderId).orElseThrow(() -> new SagaFlowException("Order not found"));
+    }
 
-        orderRepository.save(order);
-        log.info("Order created: {}", order);
+    public Order createOrder(OrderRequest orderRequest, Order order) {
+
+
+
+        int totalItems = orderRequest.getProducts().stream().mapToInt(ProductDTO::getQuantity).sum();
+
+        order.setTotalItems(totalItems);
+        order.setStatus(OrderStatus.CREATED);
         return order;
+    }
+
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
     }
 }

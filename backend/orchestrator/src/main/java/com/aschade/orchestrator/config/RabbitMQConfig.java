@@ -45,6 +45,11 @@ public class RabbitMQConfig {
 
 
     @Bean
+    public Queue inventoryCheckQueue() {
+        QueueBuilder queueBuilder = QueueBuilder.durable("");
+        return new Queue("inventory.checkStock.qe", true);
+    }
+    @Bean
     public Queue validationWaitQueue() {
         QueueBuilder queueBuilder = QueueBuilder.durable("");
         return new Queue("validation.wait.qe", true);
@@ -103,9 +108,25 @@ public class RabbitMQConfig {
         return new Queue("orchestrator.new.qe", true);
     }
 
+    @Bean
+    public Queue orchestratorFailQueue() {
+        QueueBuilder queueBuilder = QueueBuilder.durable("");
+        return new Queue("step.fail.qe", true);
+    }
+
     /*
      Binding para de Exchanges e Filas
      */
+
+    @Bean
+    public Binding orchestratorFailBinding() {
+        return BindingBuilder.bind(orchestratorFailQueue()).to(orchestratorExchange()).with("step.fail").noargs();
+    }
+    @Bean
+    public Binding inventoryCheckBinding() {
+        return BindingBuilder.bind(inventoryCheckQueue()).to(inventoryExchange()).with("inventory.checkStock").noargs();
+    }
+
     @Bean
     public Binding orchestratorBinding() {
         return BindingBuilder.bind(orchestratorQueue()).to(orchestratorExchange()).with("orchestrator.new").noargs();

@@ -2,6 +2,7 @@ package com.aschade.orchestrator.controller;
 
 
 import com.aschad.ecommerce.entity.MainCreation;
+import com.aschad.ecommerce.entity.Order;
 import com.aschad.ecommerce.entity.OrderRequest;
 
 import com.aschad.ecommerce.entity.Workflow;
@@ -41,8 +42,8 @@ public class OrderController {
 
         orderService.validateOrderRequest(orderRequest);
 
-        LocalDateTime orderDate = LocalDateTime.now();
-        Workflow workflow = orchestratorService.createWorkflow(orderDate);
+        Order preOrder = orderService.createPreOrder(orderRequest);
+        Workflow workflow = orchestratorService.createWorkflow(preOrder);
 
         MainCreation mainCreation = MainCreation.builder()
                 .workflow(workflow)

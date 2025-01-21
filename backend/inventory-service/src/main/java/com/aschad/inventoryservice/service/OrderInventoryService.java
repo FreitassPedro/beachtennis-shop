@@ -3,35 +3,31 @@ package com.aschad.inventoryservice.service;
 import com.aschad.ecommerce.entity.OrderStockRequest;
 import com.aschad.ecommerce.entity.ProductStockRequest;
 import com.aschad.inventoryservice.entity.OrderInventory;
-import com.aschad.inventoryservice.repository.ProductInventoryRepository;
 import com.aschad.inventoryservice.entity.ProductInventory;
+import com.aschad.inventoryservice.repository.OrderInventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class InventoryService {
+public class OrderInventoryService {
 
     @Autowired
-    private ProductInventoryRepository inventoryRepository;
+    private OrderInventoryRepository orderInventoryRepository;
 
-    @Autowired
-    private OrderInventoryService orderInventoryService;
-
-    public List<OrderInventory> createOrderInventories(List<ProductInventory> productInventoryList, OrderStockRequest orderStockRequest) {
+    public List<OrderInventory> createOrderInventories(List<ProductInventory> productInventories, OrderStockRequest orderStockRequest) {
         List<OrderInventory> orderInventoryList = new ArrayList<>();
-        for (ProductInventory productInventory : productInventoryList) {
-
+        LocalDateTime now = LocalDateTime.now();
+        String orderId = orderStockRequest.getOrderId();
+        for (ProductInventory productInventory : productInventories) {
             for (ProductStockRequest productStockRequest : orderStockRequest.getProductStockRequests()) {
                 if (productInventory.getProductCode() != productStockRequest.getProductCode()) continue;
 
-                    LocalDateTime now = LocalDateTime.now();
                 OrderInventory orderInventory = OrderInventory.builder()
-                        .orderId(orderStockRequest.getOrderId())
+                        .orderId(orderId)
                         .productInventory(productInventory)
                         .orderQuantity(productStockRequest.getQuantity())
                         .oldStock(productInventory.getStock())
@@ -44,15 +40,6 @@ public class InventoryService {
             }
         }
 
-
         return orderInventoryList;
     }
-
-
-
-    public void saveAllOrderInventory(List<ProductInventory> productInventories) {
-        inventoryRepository.saveAll(productInventories);
-    }
-
-
 }

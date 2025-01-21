@@ -1,10 +1,12 @@
 package com.aschade.orchestrator.listener;
 
+import com.aschad.ecommerce.dto.StepDTO;
 import com.aschad.ecommerce.entity.MainCreation;
 import com.aschad.ecommerce.entity.Workflow;
 import com.aschad.ecommerce.enums.StepSource;
 import com.aschade.orchestrator.controller.OrchestratorController;
 import com.aschade.orchestrator.service.OrchestratorService;
+import com.aschade.orchestrator.service.OrderService;
 import com.aschade.orchestrator.service.WorkflowService;
 import com.aschade.orchestrator.util.mapper.WorkflowMapper;
 import org.slf4j.Logger;
@@ -28,6 +30,8 @@ public class OrchestratorConsumer {
     private OrchestratorController orchestratorController;
 
     @Autowired
+    private OrderService orderService;
+    @Autowired
     private WorkflowMapper workflowMapper;
 
     @RabbitListener(queues = "orchestrator.new.qe")
@@ -36,7 +40,12 @@ public class OrchestratorConsumer {
         log.info("Consuming new workflow: {}", workflow);
 
         orchestratorService.addInitialStep(workflow);
-        workflowService.save(workflow);
+        try {
+            workflowService.save(workflow);
+        } catch (Exception e) {
+            log.error("Error saving workflow: {}", e.getMessage());
+        }
+        orchestratorController.tempSendToOrderService(mainCreation);
         orchestratorService.createOrderByOrderRequest(mainCreation);
     }
 
@@ -44,14 +53,19 @@ public class OrchestratorConsumer {
     public void consumeSuccessStep(Workflow workflow) {
         log.info("Consuming success step: {}", workflow.getId());
 
-        workflowService.save(workflow);
-        /* Por enquanto, o código sera hardcode para o teste, o passo a passo é definido a mao,
-        porem, no futuro o ideal é implementar o handler para orquestrar os proximos eventos a serem seguidos
-         */
-
+        try {
+            workflowService.save(workflow);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving workflow: " + e.getMessage());
+        }
         StepSource nextStep = orchestratorService.findNextStep(workflow);
-        orchestratorController.consumeSuccessStep(workflow, nextStep);
 
+        orchestratorController.consumeSuccessStep(workflow, nextStep);
+    }
+
+    @RabbitListener(queues = "step.fail.qe")
+    public void consumeFailStep(StepDTO stepDTO) {
+        log.error("Received fail at {} ", stepDTO);
 
     }
 }

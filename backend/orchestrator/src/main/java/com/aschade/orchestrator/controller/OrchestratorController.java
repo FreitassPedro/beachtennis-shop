@@ -49,4 +49,7 @@ public class OrchestratorController {
     }
 
 
+    public void tempSendToOrderService(MainCreation mainCreation) {
+        rabbitTemplate.convertAndSend("order.exchange", "order.new", mainCreation);
+    }
 }

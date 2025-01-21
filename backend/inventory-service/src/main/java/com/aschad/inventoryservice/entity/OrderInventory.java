@@ -1,13 +1,26 @@
 package com.aschad.inventoryservice.entity;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@Entity
+@Table(name = "order_inventory")
 public class OrderInventory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
     private String orderId;
 
-    private ProductDTO product;
+    @ManyToOne
+    @JoinColumn(name = "product_inventory_id")
+    private ProductInventory productInventory;
 
     private Integer orderQuantity;
     private Integer oldStock;
