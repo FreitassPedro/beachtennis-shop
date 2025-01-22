@@ -1,4 +1,4 @@
-package com.aschad.inventoryservice;
+package com.aschade.inventoryservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

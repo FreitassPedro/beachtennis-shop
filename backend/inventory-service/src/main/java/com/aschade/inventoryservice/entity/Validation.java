@@ -1,4 +1,4 @@
-package com.aschad.inventoryservice.entity;
+package com.aschade.inventoryservice.entity;
 
 import lombok.Data;
 

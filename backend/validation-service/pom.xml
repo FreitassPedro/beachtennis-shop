@@ -33,7 +33,7 @@
 
 		<!-- Repositorio Proprio -->
 		<dependency>
-			<groupId>com.aschad.ecommerce</groupId>
+			<groupId>com.aschade.ecommerce</groupId>
 			<artifactId>entidades-compartilhadas</artifactId>
 			<version>1.0.0</version>
 		</dependency>

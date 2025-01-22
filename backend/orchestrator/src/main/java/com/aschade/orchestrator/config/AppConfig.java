@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.aschade.orchestrator.repository") // Pacote onde seus repositórios JPA estão
-@EntityScan(basePackages = "com.aschad.ecommerce.entity")
+@EntityScan(basePackages = "com.aschade.ecommerce.entity")
 public class AppConfig {
 
 }

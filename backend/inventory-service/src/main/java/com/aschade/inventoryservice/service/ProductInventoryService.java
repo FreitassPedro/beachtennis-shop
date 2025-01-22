@@ -1,8 +1,8 @@
-package com.aschad.inventoryservice.service;
+package com.aschade.inventoryservice.service;
 
-import com.aschad.ecommerce.entity.ProductStockRequest;
-import com.aschad.inventoryservice.entity.ProductInventory;
-import com.aschad.inventoryservice.repository.ProductInventoryRepository;
+import com.aschade.ecommerce.entity.ProductStockRequest;
+import com.aschade.ecommerce.entity.ProductInventory;
+import com.aschade.inventoryservice.repository.ProductInventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
