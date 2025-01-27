@@ -1,13 +1,18 @@
 package com.aschade.orderservice.service;
 
-import com.aschad.ecommerce.dto.ProductDTO;
-import com.aschad.ecommerce.entity.OrderStockRequest;
-import com.aschad.ecommerce.entity.ProductStockRequest;
+import com.aschade.ecommerce.dto.ProductDTO;
+import com.aschade.ecommerce.entity.OrderStockRequest;
+import com.aschade.ecommerce.entity.ProductStockRequest;
+import com.aschade.ecommerce.entity.result.StockCheckResult;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static java.util.UUID.randomUUID;
 
 @Service
 public class InventoryService {
@@ -15,27 +20,36 @@ public class InventoryService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void checkStockAvailability(List<ProductDTO> productDTOList, String orderId) {
-        OrderStockRequest orderStockRequest = new OrderStockRequest();
-        orderStockRequest.setOrderId(orderId);
+    public StockCheckResult checkStockAvailability(List<ProductDTO> productDTOList, String orderId) {
+        OrderStockRequest stockRequest = createStockRequest(productDTOList);
+        stockRequest.setOrderId(orderId);
 
-        for(ProductDTO productDTO : productDTOList) {
-            ProductStockRequest productStockRequest = createStockRequestByProductDTO(productDTO);
+        return sendToInventoryServiceStockCheck(stockRequest);
+    }
+
+    private StockCheckResult sendToInventoryServiceStockCheck(OrderStockRequest orderStockRequest) {
+        String correlationId = randomUUID().toString();
+        MessageProperties messageProperties = new MessageProperties();
+        messageProperties.setReplyTo("inventory.checkStock.reply.qe");
+        messageProperties.setCorrelationId(correlationId);
+        messageProperties.setContentType("application/json");
+        Message message = new Message(orderStockRequest.toString().getBytes(), messageProperties);
+
+        return (StockCheckResult) rabbitTemplate.convertSendAndReceive("inventory.exchange", "inventory.checkStock", orderStockRequest);
+    }
+
+
+
+    private OrderStockRequest createStockRequest(List<ProductDTO> productDTOList) {
+        OrderStockRequest orderStockRequest = new OrderStockRequest();
+        for (ProductDTO productDTO : productDTOList) {
+            ProductStockRequest productStockRequest = createProductStockRequest(productDTO);
             orderStockRequest.addStockRequest(productStockRequest);
         }
-
-        if (orderStockRequest.getProductStockRequests().isEmpty()) {
-            throw new RuntimeException("No stock requests found");
-        }
-
-        sendToInventoryStockCheck(orderStockRequest);
+        return orderStockRequest;
     }
 
-    private void sendToInventoryStockCheck(OrderStockRequest orderStockRequest) {
-        rabbitTemplate.convertSendAndReceive("inventory.exchange", "inventory.checkStock", orderStockRequest);
-    }
-
-    private ProductStockRequest createStockRequestByProductDTO(ProductDTO productDTO) {
+    private ProductStockRequest createProductStockRequest(ProductDTO productDTO) {
         ProductStockRequest productStockRequest = new ProductStockRequest();
         productStockRequest.setProductCode(productDTO.getCode());
         productStockRequest.setQuantity(productDTO.getQuantity());

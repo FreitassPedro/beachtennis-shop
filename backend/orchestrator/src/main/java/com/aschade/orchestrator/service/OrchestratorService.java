@@ -1,8 +1,10 @@
 package com.aschade.orchestrator.service;
 
-import com.aschad.ecommerce.entity.*;
-import com.aschad.ecommerce.enums.*;
-
+import com.aschade.ecommerce.entity.*;
+import com.aschade.ecommerce.entity.result.ValidationResult;
+import com.aschade.ecommerce.enums.StepSource;
+import com.aschade.ecommerce.enums.StepStatus;
+import com.aschade.ecommerce.enums.WorkflowStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static com.aschad.ecommerce.enums.StepSource.ORCHESTRATOR;
+import static com.aschade.ecommerce.enums.StepSource.ORCHESTRATOR;
 
 @Service
 public class OrchestratorService {
@@ -36,7 +38,7 @@ public class OrchestratorService {
         Workflow workflow = Workflow.builder()
                 .id(preOrder.getId())
                 .transactionId(UUID.randomUUID().toString())
-                .payload(preOrder)
+                .order(preOrder)
                 .status(WorkflowStatus.PENDING)
                 .createdAt(LocalDateTime.now())
                 .stepsHistory(new ArrayList<>())
@@ -93,7 +95,9 @@ public class OrchestratorService {
 
     }
 
-    public void createOrderByOrderRequest(MainCreation mainCreation) {
+    public void sendToOrderRequestToOrderService(MainCreation mainCreation) {
         rabbitTemplate.convertAndSend("order.exchange", "order.new", mainCreation);
     }
+
+
 }

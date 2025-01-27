@@ -1,17 +1,16 @@
-package com.aschad.inventoryservice.service;
+package com.aschade.inventoryservice.service;
 
-import com.aschad.ecommerce.entity.OrderStockRequest;
-import com.aschad.ecommerce.entity.ProductStockRequest;
-import com.aschad.inventoryservice.entity.OrderInventory;
-import com.aschad.inventoryservice.repository.ProductInventoryRepository;
-import com.aschad.inventoryservice.entity.ProductInventory;
+import com.aschade.ecommerce.entity.OrderStockRequest;
+import com.aschade.ecommerce.entity.ProductStockRequest;
+import com.aschade.ecommerce.entity.OrderReservation;
+import com.aschade.inventoryservice.repository.ProductInventoryRepository;
+import com.aschade.ecommerce.entity.ProductInventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -20,17 +19,17 @@ public class InventoryService {
     private ProductInventoryRepository inventoryRepository;
 
     @Autowired
-    private OrderInventoryService orderInventoryService;
+    private OrderReservationService orderReservationService;
 
-    public List<OrderInventory> createOrderInventories(List<ProductInventory> productInventoryList, OrderStockRequest orderStockRequest) {
-        List<OrderInventory> orderInventoryList = new ArrayList<>();
+    public List<OrderReservation> createOrderInventories(List<ProductInventory> productInventoryList, OrderStockRequest orderStockRequest) {
+        List<OrderReservation> orderReservationList = new ArrayList<>();
         for (ProductInventory productInventory : productInventoryList) {
 
             for (ProductStockRequest productStockRequest : orderStockRequest.getProductStockRequests()) {
                 if (productInventory.getProductCode() != productStockRequest.getProductCode()) continue;
 
                     LocalDateTime now = LocalDateTime.now();
-                OrderInventory orderInventory = OrderInventory.builder()
+                OrderReservation orderReservation = OrderReservation.builder()
                         .orderId(orderStockRequest.getOrderId())
                         .productInventory(productInventory)
                         .orderQuantity(productStockRequest.getQuantity())
@@ -40,12 +39,12 @@ public class InventoryService {
                         .createdAt(now)
                         .updatedAt(now)
                         .build();
-                orderInventoryList.add(orderInventory);
+                orderReservationList.add(orderReservation);
             }
         }
 
 
-        return orderInventoryList;
+        return orderReservationList;
     }
 
 

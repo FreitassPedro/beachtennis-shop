@@ -1,8 +1,9 @@
 package com.aschade.orchestrator.controller;
 
-import com.aschad.ecommerce.entity.MainCreation;
-import com.aschad.ecommerce.entity.Workflow;
-import com.aschad.ecommerce.enums.StepSource;
+import com.aschade.ecommerce.entity.MainCreation;
+import com.aschade.ecommerce.entity.Workflow;
+import com.aschade.ecommerce.enums.StepSource;
+import com.aschade.orchestrator.service.OrchestratorService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -17,6 +18,8 @@ public class OrchestratorController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private final OrchestratorService orchestratorService;
 
     public void startWorkflow(MainCreation mainCreation) {
         rabbitTemplate.convertAndSend("orchestrator.exchange", "orchestrator.new", mainCreation );
@@ -50,6 +53,6 @@ public class OrchestratorController {
 
 
     public void tempSendToOrderService(MainCreation mainCreation) {
-        rabbitTemplate.convertAndSend("order.exchange", "order.new", mainCreation);
+        orchestratorService.sendToOrderRequestToOrderService(mainCreation);
     }
 }

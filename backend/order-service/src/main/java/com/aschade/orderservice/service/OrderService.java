@@ -1,13 +1,18 @@
 package com.aschade.orderservice.service;
 
-import com.aschad.ecommerce.dto.ProductDTO;
-import com.aschad.ecommerce.entity.Order;
-import com.aschad.ecommerce.entity.OrderRequest;
-import com.aschad.ecommerce.enums.OrderStatus;
-import com.aschade.orderservice.repository.OrderRepository;
+import com.aschade.ecommerce.dto.ProductDTO;
+import com.aschade.ecommerce.entity.Order;
+import com.aschade.ecommerce.entity.OrderItem;
+import com.aschade.ecommerce.entity.OrderRequest;
+import com.aschade.ecommerce.entity.Product;
+import com.aschade.ecommerce.enums.OrderStatus;
 import com.aschade.orderservice.exception.SagaFlowException;
+import com.aschade.orderservice.repository.OrderRepository;
+import com.aschade.orderservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 public class OrderService {
@@ -18,21 +23,44 @@ public class OrderService {
     @Autowired
     private InventoryService inventoryService;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+
+
 
     public String generateOrderTrackingNumber() {
         return null;
 
     }
 
-    public Order createOrder(OrderRequest orderRequest, Order order) {
-        orderRepository.findById(order.getId()).orElseThrow(() -> new SagaFlowException("Order not found"));
+    public Order createOrder(OrderRequest orderRequest, String orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new SagaFlowException("Order not found"));
 
         int totalItems = orderRequest.getProducts().stream().mapToInt(ProductDTO::getQuantity).sum();
 
-
         order.setTotalItems(totalItems);
         order.setStatus(OrderStatus.CREATED);
+        order.setTotalPrice(orderRequest.getTotalValue());
+        createOrderItems(order, orderRequest);
         return order;
     }
 
+    private void createOrderItems(Order order, OrderRequest orderRequest) {
+        for (ProductDTO requestProduct : orderRequest.getProducts()) {
+
+            Product product = productRepository.findByCode(requestProduct.getCode());
+            OrderItem orderItem = OrderItem.builder()
+                    .order(order)
+                    .subtotal(BigDecimal.valueOf(requestProduct.getQuantity() * requestProduct.getUnitPrice()))
+                    .unitPrice(BigDecimal.valueOf(requestProduct.getUnitPrice()))
+                    .quantity(requestProduct.getQuantity())
+                    .product(product)
+                    .build();
+        }
+    }
+
+    public Order findOrder(String orderId) {
+        return orderRepository.findById(orderId).orElseThrow(() -> new SagaFlowException("Order not found"));
+    }
 }

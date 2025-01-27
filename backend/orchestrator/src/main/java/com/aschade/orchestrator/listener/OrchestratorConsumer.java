@@ -1,9 +1,9 @@
 package com.aschade.orchestrator.listener;
 
-import com.aschad.ecommerce.dto.StepDTO;
-import com.aschad.ecommerce.entity.MainCreation;
-import com.aschad.ecommerce.entity.Workflow;
-import com.aschad.ecommerce.enums.StepSource;
+import com.aschade.ecommerce.dto.StepDTO;
+import com.aschade.ecommerce.entity.MainCreation;
+import com.aschade.ecommerce.entity.Workflow;
+import com.aschade.ecommerce.enums.StepSource;
 import com.aschade.orchestrator.controller.OrchestratorController;
 import com.aschade.orchestrator.service.OrchestratorService;
 import com.aschade.orchestrator.service.OrderService;
@@ -46,18 +46,13 @@ public class OrchestratorConsumer {
             log.error("Error saving workflow: {}", e.getMessage());
         }
         orchestratorController.tempSendToOrderService(mainCreation);
-        orchestratorService.createOrderByOrderRequest(mainCreation);
     }
 
     @RabbitListener(queues = "step.success.qe")
-    public void consumeSuccessStep(Workflow workflow) {
-        log.info("Consuming success step: {}", workflow.getId());
+    public void consumeSuccessStep(StepDTO stepDTO) {
+        log.info("Received step success {}", stepDTO);
+        Workflow workflow = workflowService.findWorkflowById(stepDTO.getWorkflowId());
 
-        try {
-            workflowService.save(workflow);
-        } catch (Exception e) {
-            throw new RuntimeException("Error saving workflow: " + e.getMessage());
-        }
         StepSource nextStep = orchestratorService.findNextStep(workflow);
 
         orchestratorController.consumeSuccessStep(workflow, nextStep);
@@ -65,7 +60,7 @@ public class OrchestratorConsumer {
 
     @RabbitListener(queues = "step.fail.qe")
     public void consumeFailStep(StepDTO stepDTO) {
-        log.error("Received fail at {} ", stepDTO);
+        log.error("Received step fail :(" );
 
     }
 }

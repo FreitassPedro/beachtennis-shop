@@ -1,14 +1,6 @@
 package com.aschade.orchestrator.util.mapper;
 
-import com.aschad.ecommerce.dto.OrderDTO;
-import com.aschad.ecommerce.dto.ProductDTO;
-import com.aschad.ecommerce.dto.WorkflowDTO;
-import com.aschad.ecommerce.entity.Workflow;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class WorkflowMapper {

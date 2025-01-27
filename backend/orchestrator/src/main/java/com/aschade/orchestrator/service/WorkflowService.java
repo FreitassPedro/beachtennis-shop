@@ -1,6 +1,6 @@
 package com.aschade.orchestrator.service;
 
-import com.aschad.ecommerce.entity.Workflow;
+import com.aschade.ecommerce.entity.Workflow;
 import com.aschade.orchestrator.repository.WorkflowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

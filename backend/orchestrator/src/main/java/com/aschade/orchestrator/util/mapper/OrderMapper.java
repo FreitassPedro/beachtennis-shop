@@ -1,19 +1,13 @@
 package com.aschade.orchestrator.util.mapper;
 
-import com.aschad.ecommerce.dto.OrderDTO;
-import com.aschad.ecommerce.entity.Order;
-import com.aschad.ecommerce.entity.OrderItem;
-import com.aschad.ecommerce.entity.OrderRequest;
-import com.aschad.ecommerce.dto.ProductDTO;
-import com.aschad.ecommerce.entity.Product;
-import com.aschade.orchestrator.service.ProductService;
+import com.aschade.ecommerce.dto.OrderDTO;
+import com.aschade.ecommerce.entity.OrderRequest;
+import com.aschade.ecommerce.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderMapper {
