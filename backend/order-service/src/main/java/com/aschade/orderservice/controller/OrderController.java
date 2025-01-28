@@ -34,10 +34,8 @@ public class OrderController {
     }
 
     private void checkStock(OrderRequest orderRequest, String orderId) {
-
         StockCheckResult stockCheckResult = inventoryService.checkStockAvailability(orderRequest.getProducts(), orderId);
         if (stockCheckResult == null || !stockCheckResult.isSuccess()) {
-            log.info("Stock check failed for order: {}", orderId);
             throw new StockCheckFailedException("Stock check failed for order: " + orderId, orderId);
         }
     }

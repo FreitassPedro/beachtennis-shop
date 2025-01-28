@@ -7,6 +7,7 @@ import com.aschade.orderservice.exception.SagaFlowException;
 import com.aschade.orderservice.exception.StockCheckFailedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -27,11 +29,17 @@ public class GlobalExceptionHandler {
         log.error("Exception caught: {}", ex.getMessage());
     }
 
-    @ExceptionHandler(StockCheckFailedException.class)
-    public void handleStockCheckFailedException(StockCheckFailedException ex) {
+
+    @ExceptionHandler({StockCheckFailedException.class})
+    public void handleStockCheckFailedException(StockCheckFailedException ex, Message message) throws Exception {
         String orderId = ex.getOrderId();
 
         assignFailStep(orderId, ex.getMessage());
+        sendToDQL(message);
+    }
+
+    private void sendToDQL(Message message) {
+        rabbitTemplate.convertAndSend("order.exchange.dlq", "order.fail", message);
     }
 
     public void assignFailStep(String orderId, String message) {
@@ -46,14 +54,8 @@ public class GlobalExceptionHandler {
         sendStepResult(stepDTO);
     }
 
-    public void sendStepResult(StepDTO stepDTO) {
-        switch (stepDTO.getStatus()) {
-            case FAILED:
-                rabbitTemplate.convertAndSend("orchestrator.exchange", "step.fail", stepDTO);
-                break;
-            case SUCCESS:
-                rabbitTemplate.convertAndSend("orchestrator.exchange", "step.success", stepDTO);
-                break;
-        }
+    private void sendStepResult(StepDTO stepDTO) {
+            rabbitTemplate.convertAndSend("orchestrator.exchange", "step.fail", stepDTO);
     }
+
 }

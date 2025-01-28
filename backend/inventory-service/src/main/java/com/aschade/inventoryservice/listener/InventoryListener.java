@@ -32,7 +32,7 @@ public class InventoryListener {
     @RabbitListener(queues = "inventory.checkStock.qe")
     public StockCheckResult checkStockAvailability(OrderStockRequest orderStockRequest) {
         log.info("Checking stock availability for order: {}", orderStockRequest.toString());
-        return new StockCheckResult(true, "All products are available");
+        return new StockCheckResult(false, "All products are available");
           /*  List<ProductInventory> productInventories = productInventoryService.findProductInventoriesByProductCodes(orderStockRequest.getProductStockRequests());
 
             orderReservationService.createOrderReervation(productInventories, orderStockRequest);

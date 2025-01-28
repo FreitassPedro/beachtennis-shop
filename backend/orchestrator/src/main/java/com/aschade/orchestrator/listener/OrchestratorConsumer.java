@@ -58,9 +58,12 @@ public class OrchestratorConsumer {
         orchestratorController.consumeSuccessStep(workflow, nextStep);
     }
 
+    /*
     @RabbitListener(queues = "step.fail.qe")
     public void consumeFailStep(StepDTO stepDTO) {
         log.error("Received step fail :(" );
 
     }
+
+     */
 }

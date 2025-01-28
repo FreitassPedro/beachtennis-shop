@@ -38,17 +38,7 @@ public class RabbitMQConfig {
         return new TopicExchange("inventory.exchange");
     }
 
-    @Bean
-    public Exchange orderExchange() {
-        return new TopicExchange("order.exchange");
-    }
 
-
-    @Bean
-    public Queue orderStockCheckReply() {
-        QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("order.stockCheck.reply.qe", true);
-    }
 
     @Bean
     public Queue inventoryCheckQueue() {
@@ -65,17 +55,6 @@ public class RabbitMQConfig {
     public Queue stepSuccessQueue() {
         QueueBuilder queueBuilder = QueueBuilder.durable("");
         return new Queue("step.success.qe", true);
-    }
-
-    @Bean
-    public Queue orderWaitQueue() {
-        QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("order.wait.qe", true);
-    }
-    @Bean
-    public Queue orderFailQueue() {
-        QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("order.fail.qe", true);
     }
 
     @Bean
@@ -123,10 +102,6 @@ public class RabbitMQConfig {
     /*
      Binding para de Exchanges e Filas
      */
-    @Bean
-    public Binding orderStockCheckReplyBinding() {
-        return BindingBuilder.bind(orderStockCheckReply()).to(orderExchange()).with("order.stockCheck.reply").noargs();
-    }
 
     @Bean
     public Binding orchestratorFailBinding() {
@@ -147,15 +122,6 @@ public class RabbitMQConfig {
        return BindingBuilder.bind(validationWaitQueue()).to(validationExchange()).with("validation.request").noargs();
     }
 
-    @Bean
-    public Binding orderWaitBinding() {
-        return BindingBuilder.bind(orderWaitQueue()).to(orderExchange()).with("order.new").noargs();
-    }
-
-    @Bean
-    public Binding orderFailBinding() {
-        return BindingBuilder.bind(orderFailQueue()).to(orderExchange()).with("order.fail").noargs();
-    }
 
     @Bean
     public Binding paymentWaitBinding() {
@@ -182,10 +148,7 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(stepSuccessQueue()).to(validationExchange()).with("validation.success").noargs();
     }
 
-    @Bean
-    public Binding orderSuccessBinding() {
-        return BindingBuilder.bind(stepSuccessQueue()).to(orderExchange()).with("order.success").noargs();
-    }
+
 
     @Bean
     public Binding paymentSuccessBinding() {
@@ -211,10 +174,7 @@ public class RabbitMQConfig {
     public Binding orchestratorExchangeToValidation() {
         return BindingBuilder.bind(orchestratorExchange()).to(validationExchange()).with("validation.new").noargs();
     }
-    @Bean
-    public Binding orchestratorExchangeToOrder() {
-        return BindingBuilder.bind(orchestratorExchange()).to(orderExchange()).with("order.new").noargs();
-    }
+
     @Bean
     public Binding orchestratorExchangeToPayment() {
         return BindingBuilder.bind(orchestratorExchange()).to(paymentExchange()).with("payment.new").noargs();
