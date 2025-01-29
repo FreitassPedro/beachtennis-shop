@@ -33,6 +33,7 @@ public class OrderController {
         Order order = orderService.findOrder(orderId);
     }
 
+
     private void checkStock(OrderRequest orderRequest, String orderId) {
         StockCheckResult stockCheckResult = inventoryService.checkStockAvailability(orderRequest.getProducts(), orderId);
         if (stockCheckResult == null || !stockCheckResult.isSuccess()) {

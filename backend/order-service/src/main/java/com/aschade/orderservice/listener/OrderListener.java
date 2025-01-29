@@ -26,6 +26,7 @@ public class OrderListener {
 
         try {
             orderController.createOrder(orderRequest, orderId);
+
         } catch (Exception e) {
             log.error("Stock check failed for order: {}", orderId);
             throw e;
