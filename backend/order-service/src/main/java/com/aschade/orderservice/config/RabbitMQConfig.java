@@ -24,8 +24,8 @@ public class RabbitMQConfig {
 
     // Troca para eventos relacionados a ordens
     @Bean
-    public DirectExchange orderExchange() {
-        return new DirectExchange("order.exchange");
+    public TopicExchange orderExchange() {
+        return new TopicExchange("order.exchange");
     }
 
     // Troca para mensagens com falha (dead-letter exchange)

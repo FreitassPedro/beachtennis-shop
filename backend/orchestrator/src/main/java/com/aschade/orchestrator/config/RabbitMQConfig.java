@@ -34,16 +34,16 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Exchange inventoryExchange() {
-        return new TopicExchange("inventory.exchange");
+    public Exchange stockExchange() {
+        return new TopicExchange("stock.exchange");
     }
 
 
 
     @Bean
-    public Queue inventoryCheckQueue() {
+    public Queue stockCheckQueue() {
         QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("inventory.checkStock.qe", true);
+        return new Queue("stock.checkStock.qe", true);
     }
     @Bean
     public Queue validationWaitQueue() {
@@ -70,15 +70,15 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue inventoryWaitQueue() {
+    public Queue stockWaitQueue() {
         QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("inventory.wait.qe", true);
+        return new Queue("stock.wait.qe", true);
     }
 
     @Bean
-    public Queue inventoryFailQueue() {
+    public Queue stockFailQueue() {
         QueueBuilder queueBuilder = QueueBuilder.durable("");
-        return new Queue("inventory.fail.qe", true);
+        return new Queue("stock.fail.qe", true);
     }
 
     @Bean
@@ -108,8 +108,8 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(stepFailQueue()).to(orchestratorExchange()).with("step.fail").noargs();
     }
     @Bean
-    public Binding inventoryCheckBinding() {
-        return BindingBuilder.bind(inventoryCheckQueue()).to(inventoryExchange()).with("inventory.checkStock").noargs();
+    public Binding stockCheckBinding() {
+        return BindingBuilder.bind(stockCheckQueue()).to(stockExchange()).with("stock.checkStock").noargs();
     }
 
     @Bean
@@ -129,13 +129,13 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding inventoryFailBinding() {
+    public Binding stockFailBinding() {
         return BindingBuilder.bind(paymentFailQueue()).to(paymentExchange()).with("payment.fail").noargs();
     }
 
     @Bean
-    public Binding inventoryWaitBinding() {
-        return BindingBuilder.bind(inventoryWaitQueue()).to(inventoryExchange()).with("payment.new").noargs();
+    public Binding stockWaitBinding() {
+        return BindingBuilder.bind(stockWaitQueue()).to(stockExchange()).with("payment.new").noargs();
     }
 
     @Bean
@@ -156,8 +156,8 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Binding inventorySuccessBinding() {
-        return BindingBuilder.bind(stepSuccessQueue()).to(inventoryExchange()).with("inventory.success").noargs();
+    public Binding stockSuccessBinding() {
+        return BindingBuilder.bind(stepSuccessQueue()).to(stockExchange()).with("stock.success").noargs();
     }
 
     @Bean
@@ -180,8 +180,8 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(orchestratorExchange()).to(paymentExchange()).with("payment.new").noargs();
     }
     @Bean
-    public Binding orchestratorExchangeToInventory() {
-        return BindingBuilder.bind(orchestratorExchange()).to(inventoryExchange()).with("inventory.new").noargs();
+    public Binding orchestratorExchangeTostock() {
+        return BindingBuilder.bind(orchestratorExchange()).to(stockExchange()).with("stock.new").noargs();
     }
 
     

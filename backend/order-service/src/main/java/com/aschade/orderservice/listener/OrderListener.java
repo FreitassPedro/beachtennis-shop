@@ -1,10 +1,12 @@
 package com.aschade.orderservice.listener;
 
 import com.aschade.ecommerce.entity.MainCreation;
+import com.aschade.ecommerce.entity.Order;
 import com.aschade.ecommerce.entity.OrderRequest;
 import com.aschade.ecommerce.entity.result.StockCheckResult;
 import com.aschade.orderservice.controller.OrderController;
 import com.aschade.orderservice.exception.StockCheckFailedException;
+import com.aschade.orderservice.service.WorkflowService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class OrderListener {
     @Autowired
     private OrderController orderController;
 
+    @Autowired
+    private WorkflowService workflowService;
+
     @RabbitListener(queues = "order.wait.qe", errorHandler = "orderServiceErrorHandler")
     public void processOrder(MainCreation mainCreation) {
         OrderRequest orderRequest = mainCreation.getOrderRequest();
@@ -24,13 +29,23 @@ public class OrderListener {
         log.info("OrderService processing order! {}", mainCreation.getWorkflow());
 
 
-        try {
-            orderController.createOrder(orderRequest, orderId);
+        Order order = orderController.createOrder(orderRequest, orderId);
 
+        orderController.saveOrder(order);
+
+        workflowService.assignSuccessStep(order.getId());
+
+
+        /*
+        try {
+
+            orderController.createOrder(orderRequest, orderId);
         } catch (Exception e) {
-            log.error("Stock check failed for order: {}", orderId);
+            log.error("Stock check failed for order: {} \nError: {} \nCause: {}", orderId, e.getMessage(), e.getCause());
             throw e;
         }
+
+         */
     }
 
 

@@ -11,8 +11,12 @@ import com.aschade.orderservice.repository.OrderRepository;
 import com.aschade.orderservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -21,7 +25,7 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
-    private InventoryService inventoryService;
+    private StockService stockService;
 
     @Autowired
     private ProductRepository productRepository;
@@ -61,6 +65,14 @@ public class OrderService {
     }
 
     public Order findOrder(String orderId) {
+
         return orderRepository.findById(orderId).orElseThrow(() -> new SagaFlowException("Order not found"));
+    }
+
+
+
+    @Transactional
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
     }
 }

@@ -30,13 +30,25 @@ public class WorkflowService {
     public void sendStepResult(StepDTO stepDTO) {
         switch (stepDTO.getStatus()) {
             case FAILED:
-                rabbitTemplate.convertAndSend( "orchestrator.exchange", "step.fail", stepDTO);
+                rabbitTemplate.convertAndSend( "order.exchange", "step.fail", stepDTO);
                 break;
             case SUCCESS:
-                rabbitTemplate.convertAndSend( "orchestrator.exchange", "step.success", stepDTO);
+                rabbitTemplate.convertAndSend( "order.exchange", "order.success", stepDTO);
                 break;
         }
 
 
+    }
+
+    public void assignSuccessStep(String orderId) {
+        StepDTO stepDTO = StepDTO.builder()
+                .workflowId(orderId)
+                .message("Order created successfully")
+                .source(StepSource.ORDER_SERVICE)
+                .status(StepStatus.SUCCESS)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        sendStepResult(stepDTO);
     }
 }

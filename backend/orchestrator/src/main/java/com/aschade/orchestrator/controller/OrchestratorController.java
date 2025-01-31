@@ -33,8 +33,8 @@ public class OrchestratorController {
             case StepSource.PAYMENT_SERVICE:
                 rabbitTemplate.convertAndSend("payment.exchange", "payment.new", workflow);
                 break;
-            case StepSource.INVENTORY_SERVICE:
-                rabbitTemplate.convertAndSend("inventory.exchange", "inventory.new", workflow);
+            case StepSource.STOCK_SERVICE:
+                rabbitTemplate.convertAndSend("stock.exchange", "stock.new", workflow);
                 break;
             default:
                 log.error("Invalid step source: {}", nextStep);

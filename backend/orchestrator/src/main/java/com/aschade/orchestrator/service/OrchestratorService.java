@@ -1,5 +1,6 @@
 package com.aschade.orchestrator.service;
 
+import com.aschade.ecommerce.dto.StepDTO;
 import com.aschade.ecommerce.entity.*;
 import com.aschade.ecommerce.entity.result.ValidationResult;
 import com.aschade.ecommerce.enums.StepSource;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import static com.aschade.ecommerce.enums.StepSource.ORCHESTRATOR;
+import static java.lang.String.valueOf;
 
 @Service
 public class OrchestratorService {
@@ -44,7 +46,6 @@ public class OrchestratorService {
                 .stepsHistory(new ArrayList<>())
                 .build();
 
-        preOrder.setWorkflow(workflow);
 
         return workflow;
     }
@@ -82,22 +83,15 @@ public class OrchestratorService {
     }
 
 
-    // TODO: melhorar forma de encontrar o proximo passo
-    public StepSource findNextStep(Workflow workflow) {
-        log.info("Finding next step for workflow: {} - {}", workflow.getId(), workflow.getStepsHistory());
-        int ordinal = workflow.getStepsHistory().getLast().getSource().ordinal();
-        if (ordinal == StepSource.values().length - 1) {
-            addFinalWorkflow(workflow);
-        }
 
-        return StepSource.values()[ordinal + 1];
-
-
-    }
 
     public void sendToOrderRequestToOrderService(MainCreation mainCreation) {
         rabbitTemplate.convertAndSend("order.exchange", "order.new", mainCreation);
     }
 
 
+    // TODO: melhorar forma de encontrar o proximo passo
+    public StepSource findNextStep(StepDTO step) {
+        return step.getNext();
+    }
 }

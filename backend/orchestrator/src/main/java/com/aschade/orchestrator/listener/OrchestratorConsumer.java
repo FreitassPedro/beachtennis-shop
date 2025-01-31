@@ -37,7 +37,7 @@ public class OrchestratorConsumer {
     @RabbitListener(queues = "orchestrator.new.qe")
     public void consumeStartWorkflow(MainCreation mainCreation) {
         Workflow workflow = mainCreation.getWorkflow();
-        log.info("Consuming new workflow: {}", workflow);
+        log.info("Consuming new workflow: {}", workflow.getId());
 
         orchestratorService.addInitialStep(workflow);
         try {
@@ -53,7 +53,7 @@ public class OrchestratorConsumer {
         log.info("Received step success {}", stepDTO);
         Workflow workflow = workflowService.findWorkflowById(stepDTO.getWorkflowId());
 
-        StepSource nextStep = orchestratorService.findNextStep(workflow);
+        StepSource nextStep = orchestratorService.findNextStep(stepDTO);
 
         orchestratorController.consumeSuccessStep(workflow, nextStep);
     }
