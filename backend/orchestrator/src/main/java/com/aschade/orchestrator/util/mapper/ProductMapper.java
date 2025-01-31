@@ -15,4 +15,11 @@ public class ProductMapper {
     public Product toProductByCode(ProductDTO productDTO) {
         return productService.findByCode(productDTO.getCode());
     }
+
+    public ProductDTO toDto(Product product) {
+        return ProductDTO.builder()
+                .code(product.getCode())
+                .unitPrice(product.getPrice())
+                .build();
+    }
 }

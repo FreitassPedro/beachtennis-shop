@@ -90,8 +90,4 @@ public class OrchestratorService {
     }
 
 
-    // TODO: melhorar forma de encontrar o proximo passo
-    public StepSource findNextStep(StepDTO step) {
-        return step.getNext();
-    }
 }

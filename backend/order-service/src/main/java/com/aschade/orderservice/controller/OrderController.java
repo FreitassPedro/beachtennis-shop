@@ -38,9 +38,10 @@ public class OrderController {
     public Order createOrder(OrderRequest orderRequest, String orderId) {
         checkStock(orderRequest, orderId);
 
-        Order order = orderService.findOrder(orderId);
+        Order order = orderService.createOrder(orderRequest, orderId);
 
-        order.setStatus(OrderStatus.CREATED);
+        orderService.saveOrder(order);
+
         return order;
     }
 

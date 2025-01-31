@@ -53,9 +53,12 @@ public class OrchestratorConsumer {
         log.info("Received step success {}", stepDTO);
         Workflow workflow = workflowService.findWorkflowById(stepDTO.getWorkflowId());
 
-        StepSource nextStep = orchestratorService.findNextStep(stepDTO);
+        StepSource nextStepSource = stepDTO.getNext();
+        workflowService.updateSteps(workflow, stepDTO, nextStepSource);
 
-        orchestratorController.consumeSuccessStep(workflow, nextStep);
+        workflowService.saveAndFlush(workflow);
+
+        orchestratorController.consumeSuccessStep(workflow, nextStepSource);
     }
 
     /*
