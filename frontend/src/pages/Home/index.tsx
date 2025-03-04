@@ -7,7 +7,7 @@ const Home: React.FC = () => {
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://m.ahstatic.com/is/image/accorhotels/beach-tennis-2024-2:3by2?fmt=webp&op_usm=1.75,0.3,2,0&resMode=sharp2&iccEmbed=true&icc=sRGB&dpr=on,1&wid=793&hei=528&qlt=80"
+                        src="https://cdn.prod.website-files.com/5e175f9410a1f54621f9f6c2/61f92fee53e50c9d3693c37e_beachtennis%20klo%2087.jpg"
                         alt="Beach Tennis Players at Sunset"
                         className="w-full h-full object-cover"
                     />
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
                         <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Raquetes de Beach Tennis"
                                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                 />
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
                         <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Bolinhas de Beach Tennis"
                                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                 />
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
                         <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Redes de Beach Tennis"
                                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                 />
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
                         <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Acessórios de Beach Tennis"
                                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                 />
@@ -134,7 +134,7 @@ const Home: React.FC = () => {
                         <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
                             <div className="h-80 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Raquete Profissional"
                                     className="w-full h-full object-cover"
                                 />
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
                         <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
                             <div className="h-80 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Kit Iniciante Beach Tennis"
                                     className="w-full h-full object-cover"
                                 />
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
                         <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
                             <div className="h-80 overflow-hidden">
                                 <img
-                                    src="/api/placeholder/800/600"
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
                                     alt="Bolsa para Raquetes"
                                     className="w-full h-full object-cover"
                                 />
