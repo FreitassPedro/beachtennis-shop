@@ -11,6 +11,7 @@ const Home: React.FC = () => {
                 <div className='flex gap-6'>
                     <a href="" className='text-2xl'>Raquetes</a>
                     <a href="" className='text-2xl'>Bolas</a>
+                    <a href="" className='text-2xl'>Redes</a>
                     <a href="" className='text-2xl'>Acessórios</a>
                 </div>
             </nav>
@@ -36,6 +37,67 @@ const Home: React.FC = () => {
                         Explorar Produtos
                     </button>
                 </div>
+            </section>
+
+            <section className='bg-neutral-950 text-white py-24'>
+                <div className='container px-6 mx-auto'>
+                    <h2 className='text-3xl font-bold text-center text-white mb-16'>Explore seu estilo</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-15'>
+                        {/* Card 1 */}
+
+                        <div className=' shadow-xl overflow-hidden group'>
+                            <div className='h-130 overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" />
+                                <div className='absolute inset-0 bg-gray-900/80 flex items-center text-center justify-center opacity-0 duration-300 group-hover:opacity-100'>
+                                    <p className='text-gray-100 font-semibold text-3xl text-wrap'>Qualidade e conforto</p>
+                                </div>
+                            </div>
+
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Fibra de Vidro</h3>
+                            </div>
+                        </div>
+                        {/* Card 2 */}
+                        <div className=' shadow-xl overflow-hidden group '>
+                            <div className='h-130 overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" />
+                                <div className='absolute inset-0 bg-gray-900/80 flex items-center text-center justify-center opacity-0 duration-300 group-hover:opacity-100'>
+                                    <p className='text-gray-100 font-semibold text-3xl text-wrap'>Alta performace e resistência</p>
+                                </div>
+                            </div>
+
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Fibra Carbono</h3>
+                            </div>
+                        </div>
+
+                        <div className=' shadow-xl overflow-hidden group '>
+                            <div className='h-130 overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105" />
+                                <div className='absolute inset-0 bg-gray-900/80 flex items-center text-center justify-center opacity-0 duration-300 group-hover:opacity-100'>
+                                    <p className='text-gray-100 font-semibold text-3xl text-wrap'>Equilíbrio do melhores materiais</p>
+                                </div>
+                            </div>
+
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Hibridos</h3>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
             </section>
 
             {/* Categories Section */}
@@ -140,7 +202,7 @@ const Home: React.FC = () => {
                         Produtos Destaque
                     </h2>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-10">
                         {/* Product 1 */}
                         <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
                             <div className="h-80 overflow-hidden">
