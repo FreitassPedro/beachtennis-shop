@@ -1,10 +1,21 @@
 import React from 'react';
+import { Footer } from './Footer';
 
 const Home: React.FC = () => {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen">
+            <nav className='absolute top-0 left-0 p-6 z-10  w-full bg-none justify-between flex flex-wrap text-white'>
+                <a href="">
+                    <h1 className='text-4xl font-bold '>ASCHADE</h1>
+                </a>
+                <div className='flex gap-6'>
+                    <a href="" className='text-2xl'>Raquetes</a>
+                    <a href="" className='text-2xl'>Bolas</a>
+                    <a href="" className='text-2xl'>Acessórios</a>
+                </div>
+            </nav>
             {/* Hero Section */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <section className="relative h-[95vh] flex items-center justify-center over-flow-hidden ">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://cdn.prod.website-files.com/5e175f9410a1f54621f9f6c2/61f92fee53e50c9d3693c37e_beachtennis%20klo%2087.jpg"
@@ -16,10 +27,10 @@ const Home: React.FC = () => {
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                        <span className="block">Beach Tennis Elite</span>
+                        <span className="block">Chade Beach Tennis </span>
                     </h1>
                     <p className="text-xl md:text-2xl text-white mb-10">
-                        Equipamentos premium para o seu melhor jogo
+                        Experiencie o melhor para o seu melhor jogo
                     </p>
                     <button className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
                         Explorar Produtos
@@ -203,7 +214,7 @@ const Home: React.FC = () => {
                             <input
                                 type="email"
                                 placeholder="Seu melhor e-mail"
-                                className="flex-grow py-3 px-4 rounded-md focus:outline-none"
+                                className="flex-grow py-3 px-4 rounded-md focus:outline-none border-1 border-gray-300 "
                             />
                             <button className="bg-green-400 hover:bg-green-500 text-black font-bold py-3 px-6 rounded-md transition-colors">
                                 Inscrever
@@ -213,48 +224,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-12">
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div>
-                            <h3 className="text-xl font-bold mb-4">Beach Tennis Elite</h3>
-                            <p className="text-gray-400">
-                                Equipamentos de alta qualidade para o melhor do seu jogo.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Categorias</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>Raquetes</li>
-                                <li>Bolinhas</li>
-                                <li>Redes</li>
-                                <li>Acessórios</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Informações</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>Sobre nós</li>
-                                <li>Política de entrega</li>
-                                <li>Termos e condições</li>
-                                <li>Política de privacidade</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Contato</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>contato@beachtenniselite.com.br</li>
-                                <li>(11) 99999-9999</li>
-                                <li>São Paulo, SP</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                        <p>© 2025 Beach Tennis Elite. Todos os direitos reservados.</p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
