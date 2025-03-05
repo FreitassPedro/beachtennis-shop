@@ -1,10 +1,31 @@
 import React from 'react';
+import { Footer } from './Footer';
 
 const Home: React.FC = () => {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen">
+            {/* Navbar */}
+            <nav className='absolute top-0 left-0 p-6 z-10 w-full bg-none justify-center md:justify-between flex flex-wrap text-white'>
+                <a href="" className='md:block hidden'>
+                    <h1 className='text-4xl font-bold'>ASCHADE</h1>
+                </a>
+                <div className='md:flex hidden gap-6 md'>
+                    <a href="" className='text-2xl'>Raquetes</a>
+                    <a href="" className='text-2xl'>Bolas</a>
+                    <a href="" className='text-2xl'>Redes</a>
+                    <a href="" className='text-2xl'>Acessórios</a>
+                </div>
+                <div className='flex gap-6'>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M23.707 22.293L17.7415 16.3275C19.152 14.6035 20 12.401 20 10C20 4.477 15.523 0 10 0C4.477 0 0 4.477 0 10C0 15.523 4.477 20 10 20C12.401 20 14.6035 19.152 16.3275 17.7415L22.293 23.707L23.707 22.293ZM10 18C5.589 18 2 14.411 2 10C2 5.589 5.589 2 10 2C14.411 2 18 5.589 18 10C18 14.411 14.411 18 10 18Z" clipRule="evenodd" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 36 36" fill="currentColor">
+                        <path fillRule="evenodd" d="M9 8.52632C9 13.2272 13.038 17.0526 18 17.0526C22.962 17.0526 27 13.2272 27 8.52632C27 3.82547 22.962 0 18 0C13.038 0 9 3.82547 9 8.52632ZM34 36H36V34.1053C36 26.7935 29.718 20.8421 22 20.8421H14C6.28 20.8421 0 26.7935 0 34.1053V36H34Z" clipRule="evenodd" />
+                    </svg>
+                </div>
+            </nav>
             {/* Hero Section */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <section className="relative h-[95vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://cdn.prod.website-files.com/5e175f9410a1f54621f9f6c2/61f92fee53e50c9d3693c37e_beachtennis%20klo%2087.jpg"
@@ -14,12 +35,12 @@ const Home: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/70"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
+                <div className="container mx-5 px-6 relative z-10 text-center">
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                        <span className="block">Beach Tennis Elite</span>
+                        <span className="block">Chade Beach Tennis</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-white mb-10">
-                        Equipamentos premium para o seu melhor jogo
+                        Experiencie o melhor para o seu melhor jogo
                     </p>
                     <button className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
                         Explorar Produtos
@@ -27,6 +48,190 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+            <section className='bg-neutral-950 text-white py-20'>
+                <div className='container px-6 mx-auto'>
+                    <h2 className='text-3xl font-bold text-center text-white mb-6'>Explore seu estilo</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+                        {/* Card 1 */}
+                        <div className='rounded-xl shadow-xl overflow-hidden hover:scale-102 flex flex-col h-100'>
+                            <div className='flex-grow overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className='w-full h-full object-cover'
+                                />
+                                <div className='absolute flex items-center text-center justify-center inset-0 bg-gray-900/90 p-10 opacity-0 hover:opacity-100 transition-opacity duration-300'>
+                                    <p className='text-white font-semibold text-2xl'>Foco em conforto e qualidade</p>
+                                </div>
+                            </div>
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Fibra de Vidro</h3>
+                            </div>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className='rounded-xl shadow-xl overflow-hidden hover:scale-102 flex flex-col h-100'>
+                            <div className='flex-grow overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className='w-full h-full object-cover'
+                                />
+                                <div className='absolute flex items-center text-center justify-center inset-0 bg-gray-900/90 p-10 opacity-0 hover:opacity-100 transition-opacity duration-300'>
+                                    <p className='text-white font-semibold text-2xl'>Alta performace e desempenho</p>
+                                </div>
+                            </div>
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Fibra de Carbono</h3>
+                            </div>
+                        </div>
+                        {/* Card 3 */}
+                        <div className='rounded-xl shadow-xl overflow-hidden hover:scale-102 flex flex-col h-100'>
+                            <div className='flex-grow overflow-hidden relative'>
+                                <img
+                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
+                                    alt=""
+                                    className='w-full h-full object-cover'
+                                />
+                                <div className='absolute flex items-center text-center justify-center inset-0 bg-gray-900/90 p-10 opacity-0 hover:opacity-100 transition-opacity duration-300'>
+                                    <p className='text-white font-semibold text-2xl'>Equilíbrio conforto e desempenho</p>
+                                </div>
+                            </div>
+                            <div className='bg-zinc-900 p-4'>
+                                <h3 className='text-2xl text-green-400 font-semibold'>Híbrido</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            { /* Imagem promocional */}
+            {/* Imagem promocional */}
+            <div className="relative w-full h-70 md:h-130 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://www.sescpr.com.br/wp-content/uploads/2023/04/beach-tennis-2.jpg')" }}>
+            </div>
+
+
+
+
+
+            {/* Seção de Produtos */}
+            <section className="py-12 bg-green-900  text-white" style={{
+                background: "radial-gradient(circle, rgba(3,73,12,0.8855917366946778) 0%, rgba(7,47,8,1) 100%"
+
+            }}>
+                <div className="container mx-auto px-10">
+                    <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-10">
+                        Em Destaque
+                    </h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        {/* Produto 1 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden ">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Raquete Pro Carbon"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Raquete Pro Carbon</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 599,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Carbono de alta performance, peso balanceado e grip ergonômico
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 2 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Bolsa Pro Tour"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Bolsa Pro Tour</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 249,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Bolsa térmica com compartimentos para 3 raquetes e acessórios
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 3 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Kit Bolinhas Pro"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Kit Bolinhas Pro</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 79,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Kit com 6 bolinhas oficiais, alta durabilidade e bounce consistente
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 4 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Rede Oficial"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Rede profissional com medidas oficiais, tecido resistente à areia
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Rede Oficial"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Rede profissional com medidas oficiais, tecido resistente à areia
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
             {/* Categories Section */}
             <section className="py-24 bg-zinc-900">
                 <div className="container mx-auto px-6">
@@ -122,139 +327,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Featured Products Section */}
-            <section className="py-24 bg-black">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-                        Produtos Destaque
-                    </h2>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                        {/* Product 1 */}
-                        <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
-                            <div className="h-80 overflow-hidden">
-                                <img
-                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
-                                    alt="Raquete Profissional"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-8">
-                                <span className="inline-block px-3 py-1 bg-green-400 text-black font-medium rounded-full mb-4">Destaque</span>
-                                <h3 className="text-2xl font-bold text-white mb-4">Raquete Pro Carbon X9</h3>
-                                <p className="text-gray-300 mb-6">Raquete profissional com tecnologia anti-vibração e peso balanceado</p>
-                                <button className="mt-4 bg-green-400 hover:bg-green-500 text-black font-bold py-3 px-6 rounded-md transition-colors">
-                                    Ver detalhes
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 2 */}
-                        <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
-                            <div className="h-80 overflow-hidden">
-                                <img
-                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
-                                    alt="Kit Iniciante Beach Tennis"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-8">
-                                <span className="inline-block px-3 py-1 bg-green-400 text-black font-medium rounded-full mb-4">Kit Completo</span>
-                                <h3 className="text-2xl font-bold text-white mb-4">Kit Iniciante Elite</h3>
-                                <p className="text-gray-300 mb-6">Kit completo com duas raquetes, bolinhas e bolsa para transporte</p>
-                                <button className="mt-4 bg-green-400 hover:bg-green-500 text-black font-bold py-3 px-6 rounded-md transition-colors">
-                                    Ver detalhes
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 3 */}
-                        <div className="bg-zinc-900 rounded-xl shadow-xl overflow-hidden">
-                            <div className="h-80 overflow-hidden">
-                                <img
-                                    src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
-                                    alt="Bolsa para Raquetes"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-8">
-                                <span className="inline-block px-3 py-1 bg-green-400 text-black font-medium rounded-full mb-4">Lançamento</span>
-                                <h3 className="text-2xl font-bold text-white mb-4">Bolsa Premium Pro Tour</h3>
-                                <p className="text-gray-300 mb-6">Bolsa térmica com compartimentos especiais para até 3 raquetes</p>
-                                <button className="mt-4 bg-green-400 hover:bg-green-500 text-black font-bold py-3 px-6 rounded-md transition-colors">
-                                    Ver detalhes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            {/* Newsletter Section */}
-            <section className="py-16 bg-gradient-to-r from-green-800 to-indigo-900">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-8">
-                        Fique por dentro das novidades
-                    </h2>
-                    <div className="max-w-md mx-auto">
-                        <div className="flex flex-col sm:flex-row gap-2">
-                            <input
-                                type="email"
-                                placeholder="Seu melhor e-mail"
-                                className="flex-grow py-3 px-4 rounded-md focus:outline-none"
-                            />
-                            <button className="bg-green-400 hover:bg-green-500 text-black font-bold py-3 px-6 rounded-md transition-colors">
-                                Inscrever
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-12">
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div>
-                            <h3 className="text-xl font-bold mb-4">Beach Tennis Elite</h3>
-                            <p className="text-gray-400">
-                                Equipamentos de alta qualidade para o melhor do seu jogo.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Categorias</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>Raquetes</li>
-                                <li>Bolinhas</li>
-                                <li>Redes</li>
-                                <li>Acessórios</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Informações</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>Sobre nós</li>
-                                <li>Política de entrega</li>
-                                <li>Termos e condições</li>
-                                <li>Política de privacidade</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-lg font-semibold mb-4">Contato</h4>
-                            <ul className="space-y-2 text-gray-400">
-                                <li>contato@beachtenniselite.com.br</li>
-                                <li>(11) 99999-9999</li>
-                                <li>São Paulo, SP</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                        <p>© 2025 Beach Tennis Elite. Todos os direitos reservados.</p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
