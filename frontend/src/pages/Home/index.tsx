@@ -48,7 +48,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            <section className='bg-neutral-950 text-white py-12'>
+            <section className='bg-neutral-950 text-white py-20'>
                 <div className='container px-6 mx-auto'>
                     <h2 className='text-3xl font-bold text-center text-white mb-6'>Explore seu estilo</h2>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
@@ -105,6 +105,133 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+            { /* Imagem promocional */}
+            {/* Imagem promocional */}
+            <div className="relative w-full h-70 md:h-130 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://www.sescpr.com.br/wp-content/uploads/2023/04/beach-tennis-2.jpg')" }}>
+            </div>
+
+
+
+
+
+            {/* Seção de Produtos */}
+            <section className="py-12 bg-green-900  text-white" style={{
+                background: "radial-gradient(circle, rgba(3,73,12,0.8855917366946778) 0%, rgba(7,47,8,1) 100%"
+
+            }}>
+                <div className="container mx-auto px-10">
+                    <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-10">
+                        Em Destaque
+                    </h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        {/* Produto 1 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden ">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Raquete Pro Carbon"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Raquete Pro Carbon</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 599,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Carbono de alta performance, peso balanceado e grip ergonômico
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 2 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Bolsa Pro Tour"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Bolsa Pro Tour</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 249,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Bolsa térmica com compartimentos para 3 raquetes e acessórios
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 3 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Kit Bolinhas Pro"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Kit Bolinhas Pro</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 79,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Kit com 6 bolinhas oficiais, alta durabilidade e bounce consistente
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Produto 4 */}
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Rede Oficial"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Rede profissional com medidas oficiais, tecido resistente à areia
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                            <div className="h-64 overflow-hidden">
+                                <img
+                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                    alt="Rede Oficial"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                <p className="text-gray-300 text-sm">
+                                    Rede profissional com medidas oficiais, tecido resistente à areia
+                                </p>
+                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
             {/* Categories Section */}
             <section className="py-24 bg-zinc-900">
                 <div className="container mx-auto px-6">
