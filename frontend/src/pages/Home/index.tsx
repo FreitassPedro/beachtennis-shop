@@ -128,7 +128,6 @@ const Home: React.FC = () => {
             {/* Seção de Produtos Em Destaque*/}
             <section className="py-12 bg-green-900  text-white" style={{
                 background: "radial-gradient(circle, rgba(3,73,12,0.8855917366946778) 0%, rgba(7,47,8,1) 100%"
-
             }}>
                 <section>
                     <div className="container mx-auto px-10">
@@ -249,7 +248,10 @@ const Home: React.FC = () => {
                             </div>
 
                             {/* Scrollable container */}
-                            <div className="overflow-x-auto scrollbar-hide">
+                            <div
+                                className="overflow-x-auto [&::-webkit-scrollbar]:h-2
+                                [&::-webkit-scrollbar]:bg-black [&::-webkit-scrollbar-track]:bg-gray-600 [&::-webkit-scrollbar-thumb]:bg-zinc-900 [&::-webkit-scrollback-]
+                                ]">
                                 <div className="flex gap-6 px-4 py-6 min-w-max">
                                     {/* Product Card 1 */}
                                     <div className="min-w-[280px] bg-zinc-900 rounded-lg overflow-hidden shadow-xl transition-all transform hover:-translate-y-1 hover:shadow-2xl border border-transparent hover:border-green-400">
