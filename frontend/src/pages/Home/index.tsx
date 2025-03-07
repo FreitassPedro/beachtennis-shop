@@ -106,16 +106,21 @@ const Home: React.FC = () => {
             </section>
 
             { /* Imagem promocional */}
-            {/* Imagem promocional */}
-            <div className="relative w-full h-70 md:h-130 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://www.sescpr.com.br/wp-content/uploads/2023/04/beach-tennis-2.jpg')" }}>
+            <div className='h-96 relative flex items-center  overflow-hidden shadow-xl'>
+                <div className="absolute z-0 inset-0  ">
+                    <img
+                        src="https://www.sescpr.com.br/wp-content/uploads/2023/04/beach-tennis-2.jpg"
+                        alt=""
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+                <div className='z-10 p-15 '>
+                    <h1 className='font-bold text-2xl text-white '>Jogue como campeão</h1>
+                </div>
             </div>
 
 
-
-
-
-            {/* Seção de Produtos */}
+            {/* Seção de Produtos Em Destaque*/}
             <section className="py-12 bg-green-900  text-white" style={{
                 background: "radial-gradient(circle, rgba(3,73,12,0.8855917366946778) 0%, rgba(7,47,8,1) 100%"
 
@@ -190,7 +195,7 @@ const Home: React.FC = () => {
                         </div>
 
                         {/* Produto 4 */}
-                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
+                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform border border-transparent hover:border-green-400 ">
                             <div className="h-64 overflow-hidden">
                                 <img
                                     src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
@@ -209,37 +214,81 @@ const Home: React.FC = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="bg-zinc-900  overflow-hidden shadow-xl transition-transform hover:border-green-300 hover:border-1">
-                            <div className="h-64 overflow-hidden">
-                                <img
-                                    src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
-                                    alt="Rede Oficial"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
-                                <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
-                                <p className="text-gray-300 text-sm">
-                                    Rede profissional com medidas oficiais, tecido resistente à areia
-                                </p>
-                                <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>
             </section>
+
+            {/* Mais procurados */}
+            <section className='py-12 bg-gray-800 '>
+                <div className="container mx-0 px-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-center text-white mb-12">
+                        Os mais acessados
+                    </h2>
+
+                    <div>
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                        <div className='flex gap-10 overflow-x-auto px-10'>
+                            {/* Produto 1 */}
+                            <div className="min-w-[300px] bg-zinc-900 overflow-hidden shadow-xl transition-transform border border-transparent hover:border-green-400 ">
+                                <div className="h-64 overflow-hidden">
+                                    <img
+                                        src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                        alt="Rede Oficial"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                    <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                </div>
+                            </div>
+
+                            <div className="min-w-[300px] bg-zinc-900 overflow-hidden shadow-xl transition-transform border border-transparent hover:border-green-400 ">
+                                <div className="h-64 overflow-hidden">
+                                    <img
+                                        src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                        alt="Rede Oficial"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                    <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                </div>
+                            </div>
+                            <div className="min-w-[300px] bg-zinc-900 overflow-hidden shadow-xl transition-transform border border-transparent hover:border-green-400 ">
+                                <div className="h-64 overflow-hidden">
+                                    <img
+                                        src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                        alt="Rede Oficial"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-white mb-2">Rede Oficial</h3>
+                                    <p className="text-green-400 text-lg font-semibold mb-2">R$ 399,90</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
             {/* Categories Section */}
             <section className="py-24 bg-zinc-900">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
-                        Categorias
+                        Explore por Categoria
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                         {/* Category 1: Raquetes */}
                         <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
