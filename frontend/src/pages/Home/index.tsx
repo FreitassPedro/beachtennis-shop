@@ -113,9 +113,14 @@ const Home: React.FC = () => {
                         alt=""
                         className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/60"></div>
+
                 </div>
-                <div className='z-10 p-15 '>
-                    <h1 className='font-bold text-2xl text-white '>Jogue como campeão</h1>
+                <div className='z-10 p-30 '>
+                    <h1 className='font-bold text-4xl text-white '>Todo desafio é um desafio </h1>
+                    <p className="text-xl md:text-2xl text-gray-300 mb-10">
+                        Experiencie o melhor para o seu melhor jogo
+                    </p>
                 </div>
             </div>
 
@@ -389,6 +394,24 @@ const Home: React.FC = () => {
                 </section>
             </section>
 
+            { /* Imagem promocional */}
+            <div className='h-125 relative flex items-center overflow-hidden shadow-xl'>
+                <div className="absolute z-0 inset-0  ">
+                    <img
+                        src="https://thesummerhunter.com/wp-content/uploads/2021/07/beach-tennis.jpg"
+                        alt=""
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/70"></div>
+
+                </div>
+                <div className='z-10 p-30 '>
+                    <h1 className='font-bold text-4xl text-white '>Todo desafio é um desafio </h1>
+                    <p className="text-xl md:text-2xl text-gray-300 mb-10">
+                        Experiencie o melhor para o seu melhor jogo
+                    </p>
+                </div>
+            </div>
 
             {/* Categories Section */}
             <section className="py-24 bg-zinc-900 shadow-3xl">
