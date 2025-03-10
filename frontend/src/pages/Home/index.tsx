@@ -1,6 +1,7 @@
 import React from 'react';
 import { Footer } from './Footer';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
     return (
@@ -25,9 +26,9 @@ const Home: React.FC = () => {
                     <p className="text-xl md:text-2xl text-white mb-10">
                         Experiencie o melhor para o seu melhor jogo
                     </p>
-                    <button className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
+                    <Link to={"/products"}  className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
                         Explorar Produtos
-                    </button>
+                    </Link>
                 </div>
             </section>
 
