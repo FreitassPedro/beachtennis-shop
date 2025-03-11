@@ -2,11 +2,8 @@ import Navbar from "../Home/Navbar";
 import { useState } from "react";
 
 const ProductList: React.FC = () => {
-    const [activeFilter, setActiveFilter] = useState<string | null>(null);
-
-    const toggleFilter = (filterName: string) => {
-        setActiveFilter(activeFilter === filterName ? null : filterName);
-    };
+    const [isOpenBrandFilter, setIsOpenBrandFilter] = useState(false);
+    const [isOpenProductFilter, setIsOpenProductFilter] = useState(false);
 
     return (
         <div className="min-h-screen bg-zinc-950">
@@ -43,13 +40,13 @@ const ProductList: React.FC = () => {
                         <div className="bg-zinc-900 p-4">
                             <button
                                 className="flex justify-between items-center w-full text-lg font-semibold text-white mb-3"
-                                onClick={() => toggleFilter('brands')}
+                                onClick={() => setIsOpenBrandFilter(!isOpenBrandFilter)}
                             >
                                 <span>Marcas</span>
-                                <span>{activeFilter === 'brands' ? '−' : '+'}</span>
+                                <span>{isOpenBrandFilter  ? '−' : '+'}</span>
                             </button>
 
-                            {activeFilter === 'brands' && (
+                            {isOpenBrandFilter && (
                                 <div className="space-y-2">
                                     <div className="flex items-center">
                                         <input type="checkbox" id="adidas" className="mr-2" />
@@ -79,13 +76,13 @@ const ProductList: React.FC = () => {
                         <div className="bg-zinc-900  p-4">
                             <button
                                 className="flex justify-between items-center w-full text-lg font-semibold text-white mb-3"
-                                onClick={() => toggleFilter('productType')}
+                                onClick={() => setIsOpenProductFilter(!isOpenProductFilter)}
                             >
                                 <span>Tipo de Produto</span>
-                                <span>{activeFilter === 'productType' ? '−' : '+'}</span>
+                                <span>{isOpenProductFilter ? '−' : '+'}</span>
                             </button>
 
-                            {activeFilter === 'productType' && (
+                            {isOpenProductFilter && (
                                 <div className="space-y-2">
                                     <div className="flex items-center">
                                         <input type="checkbox" id="racket" className="mr-2" />
