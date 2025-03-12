@@ -1,5 +1,5 @@
-import { Footer } from "../Home/Footer";
-import Navbar from "../Home/Navbar";
+import { Footer } from "../../components/Home/Footer";
+import Navbar from "../../components/Home/Navbar";
 import { useState } from "react";
 
 export const Product = () => {

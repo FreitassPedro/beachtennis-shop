@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Footer } from "../Home/Footer";
-import Summary from "./Summary";
-import ItemCart from "./ItemCart";
+import { Footer } from "../../components/Home/Footer";
+import SummaryCart from "../../components/Carrinho/SumarryCart";
+import ItemCart from "../../components/Carrinho/ItemCart";
 
 const Cart: React.FC = () => {
     // Mock, remover no futuro
@@ -102,7 +102,7 @@ const Cart: React.FC = () => {
                                 </div>
                                 {/* Resumo da compra*/}
                                 <div className="lg:w-1/3 w-full">
-                                    <Summary
+                                    <SummaryCart
                                         subtotal={subtotal}
                                         shipping={shipping}
                                         discount={discount}

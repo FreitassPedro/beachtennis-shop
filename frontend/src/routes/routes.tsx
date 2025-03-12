@@ -1,9 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import Home from "../pages/Home"
-import ProductList from "../pages/ProductList"
-import Product from "../pages/Product"
-import Cart from "../pages/Cart"
-import PaymentProcessing from "../pages/Payment"
+import Home from "../pages/Home/HomePage"
+import ProductList from "../pages/ProductList/ProductListPage"
+import Product from "../pages/Product/ProductPage"
+import Cart from "../pages/Cart/CartPage"
+import PaymentProcessing from "../pages/Checkout/CheckoutPage"
 
 export const AppRoutes = () => {
 
@@ -13,7 +13,7 @@ export const AppRoutes = () => {
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<ProductList />} />
                 <Route path="/product/" element={<Product />} />
-                <Route path="/cart" element={<Cart />} ></Route>
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<PaymentProcessing />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>

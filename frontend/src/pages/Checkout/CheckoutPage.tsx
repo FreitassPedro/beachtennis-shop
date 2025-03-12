@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Navbar from "../Home/Navbar";
+import Navbar from "../../components/Home/Navbar";
 
 const PaymentProcessing: React.FC = () => {
     // Estado para controlar a etapa atual do checkout
