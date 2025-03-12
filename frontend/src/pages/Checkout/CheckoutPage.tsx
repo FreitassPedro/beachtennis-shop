@@ -309,7 +309,7 @@ const PaymentProcessing: React.FC = () => {
                                                         <p className="text-green-400 font-bold mb-2">Total com desconto de 5%:</p>
                                                         <p className="text-white text-2xl font-bold">R$ 588,91</p>
                                                     </div>
-                                                    
+
                                                 </div>
                                             )}
 

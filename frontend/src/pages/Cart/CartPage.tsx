@@ -3,6 +3,7 @@ import SummaryCart from "../../components/Carrinho/SumaryCart";
 import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
 import CouponCart from "../../components/Carrinho/CounponCart";
+import ShippingCart from "../../components/Carrinho/ShippingCart";
 
 
 const Cart: React.FC = () => {
@@ -55,32 +56,32 @@ const Cart: React.FC = () => {
                         <>
                             <h1 className="font-bold mb-6 text-3xl">Estamos quase lá! </h1>
 
-                            <div className="flex flex-col lg:flex-row mb-6 gap-4 lg:gap-0">
-                                <div className="bg-zinc-900 p-6 w-full lg:w-2/3">
-                                    <div>
-                                        <h2 className="font-bold text-xl mb-5">Produtos no Carrinho</h2>
-                                        <div className="space-y-4 gap-5">
-                                            {cartItems.map((item) => (
-                                                <ItemCart
-                                                    key={item.id}
-                                                    quantidade={1}
-                                                    nome={item.name}
-                                                    imagem={item.image}
-                                                    code={item.code}
-                                                    originalPrice={item.originalPrice}
-                                                    price={item.price}
-                                                />
-                                            ))}
+                            <div className="flex flex-col lg:flex-row gap-6">
+                                <div className="flex flex-col w-full mb-6 gap-4 lg:gap-3">
+                                    <div className="bg-zinc-900 p-6 w-full rounded-lg">
+                                        <div>
+                                            <h2 className="font-bold text-xl mb-5">Produtos no Carrinho</h2>
+                                            <div className="space-y-4 gap-5">
+                                                {cartItems.map((item) => (
+                                                    <ItemCart
+                                                        key={item.id}
+                                                        quantidade={1}
+                                                        nome={item.name}
+                                                        imagem={item.image}
+                                                        code={item.code}
+                                                        originalPrice={item.originalPrice}
+                                                        price={item.price}
+                                                    />
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <CouponCart />
-                                    <div className="bg-zinc-900 p-6 rounded-lg" >
-                                        <h2>Endereço de Entrega</h2>
-                                        <div></div>
+                                        <CouponCart />
+
                                     </div>
+                                    <ShippingCart />
                                 </div>
-                                {/* Resumo da compra*/}
+
                                 <div className="lg:w-1/3 w-full">
                                     <SummaryCart
                                         subtotal={subtotal}
@@ -90,6 +91,7 @@ const Cart: React.FC = () => {
                                     />
                                 </div>
                             </div>
+
 
                         </>
                     )}
