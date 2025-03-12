@@ -4,6 +4,7 @@ import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
 import CouponCart from "../../components/Carrinho/CounponCart";
 
+
 const Cart: React.FC = () => {
     // Mock, remover no futuro
     const cartItems = [
@@ -53,7 +54,7 @@ const Cart: React.FC = () => {
                     ) : (
                         <>
                             <h1 className="font-bold mb-6 text-3xl">Estamos quase lá! </h1>
-                            
+
                             <div className="flex flex-col lg:flex-row mb-6 gap-4 lg:gap-0">
                                 <div className="bg-zinc-900 p-6 w-full lg:w-2/3">
                                     <div>
