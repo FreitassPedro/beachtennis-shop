@@ -66,7 +66,7 @@ const PaymentProcessing: React.FC = () => {
                                 <div className={`w-10 h-10 flex items-center justify-center rounded-full ${currentStep >= 1 ? 'bg-green-600' : 'bg-zinc-700'} mb-2`}>
                                     <span className="text-white font-bold">1</span>
                                 </div>
-                                <span className="text-sm">Endereço</span>
+                                <span className="text-sm">Carrinho</span>
                             </div>
                             <div className={`h-1 flex-grow mx-2 ${currentStep >= 2 ? 'bg-green-600' : 'bg-zinc-700'}`}></div>
                             <div className={`flex flex-col items-center ${currentStep >= 2 ? 'text-green-400' : 'text-gray-500'}`}>
