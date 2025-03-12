@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { Footer } from "../Home/Footer";
-import Summary from "./Summary";
-import ItemCart from "./ItemCart";
+import { Footer } from "../../components/Home/Footer";
+import SummaryCart from "../../components/Carrinho/SumaryCart";
+import ItemCart from "../../components/Carrinho/ItemCart";
+import EmptyCart from "../../components/Carrinho/EmptyCart";
+import CouponCart from "../../components/Carrinho/CounponCart";
 
 const Cart: React.FC = () => {
     // Mock, remover no futuro
@@ -48,61 +49,39 @@ const Cart: React.FC = () => {
                     </div>
 
                     {cartItems.length === 0 ? (
-                        <div className="bg-zinc-900 text-center p-10 mx-auto w-1/3 gap-5 flex flex-col">
-                            <p>Ops... parece que seu carrinho está vazio</p>
-                            <Link to="/products">
-                                <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors duration-200">
-                                    Explorar Produtos
-                                </button>
-                            </Link>
-                        </div>
+                        <EmptyCart />
                     ) : (
                         <>
-
                             <h1 className="font-bold mb-6 text-3xl">Estamos quase lá! </h1>
+                            
                             <div className="flex flex-col lg:flex-row mb-6 gap-4 lg:gap-0">
                                 <div className="bg-zinc-900 p-6 w-full lg:w-2/3">
                                     <div>
                                         <h2 className="font-bold text-xl mb-5">Produtos no Carrinho</h2>
-
-                                        {cartItems.length > 0 ? (
-                                            <div className="space-y-4 gap-5">
-                                                {/* products list */}
-                                                {cartItems.map((item) => (
-                                                    <ItemCart
-                                                        key={item.id}
-                                                        quantidade={1}
-                                                        nome={item.name}
-                                                        imagem={item.image}
-                                                        code={item.code}
-                                                        originalPrice={item.originalPrice}
-                                                        price={item.price}
-                                                    />
-                                                ))}
-                                            </div>
-                                        ) : (
-                                            <p className="text-gray-400">Seu carrinho está vázio</p>
-                                        )}
+                                        <div className="space-y-4 gap-5">
+                                            {cartItems.map((item) => (
+                                                <ItemCart
+                                                    key={item.id}
+                                                    quantidade={1}
+                                                    nome={item.name}
+                                                    imagem={item.image}
+                                                    code={item.code}
+                                                    originalPrice={item.originalPrice}
+                                                    price={item.price}
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
 
-
-                                    { /* Cupom */}
-                                    <div className="bg-zinc-900 p-6 rounded-lg w-full">
-                                        <h2 className="text-white text-lg" >Aplicar código promocional</h2>
-                                        <div className="flex w-full gap-2">
-                                            <input type="text "
-                                                placeholder="Digite o cupom"
-                                                className="bg-zinc-800 w-full text-white p-2 focus:ring-1 focus:outline-none focus:ring-green-500"
-                                            />
-                                            <button className="bg-green-600 hover:bg-green-700 transition-colors font-semibold py-3 px-6">
-                                                Aplicar
-                                            </button>
-                                        </div>
+                                    <CouponCart />
+                                    <div className="bg-zinc-900 p-6 rounded-lg" >
+                                        <h2>Endereço de Entrega</h2>
+                                        <div></div>
                                     </div>
                                 </div>
                                 {/* Resumo da compra*/}
                                 <div className="lg:w-1/3 w-full">
-                                    <Summary
+                                    <SummaryCart
                                         subtotal={subtotal}
                                         shipping={shipping}
                                         discount={discount}

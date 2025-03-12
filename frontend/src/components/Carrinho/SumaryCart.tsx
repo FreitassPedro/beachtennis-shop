@@ -7,7 +7,7 @@ interface SummaryProps {
     discount: number;
 }
 
-const Summary: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
+const SummaryCart: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
     return (
         <div className=" bg-zinc-800 sticky top-4 p-5 rounded-lg lg:rounded-none">
             <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
@@ -37,7 +37,6 @@ const Summary: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }
                     Ir para o pagamento
                 </Link>
             </div>
-
             <div className="mt-6 space-y-3">
                 <div className="flex items-center text-gray-400">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,4 +55,4 @@ const Summary: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }
     )
 };
 
-export default Summary;
+export default SummaryCart;

@@ -1,4 +1,4 @@
-import Navbar from "../Home/Navbar";
+import Navbar from "../../components/Home/Navbar";
 import { useState } from "react";
 
 const ProductList: React.FC = () => {

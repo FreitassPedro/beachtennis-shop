@@ -36,7 +36,7 @@ const Cart2: React.FC = () => {
                         <div className="w-full lg:w-2/3">
                             <div className="bg-zinc-900 p-6 rounded-lg mb-4">
                                 <h2 className="text-xl font-bold text-white mb-4">Produtos no Carrinho</h2>
-                                
+
                                 {cartItems.length > 0 ? (
                                     <div className="space-y-4">
                                         {cartItems.map((item) => (
@@ -49,7 +49,7 @@ const Cart2: React.FC = () => {
                                                         className="w-full h-full object-cover"
                                                     />
                                                 </div>
-                                                
+
                                                 {/* Product Info */}
                                                 <div className="flex-grow">
                                                     <h3 className="text-white font-semibold">{item.name}</h3>
@@ -63,7 +63,7 @@ const Cart2: React.FC = () => {
                                                         </span>
                                                     </div>
                                                 </div>
-                                                
+
                                                 {/* Quantity */}
                                                 <div className="flex items-center gap-2 mt-2 sm:mt-0">
                                                     <button className="bg-zinc-800 text-white w-8 h-8 flex items-center justify-center hover:bg-zinc-700">
@@ -79,7 +79,7 @@ const Cart2: React.FC = () => {
                                                         +
                                                     </button>
                                                 </div>
-                                                
+
                                                 {/* Remove Button */}
                                                 <button className="text-gray-400 hover:text-red-400 mt-2 sm:mt-0">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,14 +93,14 @@ const Cart2: React.FC = () => {
                                     <p className="text-gray-400">Seu carrinho está vazio.</p>
                                 )}
                             </div>
-                            
+
                             {/* Coupon Section */}
                             <div className="bg-zinc-900 p-6 rounded-lg">
                                 <h2 className="text-lg font-bold text-white mb-3">Cupom de Desconto</h2>
                                 <div className="flex gap-2">
-                                    <input 
-                                        type="text" 
-                                        placeholder="Digite o código do cupom" 
+                                    <input
+                                        type="text"
+                                        placeholder="Digite o código do cupom"
                                         className="bg-zinc-800 text-white p-3 flex-grow focus:outline-none focus:ring-2 focus:ring-green-500"
                                     />
                                     <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors">
@@ -109,12 +109,12 @@ const Cart2: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/* Order Summary Section */}
                         <div className="w-full lg:w-1/3">
                             <div className="bg-zinc-900 p-6 rounded-lg sticky top-4">
                                 <h2 className="text-xl font-bold text-white mb-4">Resumo do Pedido</h2>
-                                
+
                                 <div className="space-y-3 mb-4">
                                     <div className="flex justify-between text-gray-300 pb-2 border-b border-zinc-800">
                                         <span>Subtotal</span>
@@ -134,7 +134,7 @@ const Cart2: React.FC = () => {
                                     </div>
                                     <p className="text-gray-400 text-sm">ou 10x de R$ {(total / 10).toFixed(2)} sem juros</p>
                                 </div>
-                                
+
                                 <div className="flex flex-col gap-3">
                                     <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors">
                                         Ir para o pagamento
@@ -146,7 +146,7 @@ const Cart2: React.FC = () => {
                                         Continuar comprando
                                     </button>
                                 </div>
-                                
+
                                 {/* Additional Info */}
                                 <div className="mt-6 space-y-3">
                                     <div className="flex items-center text-gray-400">
@@ -165,7 +165,7 @@ const Cart2: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* Product Suggestions */}
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-white mb-4">Você também pode gostar</h2>
