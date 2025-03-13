@@ -9,7 +9,7 @@ interface SummaryProps {
 
 const SummaryCheckout: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
     return (
-        <div className=" bg-zinc-800 sticky top-4 p-5 rounded-lg lg:rounded-none">
+        <div className=" bg-zinc-800 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
             <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
 
             <div className="space-y-3 mb-4">

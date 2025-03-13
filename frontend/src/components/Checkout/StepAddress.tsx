@@ -35,14 +35,6 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress }) => {
                     />
                 </div>
                 <div>
-                    <label className="block text-gray-400 mb-2">Telefone</label>
-                    <input
-                        type="tel"
-                        placeholder="(00) 00000-0000"
-                        className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
-                </div>
-                <div>
                     <label className="block text-gray-400 mb-2">Logradouro</label>
                     <input
                         type="text"

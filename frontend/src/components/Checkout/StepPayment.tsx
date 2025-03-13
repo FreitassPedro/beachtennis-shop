@@ -1,12 +1,18 @@
 import { useState } from "react";
 
 interface StepPaymentProps {
+    onMethod: (method: string) => void;
     onCanProgress: (can: boolean) => void;
 }
 
-const StepPayment: React.FC<StepPaymentProps> = ({ onCanProgress }) => {
+const StepPayment: React.FC<StepPaymentProps> = ({ onMethod, onCanProgress }) => {
     const [paymentMethod, setPaymentMethod] = useState<string>("");
 
+    const handleClickMethod = (method: string) => {
+        setPaymentMethod(method);
+        onMethod(method);
+        console.log(method);
+    };
 
     const handleClickProgress = (can: boolean) => {
         onCanProgress(can);
@@ -24,7 +30,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onCanProgress }) => {
                             name="payment"
                             value="credit"
                             checked={paymentMethod === "credit"}
-                            onChange={() => setPaymentMethod("credit")}
+                            onChange={() => handleClickMethod("credit")}
                             className="accent-green-500"
                         />
                         <div className="flex items-center gap-2">
@@ -41,7 +47,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onCanProgress }) => {
                             name="payment"
                             value="pix"
                             checked={paymentMethod === "pix"}
-                            onChange={() => setPaymentMethod("pix")}
+                            onChange={() => handleClickMethod("pix")}
                             className="accent-green-500"
                         />
                         <div className="flex items-center gap-2">
@@ -58,7 +64,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onCanProgress }) => {
                             name="payment"
                             value="boleto"
                             checked={paymentMethod === "boleto"}
-                            onChange={() => setPaymentMethod("boleto")}
+                            onChange={() => handleClickMethod("boleto")}
                             className="accent-green-500"
                         />
                         <div className="flex items-center gap-2">
@@ -156,7 +162,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onCanProgress }) => {
                     Voltar
                 </button>
                 <button
-                    className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors"
+                    className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors cursor-pointer"
                     onClick={() => handleClickProgress(true)}
                 >
                     Revisar e confirmar

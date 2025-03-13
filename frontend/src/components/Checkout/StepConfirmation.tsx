@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { Address } from "../../types/AddressMethod";
+
+import { PaymentMethodDetails } from "../../types/PaymentMethod";
 
 interface StepConfirmationProps {
+    addressData: Address;
+    paymentData: PaymentMethodDetails;
     onCanProgress: (can: boolean) => void;
 }
 
-const StepConfirmation: React.FC<StepConfirmationProps> = ({ onCanProgress }) => {
+const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addressData, onCanProgress }) => {
 
-    const [paymentMethod, setPaymentMethod] = useState("credit");
+    const [paymentMethod, setPaymentMethod] = useState(paymentData.method);
     const [formValid, setFormValid] = useState(false);
-    const [currentStep, setCurrentStep] = useState(0);
+
+    console.log(paymentData);
 
     const handleClick = (button: boolean) => {
         onCanProgress(button);
@@ -25,17 +31,18 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ onCanProgress }) =>
                         <h3 className="text-lg font-semibold text-white">Endereço de Entrega</h3>
                         <button
                             className="text-green-400 text-sm underline"
-                            onClick={() => setCurrentStep(1)}
+
                         >
                             Editar
                         </button>
                     </div>
                     <div className="text-gray-300">
-                        <p>João Silva</p>
-                        <p>Rua das Flores, 123 - Apto 45</p>
-                        <p>Jardim Primavera - São Paulo/SP</p>
-                        <p>CEP: 01234-567</p>
-                        <p>Tel: (11) 98765-4321</p>
+                        <p>{addressData.name}</p>
+                        <p>{addressData.street}, {addressData.number} - {addressData.complement}</p>
+                        <p>{addressData.neighborhood} - {addressData.city}/{addressData.state}</p>
+                        <p>CEP: {addressData.zip}</p>
+                        <p>{addressData.referencePoint}</p>
+
                     </div>
                 </div>
 
@@ -45,13 +52,12 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ onCanProgress }) =>
                         <h3 className="text-lg font-semibold text-white">Método de Pagamento</h3>
                         <button
                             className="text-green-400 text-sm underline"
-                            onClick={() => setCurrentStep(2)}
                         >
                             Editar
                         </button>
                     </div>
                     <div className="text-gray-300">
-                        {paymentMethod === "credit" && (
+                        {paymentMethod === "credit-card" && (
                             <>
                                 <p className="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
