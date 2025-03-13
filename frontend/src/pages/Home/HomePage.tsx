@@ -26,7 +26,7 @@ const Home: React.FC = () => {
                     <p className="text-xl md:text-2xl text-white mb-10">
                         Experiencie o melhor para o seu melhor jogo
                     </p>
-                    <Link to={"/products"}  className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
+                    <Link to={"/products"} className="bg-green-400 hover:bg-green-500 text-black font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg">
                         Explorar Produtos
                     </Link>
                 </div>

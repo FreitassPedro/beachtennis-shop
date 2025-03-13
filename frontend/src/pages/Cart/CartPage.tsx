@@ -2,7 +2,7 @@ import { Footer } from "../../components/Home/Footer";
 import SummaryCart from "../../components/Carrinho/SumaryCart";
 import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
-import CouponCart from "../../components/Carrinho/CounponCart";
+import CouponCart from "../../components/Carrinho/CouponCart";
 import ShippingCart from "../../components/Carrinho/ShippingCart";
 
 

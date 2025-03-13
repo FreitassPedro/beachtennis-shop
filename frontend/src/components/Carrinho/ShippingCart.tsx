@@ -7,7 +7,6 @@ type ShippingMethod = {
 }
 
 const ShippingCart: React.FC = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedShipping, setSelectedShipping] = useState<ShippingMethod>();
 
     const shippingAddress = [
@@ -88,19 +87,7 @@ const ShippingCart: React.FC = () => {
 
                     )
                 }
-            </div >
-
-
-            {isModalOpen && (
-
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-zinc-900 p-6 rounded-lg">
-                        <h2>Frete:</h2>
-                    </div>
-
-                </div>
-            )
-            }
+            </div >        
         </>
     )
 }
