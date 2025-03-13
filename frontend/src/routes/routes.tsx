@@ -3,7 +3,7 @@ import Home from "../pages/Home/HomePage"
 import ProductList from "../pages/ProductList/ProductListPage"
 import Product from "../pages/Product/ProductPage"
 import Cart from "../pages/Cart/CartPage"
-import PaymentProcessing from "../pages/Checkout/CheckoutPage"
+import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
 
 export const AppRoutes = () => {
@@ -17,7 +17,7 @@ export const AppRoutes = () => {
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />
-                <Route path="/checkout" element={<PaymentProcessing />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>
