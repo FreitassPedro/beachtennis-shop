@@ -63,6 +63,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Seu nome completo"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -71,6 +72,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="CPF"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
 
@@ -80,6 +82,7 @@ const Register: React.FC = () => {
                             type="date"
                             placeholder="Data de Nascimento"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -88,6 +91,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Telefone Celular"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -96,7 +100,8 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Seu e-mail"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
-                        />
+                            required
+                       />
                     </div>
                     <div>
                         <label className="block text-gray-400 mb-2">Confirme E-mail</label>
@@ -104,7 +109,8 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Confirme seu e-mail"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
-                        />
+                            required
+                       />
                     </div>
                     <div>
                         <label className="block text-gray-400 mb-2">Confirme Senha</label>
@@ -112,6 +118,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Sua senha"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -120,12 +127,12 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Confirme sua senha"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
                         <label className="block text-gray-400 mb-2">Sexo</label>
-                        <select className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg">
-                            <option value=""></option>
+                        <select required className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg">
                             <option value="">Não especificado</option>
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
