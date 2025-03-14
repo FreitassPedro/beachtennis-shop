@@ -1,52 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../../../components/Home/Navbar';
 import Login from './Login';
 import Register from './Register';
 
 
-const LoginRegister2: React.FC = () => {
-    const [isLogin, setIsLogin] = useState(true);
+const LoginRegisterPage: React.FC = () => {
+    const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
 
-    // Login form state
-    const [loginEmail, setLoginEmail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
-
-    // Register form state
-    const [registerName, setRegisterName] = useState('');
-    const [registerEmail, setRegisterEmail] = useState('');
-    const [registerPassword, setRegisterPassword] = useState('');
-    const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
-    const [phone, setPhone] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [gender, setGender] = useState('');
-    const [agreeTerms, setAgreeTerms] = useState(false);
-    const [receiveNewsletters, setReceiveNewsletters] = useState(false);
-
-    const handleRegisterClick = () => {
-        setIsLogin(false);
-    };
-
-    const handleLoginSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Login attempt:', { email: loginEmail, password: loginPassword, rememberMe });
-        // Implement login logic here
-    };
-
-    const handleRegisterSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Register attempt:', {
-            name: registerName,
-            email: registerEmail,
-            password: registerPassword,
-            phone,
-            birthDate,
-            gender,
-            agreeTerms,
-            receiveNewsletters
-        });
-        // Implement registration logic here
+    const handleSwitchAuthClick = () => {
+        setAuthMode(authMode === 'login' ? 'register' : 'login');
     };
 
     return (
@@ -65,7 +27,7 @@ const LoginRegister2: React.FC = () => {
                                 <span className="text-green-400">Chade</span> Beach Tennis
                             </h1>
                             <p className="text-gray-300 text-xl mb-10 max-w-md">
-                                {isLogin
+                                {authMode === 'login'
                                     ? "Acesse sua conta para explorar nossa coleção exclusiva de produtos para beach tennis."
                                     : "Crie sua conta para acesso exclusivo a promoções, rastreamento de pedidos e descontos especiais."}
                             </p>
@@ -73,14 +35,16 @@ const LoginRegister2: React.FC = () => {
 
                         {/* Right Side - Forms */}
                         <div className=''>
-                            {isLogin ? (
+                            {authMode === 'login' ? (
                                 // LOGIN FORM
                                 <Login
-                                    onRegisterClick={handleRegisterClick}
+                                    onSwitchAuth={handleSwitchAuthClick}
                                 />
                             ) : (
                                 // REGISTRATION FORM
-                                <Register />
+                                <Register
+                                    onSwitchAuth={handleSwitchAuthClick}
+                                />
                             )}
 
                         </div>
@@ -91,4 +55,4 @@ const LoginRegister2: React.FC = () => {
     );
 }
 
-export default LoginRegister2;
+export default LoginRegisterPage;

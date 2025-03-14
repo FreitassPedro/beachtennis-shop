@@ -6,7 +6,7 @@ import Cart from "../pages/Cart/CartPage"
 import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
 
-import LoginRegister2 from "../pages/Auth/LoginRegisterPage/LoginRegister2Page"
+import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
 export const AppRoutes = () => {
 
     return (
@@ -20,7 +20,7 @@ export const AppRoutes = () => {
                 <Route path="/cart2" element={<Cart2 />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
 
-                <Route path="/login" element={<LoginRegister2 />} />
+                <Route path="/login" element={<LoginRegisterPage />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>
