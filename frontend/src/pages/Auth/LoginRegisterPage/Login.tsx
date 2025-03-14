@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login: React.FC = () => {
-    const [isLogin, setIsLogin] = useState(true);
+interface LoginProps {
+    onRegisterClick: () => void;
+}
 
+const Login: React.FC<LoginProps> = ({ onRegisterClick }) => {
     // Login form state
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
     // Register form state
-    const [registerName, setRegisterName] = useState('');
-    const [registerEmail, setRegisterEmail] = useState('');
-    const [registerPassword, setRegisterPassword] = useState('');
-    const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
-    const [phone, setPhone] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [gender, setGender] = useState('');
-    const [agreeTerms, setAgreeTerms] = useState(false);
-    const [receiveNewsletters, setReceiveNewsletters] = useState(false);
+
 
     const handleLoginSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -26,20 +20,7 @@ const Login: React.FC = () => {
         // Implement login logic here
     };
 
-    const handleRegisterSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Register attempt:', {
-            name: registerName,
-            email: registerEmail,
-            password: registerPassword,
-            phone,
-            birthDate,
-            gender,
-            agreeTerms,
-            receiveNewsletters
-        });
-        // Implement registration logic here
-    };
+
     return (
         <div className="bg-zinc-900/90 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 shadow-xl">
             <h2 className="text-2xl font-semibold text-white mb-6">Faça seu login</h2>
@@ -105,8 +86,8 @@ const Login: React.FC = () => {
                         Entrar
                     </button>
                     <button
-                        type="submit"
-                        onClick={() => setIsLogin(false)}
+                        type="button"
+                        onClick={onRegisterClick}
                         className="w-full bg-gray-400 hover:bg-green-300 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg"
                     >
                         Criar uma conta
@@ -121,10 +102,10 @@ const Login: React.FC = () => {
                 </div>
 
                 {/* Social Login Options */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="" >
                     <button
                         type="button"
-                        className="flex items-center justify-center py-2 px-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors text-sm"
+                        className="flex w-full items-center justify-center py-2 px-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors text-sm"
                     >
                         <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -133,15 +114,6 @@ const Login: React.FC = () => {
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                         </svg>
                         Google
-                    </button>
-                    <button
-                        type="button"
-                        className="flex items-center justify-center py-2 px-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors text-sm"
-                    >
-                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.84,3.44,8.87,8,9.8V15H8v-3h2V9.5C10,7.57,11.57,6,13.5,6H16v3h-2 c-0.55,0-1,0.45-1,1v2h3v3h-3v6.95C18.05,21.45,22,17.19,22,12z" fill="#1877F2" />
-                        </svg>
-                        Facebook
                     </button>
                 </div>
             </form>

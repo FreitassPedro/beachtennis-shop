@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../components/Home/Navbar';
 import Login from './Login';
+import Register from './Register';
 
 
 const LoginRegister2: React.FC = () => {
@@ -22,6 +23,10 @@ const LoginRegister2: React.FC = () => {
     const [gender, setGender] = useState('');
     const [agreeTerms, setAgreeTerms] = useState(false);
     const [receiveNewsletters, setReceiveNewsletters] = useState(false);
+
+    const handleRegisterClick = () => {
+        setIsLogin(false);
+    };
 
     const handleLoginSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,10 +55,10 @@ const LoginRegister2: React.FC = () => {
             <Navbar />
 
             {/* Main Content */}
-            <div className="flex-grow flex items-center justify-center py-8 px-2">
-                <div className="w-full max-w-5xl relative">
+            <div className="flex-grow flex items-center justify-center py-8 px-2 mx-5">
+                <div className="w-full relative">
                     {/* Content Container */}
-                    <div className="grid md:grid-cols-2 gap-8 relative p-6 md:p-10">
+                    <div className="grid lg:grid-cols-2 gap-8 relative p-6 md:p-10">
                         {/* Left Side - Form Toggle */}
                         <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left">
                             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
@@ -67,16 +72,17 @@ const LoginRegister2: React.FC = () => {
                         </div>
 
                         {/* Right Side - Forms */}
-                        <div>
+                        <div className=''>
                             {isLogin ? (
                                 // LOGIN FORM
-                                <Login />
+                                <Login
+                                    onRegisterClick={handleRegisterClick}
+                                />
                             ) : (
                                 // REGISTRATION FORM
-                                <div>
-                                    Register
-                                </div>
+                                <Register />
                             )}
+
                         </div>
                     </div>
                 </div>

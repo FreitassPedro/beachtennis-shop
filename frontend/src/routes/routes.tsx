@@ -5,7 +5,7 @@ import Product from "../pages/Product/ProductPage"
 import Cart from "../pages/Cart/CartPage"
 import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
-import LoginRegister from "../pages/Auth/LoginRegisterPage/LoginRegisterPage"
+
 import LoginRegister2 from "../pages/Auth/LoginRegisterPage/LoginRegister2Page"
 export const AppRoutes = () => {
 
@@ -19,8 +19,8 @@ export const AppRoutes = () => {
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/login" element={<LoginRegister />} />
-                <Route path="/login2" element={<LoginRegister2 />} />
+
+                <Route path="/login" element={<LoginRegister2 />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>
