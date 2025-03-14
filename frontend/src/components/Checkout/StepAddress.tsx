@@ -90,7 +90,7 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress }) => {
                     className="bg-green-600 cursor-pointer hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors"
                     onClick={handleClick}
                 >
-                    Continuar para pagamento
+                    Avançar
                 </button>
             </div>
         </>
