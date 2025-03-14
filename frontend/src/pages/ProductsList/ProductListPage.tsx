@@ -1,5 +1,4 @@
 import Navbar from "../../components/Home/Navbar";
-import { useState } from "react";
 import Filters from "../../components/ProductsList/Filters";
 import { products } from "../../types/Products";
 import { useNavigate } from "react-router-dom";
@@ -13,15 +12,12 @@ const ProductsList: React.FC = () => {
     return (
         <div className="min-h-screen bg-zinc-950">
             <Navbar />
-            <div className="container mx-auto py-6 flex ">
-                {/* Filtros */}
-
+            <div className="container mx-auto  flex py-6 ">
                 <Filters />
 
-                {/* Lista de Produtos */}
-                <div>
+                <div className="w-3/4">
                     <h2 className="text-2xl font-bold text-white mb-4">Produtos</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {products.map((product) => (
                             <div
                                 key={product.id}
@@ -45,8 +41,6 @@ const ProductsList: React.FC = () => {
                                 </div>
                             </div>
                         ))}
-                        {/* Product Card - Melhorado */}
-
                     </div>
                 </div>
             </div>

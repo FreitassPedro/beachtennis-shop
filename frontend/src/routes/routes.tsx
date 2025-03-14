@@ -1,12 +1,13 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Home from "../pages/Home/HomePage"
 import ProductsList from "../pages/ProductsList/ProductListPage"
-import Product from "../pages/Product/ProductPage"
+import ProductPage from "../pages/Product/ProductPage"
 import Cart from "../pages/Cart/CartPage"
 import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
 
 import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
+import ProductPageTest from "../pages/Product/ProductPageTest"
 export const AppRoutes = () => {
 
     return (
@@ -14,7 +15,8 @@ export const AppRoutes = () => {
             <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<ProductsList />} />
-                <Route path="/product/" element={<Product />} />
+                <Route path="/product/" element={<ProductPage />} />
+                <Route path="/product/:id" element={<ProductPageTest />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />

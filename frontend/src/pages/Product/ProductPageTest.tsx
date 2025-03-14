@@ -2,14 +2,16 @@ import { Footer } from "../../components/Home/Footer";
 import Navbar from "../../components/Home/Navbar";
 import React, { useState } from "react";
 import SimilarProducts from "../../components/Product/SimilarProducts";
-import { product } from "../../types/Products";
-interface ProductProps {
-    product: ProductPage;
-}
+import { Product, products } from "../../types/Products";
+import { useParams } from "react-router-dom";
+import DescriptionProduct from "../../components/Product/DescriptionProduct";
 
 
-const ProductPage: React.FC<ProductProps> = ({product}) => {
-    // Array of product images
+const ProductPageTest: React.FC = () => {
+
+    const { id } = useParams<{ id: string }>();
+    const productId = id ? parseInt(id, 10) : undefined;
+
     const productImages = [
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
@@ -18,9 +20,13 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
     ];
 
+    const product: Product | undefined = products.find((p) => p.id === productId);
     // State to track the selected main image
     const [selectedImage, setSelectedImage] = useState(0);
 
+    if (!product) {
+        return <div>Produto não encontrado</div>;
+    }
     return (
         <>
             <div className="min-h-screen bg-zinc-950">
@@ -30,7 +36,7 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
                     <div className="text-gray-400 mb-6">
                         <span className="hover:text-green-400 cursor-pointer">Home</span> &gt;
                         <span className="hover:text-green-400 cursor-pointer"> Raquetes</span> &gt;
-                        <span className="text-green-400"> Raquete Pro Carbon</span>
+                        <span className="text-green-400"> {product.category}</span>
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 mb-8">
                         {/* Product Images Section - Redesigned for responsiveness */}
@@ -95,8 +101,8 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
                         {/* Product Details Section */}
                         <div className="flex flex-col gap-6 w-full md:w-1/2">
                             <div>
-                                <h1 className="text-3xl font-bold text-white mb-2">Raquete Pro Carbon</h1>
-                                <p className="text-gray-400 mb-3">Código: PRO-C-2025</p>
+                                <h1 className="text-3xl font-bold text-white mb-2">{product.title}</h1>
+                                <p className="text-gray-400 mb-3">Código: {product.id}</p>
 
                                 {/* Ratings */}
                                 <div className="flex items-center gap-2 mb-4">
@@ -122,9 +128,9 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
 
                                 {/* Price */}
                                 <div className="mb-4">
-                                    <span className="text-gray-400 line-through text-lg mr-2">R$ 799,90</span>
-                                    <span className="text-green-400 text-3xl font-bold">R$ 599,90</span>
-                                    <p className="text-gray-400 text-sm mt-1">ou 10x de R$ 59,99 sem juros</p>
+                                    <span className="text-gray-400 line-through text-lg mr-2">{`R$ ${product.price}`}</span>
+                                    <span className="text-green-400 text-3xl font-bold">{`R$ ${(product.price / 0.95).toFixed(2)}`}</span>
+                                    <p className="text-gray-400 text-sm mt-1">{`ou 10x de R$ ${(product.price / 10).toFixed(2)} `} sem juros</p>
                                 </div>
 
                                 {/* Features */}
@@ -177,22 +183,9 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
                         </div>
                     </div>
 
-                    {/* Rest of the content remains the same */}
-                    {/* Product Description Section */}
-                    <div className="bg-zinc-900  p-6 mb-8">
-                        <h2 className="text-2xl font-bold text-white mb-4">Descrição do Produto</h2>
-                        <div className="text-gray-300">
-                            <p className="mb-4">
-                                A Raquete Pro Carbon é o equipamento ideal para jogadores que buscam um alto desempenho nas quadras de beach tennis. Desenvolvida com tecnologia de ponta, esta raquete combina carbono de alta qualidade com um design ergonômico para proporcionar potência, controle e conforto durante as partidas.
-                            </p>
-                            <p className="mb-4">
-                                Seu peso balanceado de 330g oferece a combinação perfeita entre estabilidade e manobrabilidade, permitindo jogadas rápidas e precisas. O núcleo em EVA de alta densidade proporciona uma excelente absorção de impacto, reduzindo o estresse no braço e no punho durante longas partidas.
-                            </p>
-                            <p>
-                                A Raquete Pro Carbon é recomendada para jogadores de nível intermediário a avançado que buscam aprimorar seu jogo com um equipamento de alta performance.
-                            </p>
-                        </div>
-                    </div>
+                    <DescriptionProduct
+                        product={product}
+                    />
 
                     {/* Specifications */}
                     <div className="bg-zinc-900  p-6 mb-8">
@@ -236,11 +229,11 @@ const ProductPage: React.FC<ProductProps> = ({product}) => {
                     {/* Related Products */}
                     <SimilarProducts />
                 </div>
-            </div>
+            </div >
 
             <Footer />
         </>
     );
 };
 
-export default ProductPage;
+export default ProductPageTest;
