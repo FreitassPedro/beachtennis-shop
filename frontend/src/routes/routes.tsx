@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Home from "../pages/Home/HomePage"
-import ProductList from "../pages/ProductList/ProductListPage"
+import ProductsList from "../pages/ProductsList/ProductListPage"
 import Product from "../pages/Product/ProductPage"
 import Cart from "../pages/Cart/CartPage"
 import CheckoutPage from "../pages/Checkout/CheckoutPage"
@@ -13,7 +13,7 @@ export const AppRoutes = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/home" element={<Home />} />
-                <Route path="/products" element={<ProductList />} />
+                <Route path="/products" element={<ProductsList />} />
                 <Route path="/product/" element={<Product />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
