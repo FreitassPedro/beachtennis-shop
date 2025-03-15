@@ -1,8 +1,14 @@
 import { Footer } from "../../components/Home/Footer";
 import Navbar from "../../components/Home/Navbar";
-import { useState } from "react";
+import React, { useState } from "react";
+import SimilarProducts from "../../components/Product/SimilarProducts";
+import { product } from "../../types/Products";
+interface ProductProps {
+    product: ProductPage;
+}
 
-export const Product = () => {
+
+const ProductPage: React.FC<ProductProps> = ({product}) => {
     // Array of product images
     const productImages = [
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
@@ -165,7 +171,7 @@ export const Product = () => {
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
-                                    Garantia 
+                                    Garantia
                                 </div>
                             </div>
                         </div>
@@ -228,26 +234,7 @@ export const Product = () => {
                     </div>
 
                     {/* Related Products */}
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-white mb-4">Produtos Relacionados</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                            {[1, 2, 3, 4].map((item) => (
-                                <div key={item} className="bg-zinc-900 cursor-pointer overflow-hidden  shadow-xl transition-all duration-300 hover:border-green-300 hover:border hover:scale-105">
-                                    <div className="relative pt-[100%] bg-gray-200">
-                                        <img
-                                            src={`https://fastly.picsum.photos/id/${575 + item}/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A`}
-                                            alt={`Produto relacionado ${item}`}
-                                            className="absolute top-0 left-0 w-full h-full object-contain object-center"
-                                        />
-                                    </div>
-                                    <div className="p-4">
-                                        <h3 className="text-lg font-bold text-white mb-2">Acessório Beach Tennis {item}</h3>
-                                        <p className="text-green-400 text-lg font-semibold">R$ {199 + (item * 50)},90</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <SimilarProducts />
                 </div>
             </div>
 
@@ -256,4 +243,4 @@ export const Product = () => {
     );
 };
 
-export default Product;
+export default ProductPage;

@@ -1,26 +1,29 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Home from "../pages/Home/HomePage"
-import ProductList from "../pages/ProductList/ProductListPage"
-import Product from "../pages/Product/ProductPage"
+import ProductsList from "../pages/ProductsList/ProductListPage"
+import ProductPage from "../pages/Product/ProductPage"
 import Cart from "../pages/Cart/CartPage"
 import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
 
-import LoginRegister2 from "../pages/Auth/LoginRegisterPage/LoginRegister2Page"
+import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
+import ProductPageTest from "../pages/Product/ProductPageTest"
+import AccountPage from "../pages/Account/AccountPage"
 export const AppRoutes = () => {
 
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/home" element={<Home />} />
-                <Route path="/products" element={<ProductList />} />
-                <Route path="/product/" element={<Product />} />
+                <Route path="/products" element={<ProductsList />} />
+                <Route path="/product/" element={<ProductPage />} />
+                <Route path="/product/:id" element={<ProductPageTest />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-
-                <Route path="/login" element={<LoginRegister2 />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/login" element={<LoginRegisterPage />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>

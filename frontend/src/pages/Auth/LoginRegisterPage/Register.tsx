@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const Register: React.FC = () => {
+interface RegisterProps {
+    onSwitchAuth: () => void;
+}
+
+const Register: React.FC<RegisterProps> = ({ onSwitchAuth }) => {
     const [registerName, setRegisterName] = useState('');
     const [registerEmail, setRegisterEmail] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
@@ -18,11 +22,11 @@ const Register: React.FC = () => {
             name: registerName,
             email: registerEmail,
             password: registerPassword,
-            phone,
-            birthDate,
-            gender,
-            agreeTerms,
-            receiveNewsletters
+            phone: phone,
+            birthDate: birthDate,
+            gender: gender,
+            agreeTerms: agreeTerms,
+            receiveNewsletters: receiveNewsletters
         });
         // Implement registration logic here
     };
@@ -55,7 +59,7 @@ const Register: React.FC = () => {
                 <span className="px-3 text-gray-400 text-xs">ou </span>
                 <div className="flex-grow h-px bg-zinc-700"></div>
             </div>
-            <form action="" className='space-y-2'>
+            <form onSubmit={handleRegisterSubmit} className='space-y-2'>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
                         <label className="block text-gray-400 mb-2">Nome Completo</label>
@@ -63,6 +67,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Seu nome completo"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -71,6 +76,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="CPF"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
 
@@ -80,6 +86,7 @@ const Register: React.FC = () => {
                             type="date"
                             placeholder="Data de Nascimento"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -88,6 +95,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Telefone Celular"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -96,6 +104,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Seu e-mail"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -104,6 +113,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Confirme seu e-mail"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -112,6 +122,7 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Sua senha"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
@@ -120,12 +131,12 @@ const Register: React.FC = () => {
                             type="text"
                             placeholder="Confirme sua senha"
                             className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg"
+                            required
                         />
                     </div>
                     <div>
                         <label className="block text-gray-400 mb-2">Sexo</label>
-                        <select className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg">
-                            <option value=""></option>
+                        <select required className="bg-zinc-800 text-white p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-400 rounded-lg">
                             <option value="">Não especificado</option>
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
@@ -133,12 +144,18 @@ const Register: React.FC = () => {
                         </select>
                     </div>
                 </div>
-                <div className="flex justify-end">
+
+                <div className="flex justify-center items-center flex-col ">
                     <button
                         className="bg-green-600 cursor-pointer hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors"
                     >
                         Registrar
                     </button>
+                    <div>
+                        <a
+                            className="text-green-600 hover:text-green-300 cursor-pointer underline"
+                            onClick={onSwitchAuth}>Já possuo cadastro</a>
+                    </div>
                 </div>
 
             </form>

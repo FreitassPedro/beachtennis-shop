@@ -2,17 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface LoginProps {
-    onRegisterClick: () => void;
+    onSwitchAuth: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onRegisterClick }) => {
+const Login: React.FC<LoginProps> = ({ onSwitchAuth }) => {
     // Login form state
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-
-    // Register form state
-
 
     const handleLoginSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -87,7 +84,7 @@ const Login: React.FC<LoginProps> = ({ onRegisterClick }) => {
                     </button>
                     <button
                         type="button"
-                        onClick={onRegisterClick}
+                        onClick={onSwitchAuth}
                         className="w-full bg-gray-400 hover:bg-green-300 text-black font-bold py-2 px-4 rounded-lg transition-colors text-sm shadow-lg"
                     >
                         Criar uma conta
