@@ -21,7 +21,7 @@ const ProductsList: React.FC = () => {
                         {products.map((product) => (
                             <div
                                 key={product.id}
-                                className="bg-zinc-900 cursor-pointer overflow-hidden  shadow-xl transition-all duration-300 hover:border-green-300 hover:border hover:scale-105"
+                                className="bg-zinc-900 cursor-pointer overflow-hidden  shadow-xl transition-all duration-300 hover:border-green-300 hover:border hover:scale-110 hover:z-10"
                                 onClick={() => handleProductClick(product.id)}
                             >
 
@@ -36,7 +36,7 @@ const ProductsList: React.FC = () => {
                                     <h3 className="text-xl font-bold text-white mb-2">{product.title}</h3>
                                     <p className="text-green-400 text-lg font-semibold mb-2">R$ {product.price}</p>
                                     <p className="text-gray-300 text-sm">
-                                        {product.description}
+                                        {product.summary}
                                     </p>
                                 </div>
                             </div>

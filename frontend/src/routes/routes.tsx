@@ -8,6 +8,7 @@ import Cart2 from "../components/Carrinho/Cart2"
 
 import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
 import ProductPageTest from "../pages/Product/ProductPageTest"
+import AccountPage from "../pages/Account/AccountPage"
 export const AppRoutes = () => {
 
     return (
@@ -21,7 +22,7 @@ export const AppRoutes = () => {
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-
+                <Route path="/account" element={<AccountPage />} />
                 <Route path="/login" element={<LoginRegisterPage />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>

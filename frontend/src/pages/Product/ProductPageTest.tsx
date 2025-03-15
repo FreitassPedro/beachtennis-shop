@@ -3,7 +3,7 @@ import Navbar from "../../components/Home/Navbar";
 import React from "react";
 import SimilarProducts from "../../components/Product/SimilarProducts";
 import { Product, products } from "../../types/Products";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DescriptionProduct from "../../components/Product/DescriptionProduct";
 import SummaryProduct from "../../components/Product/SummaryProduct";
 import PurchaseSection from "../../components/Product/PurchaseSection";
@@ -22,7 +22,16 @@ const ProductPageTest: React.FC = () => {
 
 
     if (!product) {
-        return <div>Produto não encontrado</div>;
+        return (
+            <div className="min-h-screen bg-zinc-950">
+                <Navbar />
+                <div className="container mx-auto py-8 px-4 flex flex-col space-y-10 items-center justify-center">
+                    <h1 className="text-3xl font-bold text-white mb-2">Produto não encontrado</h1>
+                    <p className="text-gray-400">O produto que você está procurando não foi encontrado.</p>
+                    <Link to="/" className="bg-green-400 p-5 text-gray-300 font-semibold text-lg hover:underline">Voltar para a página inicial</Link>
+                </div>
+            </div >
+        )
     }
     return (
         <>
