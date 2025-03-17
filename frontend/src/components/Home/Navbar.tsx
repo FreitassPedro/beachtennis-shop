@@ -10,11 +10,16 @@ export const Navbar = () => {
                 <h1 className='text-4xl font-bold'>ASCHADE</h1>
             </Link>
         </a>
-            <div className='lg:flex hidden gap-6 items-end'>
-                <a href="" className='text-2xl'>Raquetes</a>
-                <a href="" className='text-2xl'>Bolas</a>
-                <a href="" className='text-2xl'>Redes</a>
-                <a href="" className='text-2xl'>Acessórios</a>
+            <div className="lg:flex hidden gap-6 items-end">
+                <Link to="/category/raquetes" className="text-2xl">
+                    Raquetes
+                </Link>
+                <Link to="/category/bolas" className="text-2xl">
+                    Bolas
+                </Link>
+                <Link to="/category/acessorios" className="text-2xl">
+                    Acessórios
+                </Link>
             </div>
             <div className='gap-6 items-end hidden lg:flex'>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">

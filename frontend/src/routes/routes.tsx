@@ -7,7 +7,6 @@ import CheckoutPage from "../pages/Checkout/CheckoutPage"
 import Cart2 from "../components/Carrinho/Cart2"
 
 import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
-import ProductPageTest from "../pages/Product/ProductPageTest"
 import AccountPage from "../pages/Account/AccountPage"
 export const AppRoutes = () => {
 
@@ -16,8 +15,8 @@ export const AppRoutes = () => {
             <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<ProductsList />} />
-                <Route path="/product/" element={<ProductPage />} />
-                <Route path="/product/:id" element={<ProductPageTest />} />
+                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/category/:category" element={<ProductsList />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />
