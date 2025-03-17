@@ -154,7 +154,7 @@ const Home: React.FC = () => {
                                     <h3 className="text-xl font-bold text-white mb-2">Bolsa Pro Tour</h3>
                                     <p className="text-green-400 text-lg font-semibold mb-2">R$ 249,90</p>
                                     <p className="text-gray-300 text-sm">
-                                        Bolsa térmica com compartimentos para 3 raquetes e acessórios
+                                        Bolsa térmica com compartimentos para 3  raquetes e acessórios
                                     </p>
                                     <button className="mt-4 w-full bg-green-400 hover:bg-green-500 text-black font-bold py-2 px-4 rounded-md transition-colors">
                                         Comprar
@@ -402,13 +402,13 @@ const Home: React.FC = () => {
             {/* Categories Section */}
             <section className="py-24 bg-zinc-900 shadow-3xl">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-16">
+                    <h2 className="text-3xl  md:text-5xl font-bold text-center text-white mb-16">
                         Explore por Categoria
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                         {/* Category 1: Raquetes */}
-                        <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
+                        <div className="group bg-black rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
                                     src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
@@ -416,7 +416,7 @@ const Home: React.FC = () => {
                                     className="w-full h-full object-cover transition-transform group-hover:scale-110"
                                 />
                             </div>
-                            <div className="p-8 bg-black border-t-4 border-green-400">
+                            <div className="p-8  border-t-4 border-green-400">
                                 <h3 className="text-2xl font-bold text-white mb-4">Raquetes Profissionais</h3>
                                 <p className="text-gray-300 mb-6">Coleção premium para todos os níveis de jogo</p>
                                 <button className="text-green-400 font-medium flex items-center text-lg">
@@ -429,7 +429,7 @@ const Home: React.FC = () => {
                         </div>
 
                         {/* Category 2: Bolinhas */}
-                        <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
+                        <div className="group bg-black rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
                                     src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
@@ -450,7 +450,7 @@ const Home: React.FC = () => {
                         </div>
 
                         {/* Category 3: Redes */}
-                        <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
+                        <div className="group bg-black  rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
                                     src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
@@ -471,7 +471,7 @@ const Home: React.FC = () => {
                         </div>
 
                         {/* Category 4: Acessórios */}
-                        <div className="group bg-zinc-800 rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
+                        <div className="group bg-black  rounded-xl shadow-xl overflow-hidden transition-transform hover:scale-102">
                             <div className="h-96 overflow-hidden">
                                 <img
                                     src="https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw="
@@ -482,7 +482,7 @@ const Home: React.FC = () => {
                             <div className="p-8 bg-black border-t-4 border-green-400">
                                 <h3 className="text-2xl font-bold text-white mb-4">Acessórios Performance</h3>
                                 <p className="text-gray-300 mb-6">Complementos essenciais para melhorar o seu jogo</p>
-                                <button className="text-green-400 font-medium flex items-center text-lg">
+                                <button className="text-green-400 font-medium flex  items-center text-lg">
                                     Ver coleção
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
