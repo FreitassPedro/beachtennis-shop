@@ -1,20 +1,20 @@
 interface MySideBarProps {
     activeTab: string;
-    setActiveTab: (tab: string) => void;
+    setActiveTab: (tab: "profile" | "orders" | "addresses") => void;
 }
 
 const MySideBar: React.FC<MySideBarProps> = ({ activeTab, setActiveTab }) => {
 
     const user = {
         name: 'Rafael Silva',
-        email: 'rafael.silva@exemplo.com',
+        email: 'rafael.silva.pereira@exemplo.com',
         phone: '(11) 98765-4321',
         createdAt: '10/05/2023'
     };
     return (
-        <div className="lg:col-span-1">
+        <div className="">
             <div className="bg-zinc-900 rounded-xl shadow-xl p-6 sticky top-4">
-                <div className="flex items-center space-x-4 mb-8 pb-4 border-b border-zinc-800">
+                <div className="flex flex-col  items-center mb-8 pb-4 border-b border-zinc-800">
                     <div className="bg-green-400 h-12 w-12 rounded-full flex items-center justify-center text-black font-bold text-xl">
                         {user.name.charAt(0)}
                     </div>

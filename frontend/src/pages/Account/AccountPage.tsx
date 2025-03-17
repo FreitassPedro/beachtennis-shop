@@ -12,12 +12,13 @@ import MySideBar from '../../components/MyAccount/MySideBar';
 const AccountPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'profile' | 'orders' | 'addresses'>('profile');
 
+    const handleTabChange = (tab: 'profile' | 'orders' | 'addresses') => {
+        setActiveTab(tab);
+    }
+
     return (
         <div className="min-h-screen bg-neutral-950 text-white">
-            {/* Navbar */}
             <Navbar />
-
-            {/* Header */}
             <section className="relative h-64 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
@@ -37,8 +38,8 @@ const AccountPage: React.FC = () => {
             {/* Main Content */}
             <section className="py-12 bg-neutral-950">
                 <div className="container px-6 mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                        <MySideBar activeTab={activeTab} setActiveTab={setActiveTab}  />
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
+                        <MySideBar activeTab={activeTab} setActiveTab={handleTabChange} />
 
                         {/* Content Area */}
                         <div className="lg:col-span-3">
