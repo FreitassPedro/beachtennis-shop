@@ -1,10 +1,37 @@
+import React, { useState } from "react";
 import Navbar from "../../components/Home/Navbar";
 import Filters from "../../components/ProductsList/Filters";
-import { products } from "../../types/Products";
-import { useNavigate } from "react-router-dom";
+import { Product, products as productsMock } from "../../types/Products";
+import { useNavigate, useParams } from "react-router-dom";
 const ProductsList: React.FC = () => {
-
+    const { category: categoryParam } = useParams<{ category: string }>();
+    const [products, setProducts] = useState<Product[]>([]);
     const navigate = useNavigate();
+
+    const imagesPath = 'http://localhost:8080/';
+
+
+    /*
+    React.useEffect(() => {
+        fetch(`/api/category/${categoryParam}`)
+            .then((response) => response.json())
+            .then((data) => setProducts(data))
+            .catch((error) => console.log("Erro: ", error))
+    }, [categoryParam]);
+    */
+
+    React.useEffect(() => {
+        if (categoryParam) {
+            const filtered = productsMock.filter((p) =>
+                p.category.some((catg) => catg.toLowerCase() === categoryParam.toLowerCase())
+            );
+            setProducts(filtered.length > 0 ? filtered : productsMock);
+        }
+        else setProducts(productsMock);
+
+    }, [categoryParam]);
+
+
     const handleProductClick = (id: number) => {
         navigate(`/product/${id}`);
     };
@@ -27,7 +54,7 @@ const ProductsList: React.FC = () => {
 
                                 <div className="relative pt-[100%] bg-gray-200">
                                     <img
-                                        src="https://static.prospin.com.br/media/catalog/product/cache/6e59e4946046b080cb91aa3230980e44/r/b/rb6gb2u06-raquete-de-beach-tennis-adidas-bt-3-0-preta-azul-e-rosa.jpg"
+                                        src={`${imagesPath}${product.id}/${product.id} (1).webp`}
                                         alt="Raquete Pro Carbon"
                                         className="absolute top-0 left-0 w-full h-full object-contain object-center"
                                     />

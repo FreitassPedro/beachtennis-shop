@@ -6,7 +6,7 @@ export interface Product {
     description: string[];
     price: number;
     image: string;
-    category: string;
+    category: string[];
 }
 
 export const products: Product[] = [
@@ -23,7 +23,7 @@ export const products: Product[] = [
         ],
         price: 640.00,
         image: "adidas_bt_3_0_rosa_amarelo.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 2,
@@ -38,7 +38,7 @@ export const products: Product[] = [
         ],
         price: 640.00,
         image: "adidas_bt_3_0_azul_rosa.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 3,
@@ -53,7 +53,7 @@ export const products: Product[] = [
         ],
         price: 630.00,
         image: "adidas_rx_3_1_h14.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 4,
@@ -68,7 +68,7 @@ export const products: Product[] = [
         ],
         price: 700.00,
         image: "adidas_rx_h14_carbono_3k.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 5,
@@ -83,7 +83,7 @@ export const products: Product[] = [
         ],
         price: 640.00,
         image: "adidas_bt_3_0_azul_verde.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 6,
@@ -98,7 +98,7 @@ export const products: Product[] = [
         ],
         price: 550.00,
         image: "speed_pro_3k_carbono.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 7,
@@ -113,7 +113,7 @@ export const products: Product[] = [
         ],
         price: 670.00,
         image: "wilson_tryumph.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 8,
@@ -128,7 +128,7 @@ export const products: Product[] = [
         ],
         price: 350.00,
         image: "canewin_2022_azul.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 9,
@@ -143,7 +143,7 @@ export const products: Product[] = [
         ],
         price: 340.00,
         image: "canewin_carbono_cores.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 10,
@@ -158,7 +158,7 @@ export const products: Product[] = [
         ],
         price: 360.00,
         image: "seafront_venice_pro_3k.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 11,
@@ -173,7 +173,7 @@ export const products: Product[] = [
         ],
         price: 160.00,
         image: "sulina.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 12,
@@ -188,7 +188,7 @@ export const products: Product[] = [
         ],
         price: 560.00,
         image: "prolife_3k_original.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 13,
@@ -203,7 +203,7 @@ export const products: Product[] = [
         ],
         price: 580.00,
         image: "prolife_carbono.jpg",
-        category: "Raquetes",
+        category: ["Raquetes"]
     },
     {
         id: 14,
@@ -218,7 +218,7 @@ export const products: Product[] = [
         ],
         price: 42.00,
         image: "odissei_beach_tennis_balls.jpg",
-        category: "Bolas e Acessórios",
+        category: ["Bolas", "Acessorios"]
     },
     {
         id: 15,
@@ -233,7 +233,7 @@ export const products: Product[] = [
         ],
         price: 70.00,
         image: "head_beach_tennis_balls.jpg",
-        category: "Bolas e Acessórios",
+        category: ["Bolas", "Acessorios"]
     },
     {
         id: 16,
@@ -248,7 +248,7 @@ export const products: Product[] = [
         ],
         price: 99.00,
         image: "adidas_beach_tennis_balls.jpg",
-        category: "Bolas e Acessórios",
+        category: ["Bolas", "Acessorios"]
     },
     {
         id: 17,
@@ -263,7 +263,7 @@ export const products: Product[] = [
         ],
         price: 68.00,
         image: "wilson_beach_tennis_balls.jpg",
-        category: "Bolas e Acessórios",
+        category: ["Bolas", "Acessorios"]
     },
     {
         id: 18,
@@ -278,6 +278,6 @@ export const products: Product[] = [
         ],
         price: 15.00,
         image: "zarsia_grip.jpg",
-        category: "Acessórios",
+        category: ["Acessórios"],
     },
 ];
