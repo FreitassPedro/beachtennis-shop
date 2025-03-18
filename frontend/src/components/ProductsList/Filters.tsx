@@ -5,7 +5,7 @@ const Filters = () => {
     const [isOpenProductFilter, setIsOpenProductFilter] = useState(false);
 
     return (
-        <div className="w-1/4 mr-6">
+        <div className=" mr-6">
             <h2 className="text-2xl font-bold text-white mb-4">Filtros</h2>
             <div className="">
                 {/* Ordenar por */}
