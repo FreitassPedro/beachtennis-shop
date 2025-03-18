@@ -17,6 +17,7 @@ export const AppRoutes = () => {
                 <Route path="/products" element={<ProductsList />} />
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/category/:category" element={<ProductsList />} />
+                <Route path="/buscar/:query" element={<ProductsList />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* cart2 é temporario */}
                 <Route path="/cart2" element={<Cart2 />} />

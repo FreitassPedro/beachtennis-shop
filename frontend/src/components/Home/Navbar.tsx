@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,10 +7,10 @@ export const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const navigate = useNavigate();
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implementar lógica de busca aqui
-    console.log("Pesquisando:", searchQuery);
+    navigate(`/buscar/${encodeURIComponent(searchQuery)}`);
   };
 
   const toggleMenu = () => {
@@ -25,7 +25,6 @@ export const Navbar = () => {
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Rolando para baixo & além de 100px - esconde o navbar
         setVisible(false);
-        if (isMenuOpen) toggleMenu();
       } else {
         // Rolando para cima ou no topo - mostra o navbar
         setVisible(true);
@@ -58,16 +57,16 @@ export const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex space-x-8 items-center">
-          <Link to="/raquetes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+          <Link to="/category/raquetes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
             Raquetes
           </Link>
-          <Link to="/bolas" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+          <Link to="/category/bolas" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
             Bolas
           </Link>
-          <Link to="/redes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+          <Link to="/category/redes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
             Redes
           </Link>
-          <Link to="/acessorios" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+          <Link to="/category/acessorios" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
             Acessórios
           </Link>
         </div>
@@ -142,7 +141,7 @@ export const Navbar = () => {
             </svg>
           </button>
         </div>
-        
+
       </div>
 
       {/* Mobile Menu & Search */}
@@ -165,13 +164,13 @@ export const Navbar = () => {
             </div>
           </form>
           <div className="flex flex-col space-y-4">
-            <Link to="/raquetes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+            <Link to="/category/raquetes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
               Raquetes
             </Link>
-            <Link to="/bolas" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+            <Link to="/category/bolas" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
               Bolas
             </Link>
-            <Link to="/redes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
+            <Link to="/category/redes" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
               Redes
             </Link>
             <Link to="/acessorios" className="text-white hover:text-green-400 transition-colors duration-300 text-lg font-medium">
