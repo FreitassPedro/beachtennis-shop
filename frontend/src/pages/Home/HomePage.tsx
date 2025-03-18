@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen ">
             {/* Navbar */}
             <Navbar />
             {/* Hero Section */}

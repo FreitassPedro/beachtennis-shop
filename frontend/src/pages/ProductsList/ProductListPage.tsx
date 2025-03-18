@@ -39,12 +39,12 @@ const ProductsList: React.FC = () => {
     return (
         <div className="min-h-screen bg-zinc-950">
             <Navbar />
-            <div className="container mx-auto  flex py-6 ">
+            <div className="container mx-auto grid lg:grid-cols-3 py-6 ">
                 <Filters />
 
-                <div className="w-3/4">
+                <div className="lg:col-span-2">
                     <h2 className="text-2xl font-bold text-white mb-4">Produtos</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         {products.map((product) => (
                             <div
                                 key={product.id}
