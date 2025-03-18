@@ -1,6 +1,6 @@
 import { Footer } from "../../components/Home/Footer";
 import Navbar from "../../components/Home/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SimilarProducts from "../../components/Product/SimilarProducts";
 import { Product, products } from "../../types/Products";
 import { Link, useParams } from "react-router-dom";
@@ -14,7 +14,6 @@ const ProductPage: React.FC = () => {
 
     const { id } = useParams<{ id: string }>();
     const productId = id ? parseInt(id, 10) : undefined;
-
 
 
     const product: Product | undefined = products.find((p) => p.id === productId);

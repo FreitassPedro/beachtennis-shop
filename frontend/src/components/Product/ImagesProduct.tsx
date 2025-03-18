@@ -5,7 +5,7 @@ interface ImagesProductProps {
     product: Product;
 }
 
-const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
+const ImagesProduct: React.FC<ImagesProductProps> = ({ product }) => {
     const productImages = [
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
         "https://fastly.picsum.photos/id/575/400/400.jpg?hmac=dS8X4b6zSoqMLuN37UirCnpHt3TGQ7IPMILoxuDTd1A",
@@ -16,6 +16,9 @@ const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
     const [selectedImage, setSelectedImage] = React.useState(0);
 
 
+    const [images, setImages] = React.useState<string[]>([]);
+    const imagesPath = 'http://localhost:8080/';
+
     return (
         <div className="w-full ">
             {/* Small screens: One large image + thumbnails */}
@@ -23,7 +26,7 @@ const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
                 {/* Main image */}
                 <div className="bg-gray-200 overflow-hidden mb-4 w-full aspect-square">
                     <img
-                        src={productImages[selectedImage]}
+                        src={`${imagesPath}${product.id}/${product.id} (1).webp`}
                         alt="Raquete Pro Carbon"
                         className="w-full h-full object-cover"
                     />
@@ -39,7 +42,7 @@ const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
                             onClick={() => setSelectedImage(index)}
                         >
                             <img
-                                src={image}
+                                src={`${imagesPath}${product.id}/${product.id} (1).webp`}
                                 alt=""
                                 className="w-full h-full object-cover"
                             />
@@ -56,7 +59,7 @@ const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
                         className={`bg-gray-200  overflow-hidden cursor-pointer transition-all ${index < 2 ? 'aspect-square' : 'aspect-square'}`}
                     >
                         <img
-                            src={image}
+                            src={`${imagesPath}${product.id}/${product.id} (${index}).webp`}
                             alt=""
                             className="w-full h-full object-cover"
                         />
@@ -66,7 +69,7 @@ const ImagesProduct: React.FC<ImagesProductProps> = ({product}) => {
                 {productImages.length < 4 && (
                     <div className="bg-gray-200  overflow-hidden aspect-square">
                         <img
-                            src={productImages[0]}
+                            src={`${imagesPath}${product.id}/${product.id} (1).webp`}
                             alt="Product additional view"
                             className="w-full h-full object-cover"
                         />
