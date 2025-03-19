@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Address } from "../../types/AddressMethod";
 
 import { PaymentMethodDetails } from "../../types/PaymentMethod";
@@ -7,18 +7,28 @@ interface StepConfirmationProps {
     addressData: Address;
     paymentData: PaymentMethodDetails;
     onCanProgress: (can: boolean) => void;
+    onFormValid: (formValid: boolean) => void;
 }
 
-const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addressData, onCanProgress }) => {
+const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addressData, onFormValid, onCanProgress }) => {
 
     const [paymentMethod, setPaymentMethod] = useState(paymentData.method);
     const [formValid, setFormValid] = useState(false);
 
-    console.log(paymentData);
+    useEffect(() => {
+        onFormValid(formValid);
+    }, [formValid, onFormValid]);
 
-    const handleClick = (button: boolean) => {
-        onCanProgress(button);
+
+    const handleClick = (valid: boolean) => {
+        onFormValid(valid);
     };
+
+    const handleClickProgress = (can: boolean) => {
+        onCanProgress(can);
+    }
+
+    
 
     return (
         <>
@@ -114,17 +124,11 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
             <div className="flex justify-between">
                 <button
                     className="bg-zinc-800 hover:bg-zinc-700 text-white py-3 px-6 font-semibold transition-colors cursor-pointer"
-                    onClick={() => handleClick(false)}
+                    onClick={() => handleClickProgress(false)}
                 >
                     Voltar
                 </button>
-                <button
-                    className={`${formValid ? 'bg-green-600 hover:bg-green-700 cursor-pointer' : 'bg-zinc-600 cursor-not-allowed'} text-white py-3 px-6 font-semibold transition-colors `}
-                    disabled={!formValid}
-                    onClick={() => handleClick(true)}
-                >
-                    Confirmar Pedido
-                </button>
+               
             </div>
         </>
     );

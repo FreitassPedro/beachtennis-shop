@@ -42,10 +42,10 @@ const ProductsList: React.FC = () => {
                     <span className="text-green-200"> {searchTerm}</span>
                 </span>
             </div>
-            <div className="container mx-auto grid lg:grid-cols-3 py-6 ">
+            <div className="container mx-auto grid lg:grid-cols-4 py-6 ">
                 <Filters />
 
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-3">
                     <h2 className="text-2xl font-bold text-white mb-4">Produtos</h2>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         {products.map((product) => (

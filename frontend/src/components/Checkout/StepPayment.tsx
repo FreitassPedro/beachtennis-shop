@@ -165,7 +165,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onMethod, onCanProgress }) =>
                     className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors cursor-pointer"
                     onClick={() => handleClickProgress(true)}
                 >
-                    Revisar e confirmar
+                    Avançar
                 </button>
             </div>
         </>
