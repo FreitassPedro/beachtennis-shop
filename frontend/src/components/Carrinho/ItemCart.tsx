@@ -1,20 +1,16 @@
 import React from "react";
+import { ItemCart as ItemCartType } from "../../types/Products";
 
 interface ItemCartProps {
-    quantidade: number | 1;
-    nome: string;
-    imagem: string;
-    code: string;
-    originalPrice: number;
-    price: number;
+    item: ItemCartType;
 }
 
-const ItemCart: React.FC<ItemCartProps> = ({ quantidade, nome, imagem, code, originalPrice, price }) => {
+const ItemCart: React.FC<ItemCartProps> = ({ item }) => {
     return (
         <div className="flex w-full justify-between flex-colsm:flex-row items-start sm:items-center gap-4 border-b border-b-zinc-800 pb-4">
             {/* Product imagem */}
             <div className="h-24 w-24 overflow-hidden">
-                <img src={imagem}
+                <img src={item.image}
                     alt=""
                     className="w-full h-full object-cover"
                 />
@@ -22,14 +18,14 @@ const ItemCart: React.FC<ItemCartProps> = ({ quantidade, nome, imagem, code, ori
 
             {/* Product Info */}
             <div className="flex-grow">
-                <h3 className="text-white font-semibold">{nome}</h3>
-                <p className="text-gray-400 text-sm">Código: {code}</p>
+                <h3 className="text-white font-semibold">{item.name}</h3>
+                <p className="text-gray-400 text-sm">Código: {item.code}</p>
                 <div className="flex items-center mt-1">
                     <span className="text-gray-400 line-through text-sm mr-2">
-                        R$ {originalPrice.toFixed(2)}
+                        R$ {item.originalPrice.toFixed(2)}
                     </span>
                     <span className="text-green-400 font-bold">
-                        R$ {price.toFixed(2)}
+                        R$ {item.price.toFixed(2)}
                     </span>
                 </div>
             </div>
@@ -43,7 +39,7 @@ const ItemCart: React.FC<ItemCartProps> = ({ quantidade, nome, imagem, code, ori
                     <input type="number"
                         className="bg-zinc-700 h-8 w-8 text-white text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         min={1}
-                        value={quantidade}
+                        value={item.quantity}
                     />
                     <button className="bg-zinc-800 text-white w-8 h-8 hover:bg-zinc-700">
                         +

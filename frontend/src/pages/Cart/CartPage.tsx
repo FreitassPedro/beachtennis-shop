@@ -4,41 +4,16 @@ import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
 import CouponCart from "../../components/Carrinho/CouponCart";
 import ShippingCart from "../../components/Carrinho/ShippingCart";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../contexts/CartContext/CartContext";
+
 
 
 const Cart: React.FC = () => {
-    // Mock, remover no futuro
-    const cartItems = [
-        {
-            id: 1,
-            name: "Raquete Pro Carbon",
-            price: 599.90,
-            originalPrice: 799.90,
-            image: "https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw=",
-            code: "PRO-C-2025"
-        },
-        {
-            id: 1,
-            name: "Raquete Pro Carbon",
-            price: 599.90,
-            originalPrice: 799.90,
-            image: "https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw=",
-            code: "PRO-C-2025"
-        }
-        ,
-        {
-            id: 1,
-            name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, laboriosam",
-            price: 599.90,
-            originalPrice: 799.90,
-            image: "https://media.istockphoto.com/id/106583221/pt/foto/raquete-de-pingue-pongue-na-praia-de-areia.jpg?s=612x612&w=0&k=20&c=HAzlQ4k5Pc9E0W_1axuRA_he2wJoc9kA9WUDsVxoaiw=",
-            code: "PRO-C-2025"
-        }
-    ];
-
+    const { items } = useContext(CartContext);
+   
     const [shipping, setShipping] = useState(0.00);
-    const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
+    const subtotal = items.reduce((total, item) => total + item.price, 0);
     const discount = 10.00;
     const total = subtotal + shipping - discount;
 
@@ -55,7 +30,7 @@ const Cart: React.FC = () => {
                         <span className="text-green-400"> Carrinho</span>
                     </div>
 
-                    {cartItems.length === 0 ? (
+                    {items.length === 0 ? (
                         <EmptyCart />
                     ) : (
                         <>
@@ -67,15 +42,9 @@ const Cart: React.FC = () => {
                                         <div>
                                             <h2 className="font-bold text-xl mb-5">Produtos no Carrinho</h2>
                                             <div className="space-y-4 gap-5">
-                                                {cartItems.map((item) => (
+                                                {items.map((item) => (
                                                     <ItemCart
-                                                        key={item.id}
-                                                        quantidade={1}
-                                                        nome={item.name}
-                                                        imagem={item.image}
-                                                        code={item.code}
-                                                        originalPrice={item.originalPrice}
-                                                        price={item.price}
+                                                        item={item}
                                                     />
                                                 ))}
                                             </div>
