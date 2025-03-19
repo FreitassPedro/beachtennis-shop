@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 type ShippingMethod = {
     id: number;
     name: string;
@@ -6,7 +7,11 @@ type ShippingMethod = {
     deliveryDate: string;
 }
 
-const ShippingCart: React.FC = () => {
+interface ShippingCartProps {
+    onShipping: (price: number) => void;
+}
+
+const ShippingCart: React.FC<ShippingCartProps> = ({ onShipping }) => {
     const [selectedShipping, setSelectedShipping] = useState<ShippingMethod>();
 
     const shippingAddress = [
@@ -33,6 +38,10 @@ const ShippingCart: React.FC = () => {
         { id: 2, name: 'Express Shipping', price: 9.99, deliveryDate: 'Domingo, 15 de Março' },
         { id: 3, name: 'Correios Brasil', price: 19.99, deliveryDate: 'Terça, 24 Março' },
     ];
+
+    useEffect(() => {
+        if (selectedShipping) onShipping(selectedShipping?.price || 0);
+    }, [selectedShipping, onShipping]);
 
     return (
         <>
@@ -87,7 +96,7 @@ const ShippingCart: React.FC = () => {
 
                     )
                 }
-            </div >        
+            </div >
         </>
     )
 }

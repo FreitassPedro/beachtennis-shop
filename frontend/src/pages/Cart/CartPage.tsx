@@ -4,6 +4,7 @@ import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
 import CouponCart from "../../components/Carrinho/CouponCart";
 import ShippingCart from "../../components/Carrinho/ShippingCart";
+import { useState } from "react";
 
 
 const Cart: React.FC = () => {
@@ -36,10 +37,14 @@ const Cart: React.FC = () => {
         }
     ];
 
-    const shipping = 20.00;
+    const [shipping, setShipping] = useState(0.00);
     const subtotal = cartItems.reduce((total, item) => total + item.price, 0);
     const discount = 10.00;
     const total = subtotal + shipping - discount;
+
+    const handleShipping = (value: number) => {
+        setShipping(value);
+    }
 
     return (
         <>
@@ -79,7 +84,9 @@ const Cart: React.FC = () => {
                                         <CouponCart />
 
                                     </div>
-                                    <ShippingCart />
+                                    <ShippingCart
+                                        onShipping={handleShipping}
+                                    />
                                 </div>
 
                                 <div className="lg:w-1/3 w-full">

@@ -4,10 +4,10 @@ const PurchaseSection: React.FC = () => {
         <>
             {/* CTA Buttons */}
             <div className="flex flex-col gap-3">
-                <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6  font-semibold transition-colors">
+                <button className="bg-green-600 hover:bg-green-700 text-white py-3 cursor-pointer px-6  font-semibold transition-colors">
                     Comprar agora
                 </button>
-                <button className="bg-zinc-800 hover:bg-zinc-700 text-white py-3 px-6  font-semibold flex items-center justify-center gap-2 transition-colors">
+                <button className="bg-zinc-800 hover:bg-zinc-700  text-white  py-3 px-6 cursor-pointer font-semibold flex items-center justify-center gap-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>

@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface SummaryProps {
@@ -5,12 +6,15 @@ interface SummaryProps {
     subtotal: number;
     total: number;
     discount: number;
+    onCurrentStep: number;
+    formValid: boolean;
 }
 
-const SummaryCheckout: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
+const SummaryCheckout: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount, onCurrentStep, formValid }) => {
+
     return (
-        <div className=" bg-zinc-800 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
-            <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
+        <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
+            <h2 className="text-xl text-white font-bold mb-4">Resumo do Pedido</h2>
 
             <div className="space-y-3 mb-4">
                 <div className="flex justify-between text-gray-300 border-b border-zinc-500">
@@ -32,11 +36,17 @@ const SummaryCheckout: React.FC<SummaryProps> = ({ shipping, subtotal, total, di
                 <p className="text-gray-400 text-sm">ou 10x de R$ {(total / 10).toFixed(2)} sem juros</p>
             </div>
 
+            { onCurrentStep === 3 && (
             <div className="flex flex-col gap-3">
-                <Link to="/checkout" className="bg-green-600 hover:bg-green-700 text-center text-white py-3 px-6 font-semibold transition-colors duration-200 cursor-pointer">
-                    Ir para o pagamento
-                </Link>
+                 <button
+                    className={`${formValid ? 'bg-green-600 hover:bg-green-700 cursor-pointer' : 'bg-zinc-600 cursor-not-allowed'} text-white py-3 px-6 font-semibold transition-colors `}
+                    disabled={!formValid}
+                    onClick={() => console.log('Pedido confirmado')}
+                >
+                    Confirmar Pedido
+                </button>
             </div>
+            )}
             <div className="mt-6 space-y-3">
                 <div className="flex items-center text-gray-400">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

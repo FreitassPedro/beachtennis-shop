@@ -9,7 +9,7 @@ interface SummaryProps {
 
 const SummaryCart: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
     return (
-        <div className=" bg-zinc-800 sticky top-4 p-5 rounded-lg lg:rounded-none">
+        <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg ">
             <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
 
             <div className="space-y-3 mb-4">
@@ -34,7 +34,7 @@ const SummaryCart: React.FC<SummaryProps> = ({ shipping, subtotal, total, discou
 
             <div className="flex flex-col gap-3">
                 <Link to="/checkout" className="bg-green-600 hover:bg-green-700 text-center text-white py-3 px-6 font-semibold transition-colors duration-200 cursor-pointer">
-                    Ir para o pagamento
+                    Continuar
                 </Link>
             </div>
             <div className="mt-6 space-y-3">

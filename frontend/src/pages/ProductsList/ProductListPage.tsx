@@ -3,33 +3,30 @@ import Navbar from "../../components/Home/Navbar";
 import Filters from "../../components/ProductsList/Filters";
 import { Product, products as productsMock } from "../../types/Products";
 import { useNavigate, useParams } from "react-router-dom";
+
 const ProductsList: React.FC = () => {
-    const { category: categoryParam } = useParams<{ category: string }>();
-    const [products, setProducts] = useState<Product[]>([]);
+    const { query, category } = useParams<{ query?: string, category?: string }>();
+
     const navigate = useNavigate();
 
+    const [searchTerm, setSearchTerm] = useState<string>(query || category || "");
+    const [products, setProducts] = useState<Product[]>([]);
     const imagesPath = 'http://localhost:8080/';
 
 
-    /*
     React.useEffect(() => {
-        fetch(`/api/category/${categoryParam}`)
-            .then((response) => response.json())
-            .then((data) => setProducts(data))
-            .catch((error) => console.log("Erro: ", error))
-    }, [categoryParam]);
-    */
-
-    React.useEffect(() => {
-        if (categoryParam) {
+        if (searchTerm) {
+            // Busca por pesquisa
             const filtered = productsMock.filter((p) =>
-                p.category.some((catg) => catg.toLowerCase() === categoryParam.toLowerCase())
+                p.category.some((catg) => catg.toLowerCase() === searchTerm.toLowerCase())
             );
             setProducts(filtered.length > 0 ? filtered : productsMock);
         }
-        else setProducts(productsMock);
-
-    }, [categoryParam]);
+        else {
+            setProducts(productsMock);
+        }
+        console.log("Query: ", searchTerm);
+    }, [query, category]);
 
 
     const handleProductClick = (id: number) => {
@@ -37,12 +34,18 @@ const ProductsList: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-zinc-950">
+        <div className="min-h-screen bg-zinc-950 ">
             <Navbar />
-            <div className="container mx-auto grid lg:grid-cols-3 py-6 ">
+
+            <div className="p-2 bg-zinc-900 border-b border-zinc-800">
+                <span className="text-white">Resultados da pesquisa:
+                    <span className="text-green-200"> {searchTerm}</span>
+                </span>
+            </div>
+            <div className="container mx-auto grid lg:grid-cols-4 py-6 ">
                 <Filters />
 
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-3">
                     <h2 className="text-2xl font-bold text-white mb-4">Produtos</h2>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         {products.map((product) => (

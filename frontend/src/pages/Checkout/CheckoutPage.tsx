@@ -47,6 +47,11 @@ const CheckoutPage: React.FC = () => {
         setPaymentMethodData(mockPaymentMethods[method]);
     };
 
+    const handleFormValidation = (valid: boolean) => {
+        setFormValid(valid);
+        console.log("Formulário válido: ", valid);
+    }
+
     // Mock data para o resumo do pedido
     const orderSummary = {
         items: [
@@ -117,6 +122,7 @@ const CheckoutPage: React.FC = () => {
                                     <StepConfirmation
                                         addressData={address}
                                         paymentData={paymentMethodData}
+                                        onFormValid={handleFormValidation}
                                         onCanProgress={handleCanProgress}
                                     />
                                 )}
@@ -128,6 +134,8 @@ const CheckoutPage: React.FC = () => {
                             subtotal={orderSummary.subtotal}
                             total={orderSummary.total}
                             discount={orderSummary.discount}
+                            onCurrentStep={currentStep}
+                            formValid={formValid}
                         />                        
                     </div>
                 </div>
