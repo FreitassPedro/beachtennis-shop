@@ -1,6 +1,7 @@
 
 export type Address = {
-    name: string;
+    addressName: string;
+    recipient: string;
     number: string;
     street: string;
     neighborhood: string;

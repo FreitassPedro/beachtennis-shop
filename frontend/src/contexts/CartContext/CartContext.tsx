@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import { ItemCart } from '../../types/Products';
 
 interface CartContextType {
+    subtotal: number;
     items: ItemCart[];
     addToCart: (item: ItemCart) => void;
     removeFromCart: (productId: number) => void;
@@ -11,6 +12,7 @@ interface CartContextType {
 }
 
 export const CartContext = createContext<CartContextType>({
+    subtotal: 0,
     items: [],
     addToCart: () => {},
     removeFromCart: () => {},

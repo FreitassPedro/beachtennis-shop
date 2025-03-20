@@ -112,7 +112,7 @@ export const Navbar = () => {
               <Link to="/lista-de-desejo" className="block px-4 py-2 text-white hover:bg-gray-800">
                 Lista de Desejo
               </Link>
-              <Link to="/fale-conosco" className="block px-4 py-2 text-white hover:bg-gray-800">
+              <Link to="/help" className="block px-4 py-2 text-white hover:bg-gray-800">
                 Fale conosco
               </Link>
             </div>
