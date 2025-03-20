@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ItemCart as ItemCartType } from "../../types/Products";
+import { CartContext } from "../../contexts/CartContext/CartContext";
 
 interface ItemCartProps {
     item: ItemCartType;
 }
 
 const ItemCart: React.FC<ItemCartProps> = ({ item }) => {
+    const [quantity, setQuantity] = useState(item.quantity);
+
+    const { incrementItem, decrementItem, removeFromCart } = useContext(CartContext);
+
+
+    const handleIncrement = () => {
+        setQuantity(quantity + 1);
+        incrementItem(item);
+    }
+
+    const handleDecrement = () => {
+        if (quantity <= 1) removeFromCart(item.id);
+        else {
+            setQuantity(quantity - 1);
+            decrementItem(item);
+        }
+    }
+
+    const handleRemove = () => {
+        removeFromCart(item.id);
+    }
+
     return (
         <div className="flex w-full justify-between flex-colsm:flex-row items-start sm:items-center gap-4 border-b border-b-zinc-800 pb-4">
             {/* Product imagem */}
@@ -30,23 +53,29 @@ const ItemCart: React.FC<ItemCartProps> = ({ item }) => {
                 </div>
             </div>
 
-            {/* Quantidade lixeira */}
             <div className="flex flex-row flex-nowrap items-center gap-2 sm:mt-0 " >
                 <div className="flex items-center">
-                    <button className="bg-zinc-800 text-white w-8 h-8 hover:bg-zinc-700">
+                    <button
+                        className="bg-zinc-800 text-white w-8 h-8 hover:bg-zinc-700"
+                        onClick={handleDecrement}
+                    >
                         -
                     </button>
                     <input type="number"
                         className="bg-zinc-700 h-8 w-8 text-white text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         min={1}
-                        value={item.quantity}
+                        value={quantity}
                     />
-                    <button className="bg-zinc-800 text-white w-8 h-8 hover:bg-zinc-700">
+                    <button
+                        className="bg-zinc-800 text-white w-8 h-8 hover:bg-zinc-700"
+                        onClick={handleIncrement}>
                         +
                     </button>
                 </div>
 
-                <button className="text-gray-400 hover:text-red-400">
+                <button
+                    className="text-gray-400 hover:text-red-400"
+                    onClick={handleRemove}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>

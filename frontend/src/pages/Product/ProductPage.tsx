@@ -16,7 +16,7 @@ const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const productId = id ? parseInt(id, 10) : undefined;
 
-    const { addToCart, removeFromCart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
     const product: Product | undefined = products.find((p) => p.id === productId);
 

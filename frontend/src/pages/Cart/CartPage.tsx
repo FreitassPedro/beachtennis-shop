@@ -11,15 +11,15 @@ import { CartContext } from "../../contexts/CartContext/CartContext";
 
 const Cart: React.FC = () => {
     const { items } = useContext(CartContext);
-   
+
     const [shipping, setShipping] = useState(0.00);
-    const subtotal = items.reduce((total, item) => total + item.price, 0);
+
     const discount = 10.00;
-    const total = subtotal + shipping - discount;
 
     const handleShipping = (value: number) => {
         setShipping(value);
     }
+
 
     return (
         <>
@@ -60,10 +60,7 @@ const Cart: React.FC = () => {
 
                                 <div className="lg:w-1/3 w-full">
                                     <SummaryCart
-                                        subtotal={subtotal}
                                         shipping={shipping}
-                                        discount={discount}
-                                        total={total}
                                     />
                                 </div>
                             </div>

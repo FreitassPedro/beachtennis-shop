@@ -45,22 +45,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         return items.find((i) => i.id === productId);
     };
 
-    const addToCart = (item: ItemCart) => {
-        const existingItem = findItem(item.id);
-        if (!existingItem) setItems([...items, item]);
 
-        const updatedItems = items.map((i) => {
-            if (i.id === item.id) {
-                return {
-                    ...i,
-                    quantity: i.quantity + item.quantity,
-                };
-            }
-            return i;
-        });
-        setItems(updatedItems);
 
-    };
+    const addItem = (item: ItemCart) => {
+        setItems([...items, item]);
+    }
 
     const removeFromCart = (productId: number) => {
         const removedItem = items.find((i) => i.id === productId);
@@ -70,12 +59,36 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
+    const incrementItem = (item: ItemCart) => {
+        updateItem({ ...item, quantity: 1 });
+    }
 
+    const decrementItem = (item: ItemCart) => {
+        updateItem({ ...item, quantity: -1 });
+    }
+
+    const updateItem = (item: ItemCart) => {
+        const existingItem = findItem(item.id);
+        if (existingItem) {
+            const newQuantity = existingItem.quantity + item.quantity;
+            if (newQuantity > 0) {
+                setItems(items.map((i) => i.id === item.id ? { ...i, quantity: newQuantity } : i));
+            }
+            else {
+                removeFromCart(item.id);
+            }
+        }
+        else {
+            addItem(item);
+        }
+    };
 
     const cartValue = {
         items,
-        addToCart,
+        addToCart: updateItem,
         removeFromCart,
+        incrementItem,
+        decrementItem,
         itemCounter,
     };
 
