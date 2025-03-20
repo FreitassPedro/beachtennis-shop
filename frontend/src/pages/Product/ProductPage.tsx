@@ -1,6 +1,6 @@
 import { Footer } from "../../components/Home/Footer";
 import Navbar from "../../components/Home/Navbar";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import SimilarProducts from "../../components/Product/SimilarProducts";
 import { Product, products } from "../../types/Products";
 import { Link, useParams } from "react-router-dom";
@@ -8,16 +8,32 @@ import DescriptionProduct from "../../components/Product/DescriptionProduct";
 import SummaryProduct from "../../components/Product/SummaryProduct";
 import PurchaseSection from "../../components/Product/PurchaseSection";
 import ImagesProduct from "../../components/Product/ImagesProduct";
-
+import { CartContext } from "../../contexts/CartContext/CartContext";
+import { ItemCart } from "../../types/Products";
 
 const ProductPage: React.FC = () => {
 
     const { id } = useParams<{ id: string }>();
     const productId = id ? parseInt(id, 10) : undefined;
 
+    const { addToCart } = useContext(CartContext);
 
     const product: Product | undefined = products.find((p) => p.id === productId);
-    // State to track the selected main image
+
+    const handleAddToCart = () => {
+        if (!product) return;
+        const item: ItemCart = {
+            id: product?.id,
+            name: product?.name,
+            price: product?.price,
+            image: product?.image[0],
+            quantity: 1,
+            code: "",
+            originalPrice: 0
+        }
+
+        addToCart(item);
+    }
 
 
     if (!product) {
@@ -55,7 +71,9 @@ const ProductPage: React.FC = () => {
                                 product={product}
                             />
 
-                            <PurchaseSection />
+                            <PurchaseSection
+                                onAddToCart={handleAddToCart}
+                            />
                         </div>
                     </div>
 
