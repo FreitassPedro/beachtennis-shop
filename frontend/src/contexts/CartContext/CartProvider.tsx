@@ -35,17 +35,22 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     ]);
 
     const [itemCounter, setItemCounter] = useState<number>(0);
+    const [subtotal, setSubtotal] = useState<number>(0);
 
     useEffect(() => {
         const updated = items.reduce((total, item) => total + item.quantity, 0);
         setItemCounter(updated);
     }, [items]);
 
+    useEffect(() => {
+        const calc = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        setSubtotal(calc);
+    }, [items]);
+
+
     const findItem = (productId: number) => {
         return items.find((i) => i.id === productId);
     };
-
-
 
     const addItem = (item: ItemCart) => {
         setItems([...items, item]);
@@ -84,6 +89,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const cartValue = {
+        subtotal,
         items,
         addToCart: updateItem,
         removeFromCart,

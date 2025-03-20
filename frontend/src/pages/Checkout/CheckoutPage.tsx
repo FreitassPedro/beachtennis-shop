@@ -69,7 +69,8 @@ const CheckoutPage: React.FC = () => {
         total: 619.90
     };
     const address: Address = {
-        name: "João Silva",
+        addressName: "Casa",
+        recipient: "João Silva",
         number: "123",
         street: "Rua das Flores",
         neighborhood: "Jardim Primavera",
@@ -105,6 +106,7 @@ const CheckoutPage: React.FC = () => {
                                 {/* Step 1: Endereço de Entrega */}
                                 {currentStep === 1 && (
                                     <StepAddress
+                                        addressMock={address}
                                         onCanProgress={handleCanProgress}
                                     />
                                 )}
@@ -130,13 +132,10 @@ const CheckoutPage: React.FC = () => {
                         </div>
 
                         <SummaryCheckout
-                            shipping={orderSummary.shipping}
-                            subtotal={orderSummary.subtotal}
-                            total={orderSummary.total}
                             discount={orderSummary.discount}
                             onCurrentStep={currentStep}
                             formValid={formValid}
-                        />                        
+                        />
                     </div>
                 </div>
             </div>

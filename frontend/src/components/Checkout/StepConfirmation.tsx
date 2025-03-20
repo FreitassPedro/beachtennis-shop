@@ -47,7 +47,7 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                         </button>
                     </div>
                     <div className="text-gray-300">
-                        <p>{addressData.name}</p>
+                        <p>{addressData.recipient}</p>
                         <p>{addressData.street}, {addressData.number} - {addressData.complement}</p>
                         <p>{addressData.neighborhood} - {addressData.city}/{addressData.state}</p>
                         <p>CEP: {addressData.zip}</p>

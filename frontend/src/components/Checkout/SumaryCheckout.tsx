@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+
+import { CheckoutContext } from "../../contexts/CheckoutContext/CheckoutContext";
 
 interface SummaryProps {
-    shipping: number;
-    subtotal: number;
-    total: number;
     discount: number;
     onCurrentStep: number;
     formValid: boolean;
 }
 
-const SummaryCheckout: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount, onCurrentStep, formValid }) => {
+const SummaryCheckout: React.FC<SummaryProps> = ({ discount, onCurrentStep, formValid }) => {
 
+    const { shipping, total, subtotal } = useContext(CheckoutContext);
+    
     return (
         <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
             <h2 className="text-xl text-white font-bold mb-4">Resumo do Pedido</h2>

@@ -1,13 +1,28 @@
 import { Link } from "react-router-dom";
+import { CartContext } from "../../contexts/CartContext/CartContext";
+import { useContext, useEffect, useState } from "react";
 
 interface SummaryProps {
     shipping: number;
-    subtotal: number;
-    total: number;
-    discount: number;
+
 }
 
-const SummaryCart: React.FC<SummaryProps> = ({ shipping, subtotal, total, discount }) => {
+const SummaryCart: React.FC<SummaryProps> = ({ shipping }) => {
+    const { items, itemCounter } = useContext(CartContext);
+
+    const [subtotal, setSubtotal] = useState(0.00);
+    const [discount, setDiscount] = useState(0.00);
+    const [total, setTotal] = useState(0.00);
+
+    useEffect(() => {
+        const subtotalValue = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        setSubtotal(subtotalValue);
+        setDiscount(10.00);
+        setTotal(subtotalValue + shipping - discount);
+        console.log(items);
+    }, [discount, shipping, itemCounter]);
+
+    
     return (
         <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg ">
             <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
