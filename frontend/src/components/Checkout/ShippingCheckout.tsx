@@ -12,7 +12,7 @@ type ShippingMethod = {
 const ShippingCheckout: React.FC = () => {
     const [selectedShipping, setSelectedShipping] = useState<ShippingMethod>();
 
-    const { setShipping } = useContext(CheckoutContext);
+    const { handleShipping } = useContext(CheckoutContext);
 
     const shippingAddress = [
         {
@@ -40,8 +40,8 @@ const ShippingCheckout: React.FC = () => {
     ];
 
     useEffect(() => {
-        if (selectedShipping) setShipping(selectedShipping?.price || 0);
-    }, [selectedShipping, setShipping]);
+        if (selectedShipping) handleShipping(selectedShipping?.price || 0);
+    }, [selectedShipping, handleShipping]);
 
     return (
         <>
