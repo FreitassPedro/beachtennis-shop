@@ -132,7 +132,6 @@ const CheckoutPage: React.FC = () => {
                         </div>
 
                         <SummaryCheckout
-                            discount={orderSummary.discount}
                             onCurrentStep={currentStep}
                             formValid={formValid}
                         />

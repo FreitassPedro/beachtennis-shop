@@ -11,6 +11,7 @@ import AccountPage from "../pages/Account/AccountPage"
 import { CartProvider } from "../contexts/CartContext/CartProvider"
 import { CheckoutProvider } from "../contexts/CheckoutContext/CheckoutProvider"
 import HelpPage from "../pages/Help/HelpPage"
+import CheckoutProcessing from "../pages/Checkout/CheckoutProcessing"
 
 
 
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
                         <Route path="/buscar/:query" element={<ProductsList />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/checkout" element={<CheckoutPage />} />
+                        <Route path="/checkout/process" element={<CheckoutProcessing />} />
                         <Route path="/account" element={<AccountPage />} />
                         <Route path="/login" element={<LoginRegisterPage />} />
                         <Route path="/help" element={<HelpPage />} />
