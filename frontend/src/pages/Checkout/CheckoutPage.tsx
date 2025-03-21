@@ -100,7 +100,6 @@ const CheckoutPage: React.FC = () => {
                         currentStep={currentStep}
                     />
                     <div className="flex flex-col lg:flex-row gap-6 mb-8">
-                        {/* Main Content - Changes based on step */}
                         <div className="w-full lg:w-2/3">
                             <div className="bg-zinc-900 p-6 rounded-lg mb-4">
                                 {/* Step 1: Endereço de Entrega */}

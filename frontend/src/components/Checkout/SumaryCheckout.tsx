@@ -19,7 +19,7 @@ const SummaryCheckout: React.FC<SummaryProps> = ({ onCurrentStep, formValid }) =
     }
     
     return (
-        <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
+        <div className="bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg lg:rounded-none h-min w-full lg:w-1/3">
             <h2 className="text-xl text-white font-bold mb-4">Resumo do Pedido</h2>
 
             <div className="space-y-3 mb-4">
