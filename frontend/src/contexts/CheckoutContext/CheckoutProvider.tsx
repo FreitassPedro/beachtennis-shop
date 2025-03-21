@@ -9,6 +9,7 @@ export const CheckoutProvider = ({ children }: { children: React.ReactNode }) =>
 
     const [shipping, setShipping] = useState<number>(0);
     const [total, setTotal] = useState<number>(0);
+    const [discount, setDiscount] = useState<number>(0);
 
     useEffect(() => {
         setTotal(subtotal + shipping);
@@ -20,13 +21,18 @@ export const CheckoutProvider = ({ children }: { children: React.ReactNode }) =>
         setTotal(subtotal + value);
     }
 
+    const handleDiscount = (value: number) => {
+        setDiscount(value);
+        setTotal(subtotal + shipping - value);
+    };
+
     const checkoutValue = {
         shipping,
         total,
-        setShipping,
-        setTotal,
+        discount,
+        subtotal,
+        handleDiscount,
         handleShipping,
-        subtotal
     }
 
     return <CheckoutContext.Provider

@@ -1,16 +1,22 @@
 import React, { useContext } from "react";
 
 import { CheckoutContext } from "../../contexts/CheckoutContext/CheckoutContext";
+import { useNavigate } from "react-router-dom";
 
 interface SummaryProps {
-    discount: number;
     onCurrentStep: number;
     formValid: boolean;
 }
 
-const SummaryCheckout: React.FC<SummaryProps> = ({ discount, onCurrentStep, formValid }) => {
+const SummaryCheckout: React.FC<SummaryProps> = ({ onCurrentStep, formValid }) => {
 
-    const { shipping, total, subtotal } = useContext(CheckoutContext);
+    const { shipping, total, subtotal, discount } = useContext(CheckoutContext);
+    
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        navigate('/checkout/process');
+    }
     
     return (
         <div className=" bg-zinc-900 border-l-1 border-green-400 sticky top-4 p-5 rounded-lg lg:rounded-none w-full lg:w-1/3">
@@ -27,7 +33,7 @@ const SummaryCheckout: React.FC<SummaryProps> = ({ discount, onCurrentStep, form
                 </div>
                 <div className="flex justify-between text-gray-300 border-b border-zinc-500">
                     <span>Desconto</span>
-                    <span className="text-green-300">- R$ {discount}</span>
+                    <span className="text-green-300">- R$ {(discount).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-white text-lg font-bold pt-2">
                     <h1>Total</h1>
@@ -41,7 +47,7 @@ const SummaryCheckout: React.FC<SummaryProps> = ({ discount, onCurrentStep, form
                  <button
                     className={`${formValid ? 'bg-green-600 hover:bg-green-700 cursor-pointer' : 'bg-zinc-600 cursor-not-allowed'} text-white py-3 px-6 font-semibold transition-colors `}
                     disabled={!formValid}
-                    onClick={() => console.log('Pedido confirmado')}
+                    onClick={handleSubmit}
                 >
                     Confirmar Pedido
                 </button>

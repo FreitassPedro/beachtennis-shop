@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CheckoutContext } from "../../contexts/CheckoutContext/CheckoutContext";
 
 interface StepPaymentProps {
     onMethod: (method: string) => void;
@@ -7,11 +8,14 @@ interface StepPaymentProps {
 
 const StepPayment: React.FC<StepPaymentProps> = ({ onMethod, onCanProgress }) => {
     const [paymentMethod, setPaymentMethod] = useState<string>("");
+    
+    const { handleDiscount, total, discount } = useContext(CheckoutContext);
 
     const handleClickMethod = (method: string) => {
         setPaymentMethod(method);
         onMethod(method);
-        console.log(method);
+        if (method === "pix") handleDiscount(total * 0.05);
+        else handleDiscount(0);
     };
 
     const handleClickProgress = (can: boolean) => {
@@ -139,7 +143,7 @@ const StepPayment: React.FC<StepPaymentProps> = ({ onMethod, onCanProgress }) =>
                         <p className="text-gray-300 mb-4">Gere o código PIX após confirmar o pedido. Você terá 30 minutos para efetuar o pagamento.</p>
                         <div className="bg-zinc-700 p-4 rounded-lg mb-4">
                             <p className="text-green-400 font-bold mb-2">Total com desconto de 5%:</p>
-                            <p className="text-white text-2xl font-bold">R$ 588,91</p>
+                            <p className="text-white text-2xl font-bold">R$ {(total).toFixed(2)}</p>
                         </div>
 
                     </div>
