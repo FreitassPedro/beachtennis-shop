@@ -1,9 +1,12 @@
 package com.aschade.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "address")
+@Data
 public class Address {
 
     @Id
@@ -14,11 +17,17 @@ public class Address {
     private String recipient;
     private String number;
     private String street;
-    private String  neighborhood;
+    private String neighborhood;
     private String complement;
-    private String  city;
-    private String  state;
-    private String  zip;
-    private String  referencePoint;
+    private String city;
+    private String state;
+    private String zip;
+    private String referencePoint;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
 
 }
