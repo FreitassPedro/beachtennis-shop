@@ -7,9 +7,12 @@ type ShippingMethod = {
     price: number;
     deliveryDate: string;
 }
+interface ShippingCheckoutProps {
+    cep: string;
+}
 
 
-const ShippingCheckout: React.FC = () => {
+const ShippingCheckout: React.FC<ShippingCheckoutProps> = ({ cep }) => {
     const [selectedShipping, setSelectedShipping] = useState<ShippingMethod>();
 
     const { handleShipping } = useContext(CheckoutContext);
