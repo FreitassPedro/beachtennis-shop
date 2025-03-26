@@ -223,7 +223,6 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
 
             {isAddressValid() && (
                 <>
-                    
                     <ShippingCheckout cep={formAddress.zip} />
                 </>
             )}

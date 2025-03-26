@@ -17,6 +17,8 @@ const ShippingCheckout: React.FC<ShippingCheckoutProps> = ({ cep }) => {
 
     const { handleShipping } = useContext(CheckoutContext);
 
+    
+
     const shippingAddress = [
         {
             id: 1,

@@ -35,7 +35,6 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
             <h2 className="text-xl font-bold text-white mb-4">Revisar e Confirmar Pedido</h2>
 
             <div className="space-y-6 mb-6">
-                {/* Resumo do endereço */}
                 <div className="border border-zinc-800 rounded-lg p-4">
                     <div className="flex justify-between items-start mb-2">
                         <h3 className="text-lg font-semibold text-white">Endereço de Entrega</h3>

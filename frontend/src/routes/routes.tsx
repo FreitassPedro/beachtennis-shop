@@ -10,10 +10,11 @@ import LoginRegisterPage from "../pages/Auth/LoginRegisterPage/LoginRegister"
 import AccountPage from "../pages/Account/AccountPage"
 import { CartProvider } from "../contexts/CartContext/CartProvider"
 import { CheckoutProvider } from "../contexts/CheckoutContext/CheckoutProvider"
+import { LoadingProvider } from "../contexts/LoadingContext/LoadingProvider"
 import HelpPage from "../pages/Help/HelpPage"
 import CheckoutProcessing from "../pages/Checkout/CheckoutProcessing"
-import {ToastContainer } from "react-toastify"
-
+import { ToastContainer } from "react-toastify"
+import Loading from "../components/Loading/Loading"
 
 
 
@@ -21,26 +22,28 @@ export const AppRoutes = () => {
 
     return (
         <BrowserRouter>
-            <CartProvider>
-                <CheckoutProvider>
-                    <Routes>
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/products" element={<ProductsList />} />
-                        <Route path="/product/:id" element={<ProductPage />} />
-                        <Route path="/category/:category" element={<ProductsList />} />
-                        <Route path="/buscar/:query" element={<ProductsList />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/checkout" element={<CheckoutPage />} />
-                        <Route path="/checkout/process" element={<CheckoutProcessing />} />
-                        <Route path="/account" element={<AccountPage />} />
-                        <Route path="/login" element={<LoginRegisterPage />} />
-                        <Route path="/help" element={<HelpPage />} />
-                        <Route path="*" element={<Navigate to="/home" />} />
-                    </Routes>
-                </CheckoutProvider>
-            </CartProvider>
-            <ToastContainer />
-        </BrowserRouter >
-    )
-
-}
+            <LoadingProvider>
+                <CartProvider>
+                    <CheckoutProvider>
+                        <Routes>
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/products" element={<ProductsList />} />
+                            <Route path="/product/:id" element={<ProductPage />} />
+                            <Route path="/category/:category" element={<ProductsList />} />
+                            <Route path="/buscar/:query" element={<ProductsList />} />
+                            <Route path="/cart" element={<Cart />} />
+                            <Route path="/checkout" element={<CheckoutPage />} />
+                            <Route path="/checkout/process" element={<CheckoutProcessing />} />
+                            <Route path="/account" element={<AccountPage />} />
+                            <Route path="/login" element={<LoginRegisterPage />} />
+                            <Route path="/help" element={<HelpPage />} />
+                            <Route path="*" element={<Navigate to="/home" />} />
+                        </Routes>
+                    </CheckoutProvider>
+                </CartProvider>
+                <Loading />
+                <ToastContainer />
+            </LoadingProvider>
+        </BrowserRouter>
+    );
+};

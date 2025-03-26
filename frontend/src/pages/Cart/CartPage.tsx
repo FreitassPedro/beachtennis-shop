@@ -3,7 +3,7 @@ import SummaryCart from "../../components/Carrinho/SumaryCart";
 import ItemCart from "../../components/Carrinho/ItemCart";
 import EmptyCart from "../../components/Carrinho/EmptyCart";
 import CouponCart from "../../components/Carrinho/CouponCart";
-import ShippingCart from "../../components/Carrinho/ShippingCart";
+
 import { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext/CartContext";
 
@@ -13,8 +13,6 @@ const Cart: React.FC = () => {
     const { items } = useContext(CartContext);
 
     const [shipping, setShipping] = useState(0.00);
-
-    const discount = 10.00;
 
     const handleShipping = (value: number) => {
         setShipping(value);
@@ -53,9 +51,6 @@ const Cart: React.FC = () => {
                                         <CouponCart />
 
                                     </div>
-                                    <ShippingCart
-                                        onShipping={handleShipping}
-                                    />
                                 </div>
 
                                 <div className="lg:w-1/3 w-full">
