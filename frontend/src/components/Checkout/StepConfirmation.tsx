@@ -4,13 +4,13 @@ import { Address } from "../../types/AddressMethod";
 import { PaymentMethodDetails } from "../../types/PaymentMethod";
 
 interface StepConfirmationProps {
-    addressData: Address;
+    address: Address;
     paymentData: PaymentMethodDetails;
     onCanProgress: (can: boolean) => void;
     onFormValid: (formValid: boolean) => void;
 }
 
-const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addressData, onFormValid, onCanProgress }) => {
+const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, address, onFormValid, onCanProgress }) => {
 
     const [paymentMethod, setPaymentMethod] = useState(paymentData.method);
     const [formValid, setFormValid] = useState(false);
@@ -28,7 +28,7 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
         onCanProgress(can);
     }
 
-    
+
 
     return (
         <>
@@ -41,17 +41,17 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                         <h3 className="text-lg font-semibold text-white">Endereço de Entrega</h3>
                         <button
                             className="text-green-400 text-sm underline"
-
                         >
                             Editar
                         </button>
                     </div>
                     <div className="text-gray-300">
-                        <p>{addressData.recipient}</p>
-                        <p>{addressData.street}, {addressData.number} - {addressData.complement}</p>
-                        <p>{addressData.neighborhood} - {addressData.city}/{addressData.state}</p>
-                        <p>CEP: {addressData.zip}</p>
-                        <p>{addressData.referencePoint}</p>
+                        <p>{address.addressName}</p>
+                        <p>{address.recipient}</p>
+                        <p>{address.street}, {address.number} - {address.complement}</p>
+                        <p>{address.neighborhood} - {address.city}/{address.state}</p>
+                        <p>CEP: {address.zip}</p>
+                        <p>{address.referencePoint}</p>
 
                     </div>
                 </div>
@@ -128,7 +128,7 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                 >
                     Voltar
                 </button>
-               
+
             </div>
         </>
     );

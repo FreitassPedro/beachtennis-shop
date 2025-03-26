@@ -44,30 +44,30 @@ const MyAddress = () => {
                 {addresses.map((address) => (
                     <div
                         key={address.id}
-                        className={`border border-zinc-700 rounded-md p-4 mb-4 ${address.isDefault ?  'border-l-4 border-l-green-400' : ''} `}
+                        className={`border border-zinc-700 rounded-md p-4 mb-4 ${address.isDefault ? 'border-l-4 border-l-green-400' : ''} `}
                     >
-                <div className="flex justify-between items-start">
-                    <div>
-                        <p className="text-white font-semibold">{address.street}</p>
-                        <p className="text-gray-400">
-                            {address.city}, {address.state} - {address.zip}
-                        </p>
-                        {address.isDefault && (
-                            <p className="text-green-400 mt-2">Endereço Padrão</p>
-                        )}
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-white font-semibold">{address.street}</p>
+                                <p className="text-gray-400">
+                                    {address.city}, {address.state} - {address.zip}
+                                </p>
+                                {address.isDefault && (
+                                    <p className="text-green-400 mt-2">Endereço Padrão</p>
+                                )}
+                            </div>
+                            <div className="flex space-x-2">
+                                <button className="text-yellow-400 hover:underline">
+                                    Editar
+                                </button>
+                                <button className="text-red-500 hover:underline">
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex space-x-2">
-                        <button className="text-yellow-400 hover:underline">
-                            Editar
-                        </button>
-                        <button className="text-red-500 hover:underline">
-                            Remover
-                        </button>
-                    </div>
-                </div>
-            </div>
                 ))}
-        </div>
+            </div>
         </div >
     );
 };

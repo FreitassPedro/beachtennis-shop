@@ -67,7 +67,7 @@ const CheckoutProcessing = () => {
                         </div>
                     </div>
                     <p className="text-gray-400 mt-6 text-center">
-                        Você receberá um e-mail de confirmação em <span className="text-white font-medium">seu@email.com</span> assim que o pagamento for processado.
+                        Você receberá uma notificação de confirmação em <span className="text-white font-medium">e-mail</span> assim que o pagamento for processado.
                     </p>
                 </div>
 
