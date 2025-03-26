@@ -41,12 +41,12 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                         <h3 className="text-lg font-semibold text-white">Endereço de Entrega</h3>
                         <button
                             className="text-green-400 text-sm underline"
-
                         >
                             Editar
                         </button>
                     </div>
                     <div className="text-gray-300">
+                        <p>{address.addressName}</p>
                         <p>{address.recipient}</p>
                         <p>{address.street}, {address.number} - {address.complement}</p>
                         <p>{address.neighborhood} - {address.city}/{address.state}</p>

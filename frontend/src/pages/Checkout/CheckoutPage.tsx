@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Navbar from "../../components/Home/Navbar";
 import StepAddress from "../../components/Checkout/StepAddress";
@@ -8,6 +8,8 @@ import StepBarProgress from "../../components/Checkout/StepBarProgress";
 import { Address } from "../../types/AddressMethod";
 import { mockPaymentMethods, PaymentMethodDetails } from "../../types/PaymentMethod";
 import SummaryCheckout from "../../components/Checkout/SumaryCheckout";
+import axios from "axios";
+import { BASE_URL } from "../../components/utils/api";
 
 const CheckoutPage: React.FC = () => {
     // Estado para controlar a etapa atual do checkout
@@ -18,6 +20,19 @@ const CheckoutPage: React.FC = () => {
     const [formValid, setFormValid] = useState<boolean>(false);
     const [paymentMethod, setPaymentMethod] = useState<string>("");
     const [paymentMethodData, setPaymentMethodData] = useState<PaymentMethodDetails>(mockPaymentMethods.credit);
+    const [address, setAddressSelected] = useState<Address>({ addressName: "Endereço 1"} as Address);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        axios
+            .get(`${BASE_URL}/address/3`)
+            .then((response) => {
+                setAddressSelected(response.data);
+                console.log(response.data);
+            }).catch((error) => {
+                setError(error);
+            });
+    }, []);
 
     // Função para avançar para a próxima etapa
     const nextStep = () => {
@@ -68,18 +83,6 @@ const CheckoutPage: React.FC = () => {
         discount: 0,
         total: 619.90
     };
-    const address: Address = {
-        addressName: "Casa",
-        recipient: "João Silva",
-        number: "123",
-        street: "Rua das Flores",
-        neighborhood: "Jardim Primavera",
-        complement: "Apto 45",
-        city: "São Paulo",
-        state: "SP",
-        zip: "01234-567",
-        referencePoint: "Próximo ao mercado XPTO"
-    };
 
     return (
         <>
@@ -105,8 +108,9 @@ const CheckoutPage: React.FC = () => {
                                 {/* Step 1: Endereço de Entrega */}
                                 {currentStep === 1 && (
                                     <StepAddress
-                                        addressMock={address}
+                                        address={address}
                                         onCanProgress={handleCanProgress}
+                                        onAddress={setAddressSelected}
                                     />
                                 )}
 
@@ -121,7 +125,7 @@ const CheckoutPage: React.FC = () => {
                                 {/* Step 3: Confirmação */}
                                 {currentStep === 3 && (
                                     <StepConfirmation
-                                        addressData={address}
+                                        address={address}
                                         paymentData={paymentMethodData}
                                         onFormValid={handleFormValidation}
                                         onCanProgress={handleCanProgress}
