@@ -12,11 +12,13 @@ import { CartProvider } from "../contexts/CartContext/CartProvider"
 import { CheckoutProvider } from "../contexts/CheckoutContext/CheckoutProvider"
 import HelpPage from "../pages/Help/HelpPage"
 import CheckoutProcessing from "../pages/Checkout/CheckoutProcessing"
+import {ToastContainer } from "react-toastify"
 
 
 
 
 export const AppRoutes = () => {
+
     return (
         <BrowserRouter>
             <CartProvider>
@@ -37,6 +39,7 @@ export const AppRoutes = () => {
                     </Routes>
                 </CheckoutProvider>
             </CartProvider>
+            <ToastContainer />
         </BrowserRouter >
     )
 

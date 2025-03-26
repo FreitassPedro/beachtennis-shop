@@ -14,11 +14,11 @@ const MySideBar: React.FC<MySideBarProps> = ({ activeTab, setActiveTab }) => {
     return (
         <div className="">
             <div className="bg-zinc-900 rounded-xl shadow-xl p-6 sticky top-4">
-                <div className="flex flex-col  items-center mb-8 pb-4 border-b border-zinc-800">
+                <div className="flex flex-col items-center  mb-8 pb-4 border-b border-zinc-800">
                     <div className="bg-green-400 h-12 w-12 rounded-full flex items-center justify-center text-black font-bold text-xl">
                         {user.name.charAt(0)}
                     </div>
-                    <div>
+                    <div className="">
                         <h3 className="font-bold text-white">{user.name}</h3>
                         <p className="text-sm text-gray-400">{user.email}</p>
                     </div>
