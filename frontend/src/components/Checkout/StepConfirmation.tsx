@@ -6,13 +6,13 @@ import { PaymentMethodDetails } from "../../types/PaymentMethod";
 interface StepConfirmationProps {
     address: Address;
     paymentData: PaymentMethodDetails;
+    backToStep: (step: number) => void;
     onCanProgress: (can: boolean) => void;
     onFormValid: (formValid: boolean) => void;
 }
 
-const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, address, onFormValid, onCanProgress }) => {
+const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, address, onFormValid, onCanProgress, backToStep }) => {
 
-    const [paymentMethod, setPaymentMethod] = useState(paymentData.method);
     const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
@@ -28,7 +28,9 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
         onCanProgress(can);
     }
 
-
+    const handleBackToStep = (step: number) => {
+        backToStep(step);
+    }
 
     return (
         <>
@@ -39,7 +41,8 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                     <div className="flex justify-between items-start mb-2">
                         <h3 className="text-lg font-semibold text-white">Endereço de Entrega</h3>
                         <button
-                            className="text-green-400 text-sm underline"
+                            className="text-green-400 text-sm underline cursor-pointer"
+                            onClick={() => handleBackToStep(1)}
                         >
                             Editar
                         </button>
@@ -60,13 +63,14 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                     <div className="flex justify-between items-start mb-2">
                         <h3 className="text-lg font-semibold text-white">Método de Pagamento</h3>
                         <button
-                            className="text-green-400 text-sm underline"
+                            className="text-green-400 text-sm underline cursor-pointer"
+                            onClick={() => handleBackToStep(2)}
                         >
                             Editar
                         </button>
                     </div>
                     <div className="text-gray-300">
-                        {paymentMethod === "credit-card" && (
+                        {paymentData.method === "credit-card" && (
                             <>
                                 <p className="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,7 +82,7 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                                 <p>10x de R$ 61,99 sem juros</p>
                             </>
                         )}
-                        {paymentMethod === "pix" && (
+                        {paymentData.method === "pix" && (
                             <>
                                 <p className="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,7 +94,7 @@ const StepConfirmation: React.FC<StepConfirmationProps> = ({ paymentData, addres
                                 <p>Total: R$ 588,91</p>
                             </>
                         )}
-                        {paymentMethod === "boleto" && (
+                        {paymentData.method === "boleto" && (
                             <>
                                 <p className="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

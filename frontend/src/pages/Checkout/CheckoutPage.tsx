@@ -41,7 +41,7 @@ const CheckoutPage: React.FC = () => {
             });
     }, [userId]);
 
-    
+
     // Função para avançar para a próxima etapa
     const nextStep = () => {
         if (currentStep < 3) {
@@ -74,6 +74,10 @@ const CheckoutPage: React.FC = () => {
         console.log("Formulário válido: ", valid);
     }
 
+    const handleBackToStep = (step: number) => {
+        setCurrentStep(step);
+    }
+
     return (
         <>
             <div className="min-h-screen bg-zinc-950">
@@ -82,7 +86,7 @@ const CheckoutPage: React.FC = () => {
                     {/* Breadcrumb */}
                     <div className="text-gray-400 mb-6">
                         <span className="hover:text-green-400 cursor-pointer">Home</span> &gt;
-                        <span className="hover:text-green-400 cursor-pointer"> Carrinho</span> &gt;
+                        <span className="hover:text-green-400 cursor-pointer">Carrinho</span> &gt;
                         <span className="text-green-400"> Pagamento</span>
                     </div>
 
@@ -96,7 +100,7 @@ const CheckoutPage: React.FC = () => {
                         <div className="w-full lg:w-2/3">
                             <div className="bg-zinc-900 p-6 rounded-lg mb-4">
 
-                                {currentStep === 1 && loadedInitial  && (
+                                {currentStep === 1 && loadedInitial && (
                                     <StepAddress
                                         address={address}
                                         onCanProgress={handleCanProgress}
@@ -117,6 +121,7 @@ const CheckoutPage: React.FC = () => {
                                         paymentData={paymentMethodData}
                                         onFormValid={handleFormValidation}
                                         onCanProgress={handleCanProgress}
+                                        backToStep={handleBackToStep}
                                     />
                                 )}
 

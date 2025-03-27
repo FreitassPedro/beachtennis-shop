@@ -14,6 +14,8 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
     const [formAddress, setFormAddress] = useState<Address>(address);
     const [searchingZip, setSearchingZip] = useState(false);
     const [displayedZip, setDisplayedZip] = useState("");
+    const [hasAddress, setHasAddress] = useState(false);
+    const [isOpenEditAddress, setIsOpenEditAddress] = useState(false);
 
     useEffect(() => {
         if (formAddress.zip?.length === 8) {
@@ -83,15 +85,32 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
         onAddress(formAddress);
     }
 
+    const handleSaveAddress = () => {
+        if (isAddressValid()) {
+            handleNullAddressName();
+            onAddress(formAddress);
+            setHasAddress(true);
+        }
+    }
+
+
+    const handleEditAddress = () => {
+        setIsOpenEditAddress(!isOpenEditAddress);
+        setHasAddress(!hasAddress);
+    }
+
 
     return (
         <>
             <h2 className="text-xl font-bold text-white mb-4">Endereço de Entrega</h2>
-            {isAddressValid() && Object.keys(address).length > 0 ? (
+            { hasAddress && isAddressValid() ? (
                 <div className="border border-zinc-800 rounded-lg p-4">
                     <div className="flex justify-between items-start mb-2">
                         <h3 className="text-lg font-semibold text-white">{address.addressName}</h3>
-                        <button className="text-green-400 text-sm underline">Editar</button>
+                        <button
+                            className="text-green-400 text-sm underline cursor-pointer"
+                            onClick={handleEditAddress}
+                        >Editar</button>
                     </div>
                     <div className="text-gray-300">
                         <p>{formAddress.recipient}</p>
@@ -100,7 +119,7 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
                         <p>CEP: {formAddress.zip}</p>
                         <p>{formAddress.referencePoint}</p>
                     </div>
-                </div>
+                </div >
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div className="md:col-span-2">
@@ -196,9 +215,11 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
                         </select>
                     </div>
 
-                    {
-                        <div className="border-b border-zinc-800 my-8 text-white ">
-                        <p className="mb-2 ">Se você deseja salvar este endereço para futuras compras, basta informar um nome para ele.</p>
+
+
+
+                    <div className="border-b border-zinc-800 my-8 text-white ">
+                        <p className="mb-2 ">Informe o nome do endereço para futuras compras</p>
                         <input
                             type="text"
                             placeholder="Casa, Trabalho, etc."
@@ -215,17 +236,26 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
                         </div>
                         <span className="text-gray-400 text-sm">Você poderá alterar o endereço a qualquer momento antes de outra compra</span>
                     </div>
-                    }
+                    <div className="flex items-center justify-center col-span-2" >
+                        <button
+                            className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 font-semibold transition-colors cursor-pointer w-1/2"
+                            onClick={() => handleSaveAddress()}
+                        >
+                            Salvar endereço
+                        </button>
+                    </div>
 
                 </div>
             )}
 
 
-            {isAddressValid() && (
-                <>
-                    <ShippingCheckout cep={formAddress.zip} />
-                </>
-            )}
+            {
+                hasAddress && isAddressValid() && (
+                    <>
+                        <ShippingCheckout cep={formAddress.zip} />
+                    </>
+                )
+            }
 
             <div className="flex justify-end">
                 <button
@@ -238,17 +268,19 @@ const StepAddress: React.FC<StepAddressProps> = ({ onCanProgress, address, onAdd
             </div>
 
 
-            {searchingZip && (
-                <div className="bg-gray-800/90 fixed inset-0 z-10">
-                    <div className="bg-zinc-800 p-8 rounded-lg absolute top-1/2 left-1/2 flex flex-row gap-4 items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-green-400 animate-spin" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        <h1 className="text-white text-lg font-semibold">Buscando CEP...</h1>
+            {
+                searchingZip && (
+                    <div className="bg-gray-800/90 fixed inset-0 z-10">
+                        <div className="bg-zinc-800 p-8 rounded-lg absolute top-1/2 left-1/2 flex flex-row gap-4 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-green-400 animate-spin" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            <h1 className="text-white text-lg font-semibold">Buscando CEP...</h1>
 
+                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </>
     )
 }
