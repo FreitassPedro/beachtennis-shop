@@ -1,5 +1,6 @@
 
 export type Address = {
+    id: number;
     addressName: string;
     recipient: string;
     number: string;

@@ -4,6 +4,8 @@ import com.aschade.ecommerce.entity.Address;
 import com.aschade.ecommerce.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressService {
 
@@ -15,5 +17,9 @@ public class AddressService {
 
     public Address findById(Long id) {
         return addressRepository.findById(id).orElse(null);
+    }
+
+    public List<Address> findAllById(Long id) {
+        return addressRepository.findAllByUserId(id);
     }
 }

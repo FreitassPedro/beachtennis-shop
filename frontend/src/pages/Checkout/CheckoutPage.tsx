@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import Navbar from "../../components/Home/Navbar";
 import StepAddress from "../../components/Checkout/StepAddress";
 import StepPayment from "../../components/Checkout/StepPayment";
@@ -8,39 +6,19 @@ import StepBarProgress from "../../components/Checkout/StepBarProgress";
 import { Address } from "../../types/AddressMethod";
 import { mockPaymentMethods, PaymentMethodDetails } from "../../types/PaymentMethod";
 import SummaryCheckout from "../../components/Checkout/SumaryCheckout";
-import axios from "axios";
-import { BASE_URL } from "../../components/utils/api";
-import { useLoading } from "../../contexts/LoadingContext/LoadingContext";
+import { useState } from "react";
+
 
 const CheckoutPage: React.FC = () => {
-    const { isLoading, setIsLoading } = useLoading();
+
     const [currentStep, setCurrentStep] = useState<number>(1);
-    const [formValid, setFormValid] = useState<boolean>(false);
+
+    const [selectedAddress, setSelectedAddress] = useState<Address>({} as Address);
+
     const [paymentMethod, setPaymentMethod] = useState<string>("");
     const [paymentMethodData, setPaymentMethodData] = useState<PaymentMethodDetails>(mockPaymentMethods.credit);
-    const [address, setAddressSelected] = useState<Address>({ addressName: "Endereço 1" } as Address);
-    const [error, setError] = useState(null);
-    const [loadedInitial, setLoadedInitial] = useState(false);
 
-    const userId = 1;
-
-    useEffect(() => {
-        setIsLoading(true);
-        axios
-            .get(`${BASE_URL}/address/${userId}`)
-            .then((response) => {
-                setAddressSelected(response.data);
-                console.log(response.data);
-            })
-            .catch((error) => {
-                setError(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-                setLoadedInitial(true);
-            });
-    }, [userId]);
-
+    const [formValid, setFormValid] = useState<boolean>(false);
 
     // Função para avançar para a próxima etapa
     const nextStep = () => {
@@ -100,11 +78,10 @@ const CheckoutPage: React.FC = () => {
                         <div className="w-full lg:w-2/3">
                             <div className="bg-zinc-900 p-6 rounded-lg mb-4">
 
-                                {currentStep === 1 && loadedInitial && (
+                                {currentStep === 1 && (
                                     <StepAddress
-                                        address={address}
                                         onCanProgress={handleCanProgress}
-                                        onAddress={setAddressSelected}
+                                        setCheckoutAddress={setSelectedAddress}
                                     />
                                 )}
 
@@ -117,7 +94,7 @@ const CheckoutPage: React.FC = () => {
 
                                 {currentStep === 3 && (
                                     <StepConfirmation
-                                        address={address}
+                                        address={selectedAddress}
                                         paymentData={paymentMethodData}
                                         onFormValid={handleFormValidation}
                                         onCanProgress={handleCanProgress}

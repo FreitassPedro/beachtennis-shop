@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
@@ -20,8 +22,8 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAddressById(@PathVariable Long id) {
-        Address byId = addressService.findById(id);
+    public ResponseEntity<?> getAddressesById(@PathVariable Long id) {
+        List<Address> byId = addressService.findAllById(id);
         System.out.println(byId);
         return ResponseEntity.ok().body(byId);
     }
